@@ -3,6 +3,8 @@ import type {
   BlogPost,
   Course,
   Faq,
+  GalleryAlbum,
+  GalleryPhoto,
   HeroSlide,
   HomeIntro,
   LearningPath,
@@ -985,7 +987,7 @@ export function SocialEditor({
   onChange: (next: SiteContent["social"]) => void;
 }) {
   return (
-    <Section title="Social links">
+    <Section title="Social links" description="All social links appear in the site footer and are used across the site.">
       <Field label="LinkedIn URL" value={social.linkedin} onChange={(v) => onChange({ ...social, linkedin: v })} />
       <Field label="Twitter / X URL" value={social.twitter} onChange={(v) => onChange({ ...social, twitter: v })} />
       <Field label="Facebook URL" value={social.facebook} onChange={(v) => onChange({ ...social, facebook: v })} />
@@ -996,7 +998,119 @@ export function SocialEditor({
         onChange={(v) => onChange({ ...social, whatsapp: v })}
         placeholder="https://wa.me/1234567890"
       />
+      <Field
+        label="Discord invite link (shows in footer + Academy page)"
+        value={social.discord ?? ""}
+        onChange={(v) => onChange({ ...social, discord: v || undefined })}
+        placeholder="https://discord.gg/your-invite-code"
+      />
     </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Gallery                                                                     */
+/* -------------------------------------------------------------------------- */
+
+export function GalleryEditor({
+  gallery,
+  onChange,
+}: {
+  gallery: SiteContent["gallery"];
+  onChange: (next: SiteContent["gallery"]) => void;
+}) {
+  return (
+    <>
+      <Section title="Gallery page banner">
+        <Field
+          label="Banner title"
+          value={gallery.bannerTitle}
+          onChange={(v) => onChange({ ...gallery, bannerTitle: v })}
+        />
+        <Area
+          label="Banner subtitle"
+          value={gallery.bannerSubtitle}
+          onChange={(v) => onChange({ ...gallery, bannerSubtitle: v })}
+          rows={2}
+        />
+      </Section>
+
+      <Section
+        title="Albums"
+        description="Each album groups photos together. Upload a cover image and add photos with captions."
+      >
+        <ListEditor
+          items={gallery.albums}
+          onChange={(albums) => onChange({ ...gallery, albums })}
+          addLabel="Add album"
+          newItem={(): GalleryAlbum => ({
+            id: `album-${Date.now()}`,
+            title: "New Album",
+            dateLabel: "",
+            cover: "",
+            photos: [],
+          })}
+          renderItem={(album, _i, updateAlbum) => (
+            <>
+              <div className="admin-grid-2">
+                <Field
+                  label="Album title"
+                  value={album.title}
+                  onChange={(v) => updateAlbum({ ...album, title: v })}
+                  placeholder="WirfonCloud Summit 2024"
+                />
+                <Field
+                  label="Date label"
+                  value={album.dateLabel}
+                  onChange={(v) => updateAlbum({ ...album, dateLabel: v })}
+                  placeholder="June 2024"
+                />
+              </div>
+              <ImageUpload
+                label="Cover image (shown in album header)"
+                value={album.cover ?? ""}
+                onChange={(v) => updateAlbum({ ...album, cover: v })}
+                hint="First photo is used as cover if none set."
+              />
+              <div className="admin-subgroup">
+                <span className="admin-field-label" style={{ marginBottom: "0.5rem", display: "block" }}>
+                  Photos ({album.photos.length})
+                </span>
+                <ListEditor
+                  items={album.photos}
+                  onChange={(photos) => updateAlbum({ ...album, photos })}
+                  addLabel="Add photo"
+                  newItem={(): GalleryPhoto => ({ src: "", alt: "", caption: "" })}
+                  renderItem={(photo, _pi, updatePhoto) => (
+                    <>
+                      <ImageUpload
+                        label="Photo"
+                        value={photo.src}
+                        onChange={(v) => updatePhoto({ ...photo, src: v })}
+                      />
+                      <div className="admin-grid-2">
+                        <Field
+                          label="Caption"
+                          value={photo.caption}
+                          onChange={(v) => updatePhoto({ ...photo, caption: v })}
+                          placeholder="Hands-on cloud workshop"
+                        />
+                        <Field
+                          label="Alt text (accessibility)"
+                          value={photo.alt}
+                          onChange={(v) => updatePhoto({ ...photo, alt: v })}
+                          placeholder="Attendees at the summit"
+                        />
+                      </div>
+                    </>
+                  )}
+                />
+              </div>
+            </>
+          )}
+        />
+      </Section>
+    </>
   );
 }
 

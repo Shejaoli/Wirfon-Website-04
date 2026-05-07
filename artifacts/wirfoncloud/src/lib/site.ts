@@ -21,6 +21,8 @@ export function toSlug(title: string): string {
 export type Faq = { q: string; a: string };
 export type Service = { icon: string; title: string; text: string };
 export type Partner = { name: string; href: string; logo?: string };
+export type GalleryPhoto = { src: string; alt: string; caption: string };
+export type GalleryAlbum = { id: string; title: string; dateLabel: string; cover?: string; photos: GalleryPhoto[] };
 export type HeroSlide = {
   title: string;
   text: string;
@@ -90,6 +92,11 @@ export interface SiteContent {
     posts: BlogPost[];
   };
   faqs: Faq[];
+  gallery: {
+    bannerTitle: string;
+    bannerSubtitle: string;
+    albums: GalleryAlbum[];
+  };
   social: {
     linkedin: string;
     twitter: string;
@@ -193,6 +200,11 @@ export const DEFAULT_SITE: SiteContent = {
     posts: [],
   },
   faqs: [],
+  gallery: {
+    bannerTitle: "WirfonCloud in Pictures",
+    bannerSubtitle: "Highlights from our Summits, community events and the moments that bring our cloud journey to life.",
+    albums: [],
+  },
   social: {
     linkedin: "https://www.linkedin.com/company/wirfoncloud/",
     twitter: "https://twitter.com/JoinWirfonCloud",

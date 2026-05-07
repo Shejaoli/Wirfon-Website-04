@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSite } from "@/hooks/useSite";
+import type { GalleryPhoto } from "@/lib/site";
 
 import img1 from "@assets/IMG_20230625_132855_776_1777412731016.jpg";
 import img2 from "@assets/IMG_20230625_133031_342_1777412731017.jpg";
@@ -16,22 +18,18 @@ import img13 from "@assets/Photo_from_Mfoome_Bahti_-Ban(9)_1777412731023.jpg";
 import img14 from "@assets/Photo_from_Mfoome_Bahti_-Ban(10)_1777412731023.jpg";
 import img15 from "@assets/Photo_from_Mfoome_Bahti_-Ban_1777412731024.jpg";
 
-type GalleryItem = { src: string; alt: string; caption: string };
-
-type Album = {
+type AlbumData = {
   id: string;
   title: string;
-  date: string;
   dateLabel: string;
-  cover: string;
-  photos: GalleryItem[];
+  cover?: string;
+  photos: GalleryPhoto[];
 };
 
-const albums: Album[] = [
+const STATIC_ALBUMS: AlbumData[] = [
   {
     id: "summit-2023",
     title: "WirfonCloud Summit — Brussels 2023",
-    date: "2023-06-25",
     dateLabel: "June 2023",
     cover: img1,
     photos: [
@@ -42,7 +40,6 @@ const albums: Album[] = [
   {
     id: "summit-2021",
     title: "Wirfon Cloud Summit — Brussels 2021",
-    date: "2021-09-01",
     dateLabel: "September 2021",
     cover: img3,
     photos: [
@@ -63,13 +60,22 @@ const albums: Album[] = [
   },
 ];
 
-const sortedAlbums = [...albums].sort((a, b) => b.date.localeCompare(a.date));
-
 const PREVIEW_COUNT = 4;
 
 export default function Gallery() {
-  const [lightbox, setLightbox] = useState<{ photos: GalleryItem[]; index: number } | null>(null);
+  const site = useSite();
+  const [lightbox, setLightbox] = useState<{ photos: GalleryPhoto[]; index: number } | null>(null);
   const [expandedAlbums, setExpandedAlbums] = useState<Set<string>>(new Set());
+
+  const dynamicAlbums: AlbumData[] = (site.gallery?.albums ?? []).filter(
+    (a) => a.photos && a.photos.length > 0,
+  );
+  const albums: AlbumData[] = dynamicAlbums.length > 0 ? dynamicAlbums : STATIC_ALBUMS;
+
+  const bannerTitle = site.gallery?.bannerTitle || "WirfonCloud in Pictures";
+  const bannerSubtitle =
+    site.gallery?.bannerSubtitle ||
+    "Highlights from our Summits in Brussels, community events and the moments that bring our cloud journey to life.";
 
   const toggleAlbum = (id: string) => {
     setExpandedAlbums((prev) => {
@@ -110,68 +116,81 @@ export default function Gallery() {
         style={{ background: "linear-gradient(135deg, #0199ef 0%, #005fa3 100%)" }}
       >
         <div className="container">
-          <h1>WirfonCloud in Pictures</h1>
-          <p>
-            Highlights from our Summits in Brussels, community events and the moments
-            that bring our cloud journey to life.
-          </p>
+          <h1>{bannerTitle}</h1>
+          <p>{bannerSubtitle}</p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          {sortedAlbums.map((album) => {
-            const isExpanded = expandedAlbums.has(album.id);
-            const visiblePhotos = isExpanded ? album.photos : album.photos.slice(0, PREVIEW_COUNT);
-            const remaining = album.photos.length - PREVIEW_COUNT;
+          {albums.length === 0 ? (
+            <p style={{ color: "var(--grey-500)", textAlign: "center", padding: "3rem 0" }}>
+              No albums yet — add some from the admin gallery manager.
+            </p>
+          ) : (
+            albums.map((album) => {
+              const isExpanded = expandedAlbums.has(album.id);
+              const visiblePhotos = isExpanded ? album.photos : album.photos.slice(0, PREVIEW_COUNT);
+              const remaining = album.photos.length - PREVIEW_COUNT;
+              const coverSrc = album.cover || album.photos[0]?.src;
 
-            return (
-              <div key={album.id} className="gallery-album">
-                <div className="gallery-album-header">
-                  <div className="gallery-album-meta">
-                    <h2 className="gallery-album-title">{album.title}</h2>
-                    <span className="gallery-album-date">
-                      <i className="fa-regular fa-calendar" /> {album.dateLabel}
-                    </span>
-                    <span className="gallery-album-count">
-                      <i className="fa-regular fa-image" /> {album.photos.length} photos
-                    </span>
-                  </div>
-                </div>
-
-                <div className="gallery-grid">
-                  {visiblePhotos.map((p, i) => (
-                    <button
-                      key={p.src}
-                      type="button"
-                      className="gallery-tile"
-                      onClick={() => setLightbox({ photos: album.photos, index: album.photos.indexOf(p) })}
-                      aria-label={`Open image: ${p.caption}`}
-                    >
-                      <img src={p.src} alt={p.alt} loading="lazy" />
-                      <span className="gallery-caption">{p.caption}</span>
-                    </button>
-                  ))}
-                </div>
-
-                {album.photos.length > PREVIEW_COUNT && (
-                  <div className="gallery-album-footer">
-                    <button
-                      type="button"
-                      className="btn btn-outline btn-sm"
-                      onClick={() => toggleAlbum(album.id)}
-                    >
-                      {isExpanded ? (
-                        <><i className="fa-solid fa-chevron-up" /> Show Less</>
-                      ) : (
-                        <><i className="fa-solid fa-images" /> View all {remaining} more photos</>
+              return (
+                <div key={album.id} className="gallery-album">
+                  <div className="gallery-album-header">
+                    <div className="gallery-album-meta">
+                      {coverSrc && (
+                        <div className="gallery-album-cover">
+                          <img src={coverSrc} alt={album.title} />
+                        </div>
                       )}
-                    </button>
+                      <div>
+                        <h2 className="gallery-album-title">{album.title}</h2>
+                        {album.dateLabel && (
+                          <span className="gallery-album-date">
+                            <i className="fa-regular fa-calendar" /> {album.dateLabel}
+                          </span>
+                        )}
+                        <span className="gallery-album-count">
+                          <i className="fa-regular fa-image" /> {album.photos.length} photo{album.photos.length !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-            );
-          })}
+
+                  <div className="gallery-grid">
+                    {visiblePhotos.map((p, i) => (
+                      <button
+                        key={`${p.src}-${i}`}
+                        type="button"
+                        className="gallery-tile"
+                        onClick={() => setLightbox({ photos: album.photos, index: album.photos.indexOf(p) })}
+                        aria-label={`Open image: ${p.caption}`}
+                      >
+                        <img src={p.src} alt={p.alt} loading="lazy" />
+                        <span className="gallery-caption">{p.caption}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {album.photos.length > PREVIEW_COUNT && (
+                    <div className="gallery-album-footer">
+                      <button
+                        type="button"
+                        className="btn btn-outline btn-sm"
+                        onClick={() => toggleAlbum(album.id)}
+                      >
+                        {isExpanded ? (
+                          <><i className="fa-solid fa-chevron-up" /> Show Less</>
+                        ) : (
+                          <><i className="fa-solid fa-images" /> View all {remaining} more photo{remaining !== 1 ? "s" : ""}</>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </section>
 
@@ -204,7 +223,12 @@ export default function Gallery() {
           </button>
           <figure className="lightbox-figure" onClick={(e) => e.stopPropagation()}>
             <img src={current.src} alt={current.alt} />
-            <figcaption>{current.caption}</figcaption>
+            <figcaption>
+              {current.caption}
+              {lightbox.photos.length > 1 && (
+                <span className="lightbox-counter"> · {lightbox.index + 1} / {lightbox.photos.length}</span>
+              )}
+            </figcaption>
           </figure>
           <button
             type="button"

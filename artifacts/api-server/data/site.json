@@ -328,5 +328,10 @@
   },
   "footer": {
     "copyrightYear": 2026
+  },
+  "gallery": {
+    "bannerTitle": "WirfonCloud in Pictures",
+    "bannerSubtitle": "Highlights from our Summits in Brussels, community events and the moments that bring our cloud journey to life.",
+    "albums": []
   }
 }

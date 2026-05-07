@@ -21,6 +21,7 @@ import {
   ConsultancyEditor,
   BlogEditor,
   FaqsEditor,
+  GalleryEditor,
   SocialEditor,
   ContactEditor,
 } from "./editors";
@@ -34,6 +35,7 @@ type Tab =
   | "consultancy"
   | "blog"
   | "faq"
+  | "gallery"
   | "settings";
 
 const TAB_GROUPS: { label: string; tabs: { id: Tab; label: string; icon: string; desc: string }[] }[] = [
@@ -53,6 +55,7 @@ const TAB_GROUPS: { label: string; tabs: { id: Tab; label: string; icon: string;
       { id: "consultancy", label: "Consultancy",  icon: "fa-handshake",       desc: "Services & contact" },
       { id: "blog",        label: "Blog",         icon: "fa-newspaper",       desc: "Articles & announcements" },
       { id: "faq",         label: "FAQ",          icon: "fa-circle-question", desc: "Frequently asked questions" },
+      { id: "gallery",     label: "Gallery",      icon: "fa-images",          desc: "Photo albums & gallery" },
     ],
   },
   {
@@ -74,6 +77,7 @@ const TAB_COLORS: Record<Tab, string> = {
   consultancy: "#ec4899",
   blog:        "#14b8a6",
   faq:         "#f97316",
+  gallery:     "#0891b2",
   settings:    "#64748b",
 };
 
@@ -301,6 +305,12 @@ export default function AdminDashboard() {
             <FaqsEditor
               items={data.faqs}
               onChange={(faqs) => update({ ...data, faqs })}
+            />
+          )}
+          {tab === "gallery" && (
+            <GalleryEditor
+              gallery={data.gallery ?? { bannerTitle: "WirfonCloud in Pictures", bannerSubtitle: "", albums: [] }}
+              onChange={(gallery) => update({ ...data, gallery })}
             />
           )}
           {tab === "settings" && (
