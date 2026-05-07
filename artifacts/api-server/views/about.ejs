@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+  <title>About Us — WirfonCloud</title>
+</head>
+<body>
+<%- include('partials/navbar') %>
+
+<section class="page-banner" style="background-image: linear-gradient(rgba(10,22,40,0.55), rgba(10,22,40,0.55)), url('/images/002_blk_girl_shutterstock_2030694452.jpg');">
+  <div class="container">
+    <h1>About WirfonCloud</h1>
+    <p>Your trusted partner in cloud computing.</p>
+  </div>
+</section>
+
+<section id="who-we-are" class="section anchor-section">
+  <div class="container narrow">
+    <h2>Who We Are</h2>
+    <p>At WirfonCloud, we are your trusted partner in cloud computing. With a strong focus on training and consulting, we empower individuals and businesses to harness the full potential of the cloud.</p>
+    <p><strong>Training:</strong> Our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you're more than certified. We ensure you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.</p>
+    <p><strong>Consulting:</strong> Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs.</p>
+    <p>Whether you're an individual seeking to switch your career, advance your cloud career, or a business looking to transform with cloud technologies, WirfonCloud is your go-to partner. Join us and unlock endless possibilities in the world of cloud computing.</p>
+  </div>
+</section>
+
+<section id="our-mission" class="section section-alt anchor-section">
+  <div class="container narrow">
+    <h2>Our Mission</h2>
+    <p>At WirfonCloud, our mission is to demystify the complexities of cloud technology and make it accessible to individuals and companies alike.</p>
+    <p>We are dedicated to empowering individuals and organizations, regardless of their background or level of expertise, to embrace the power of cloud computing. Through education, guidance, and innovative solutions, we strive to unlock the full potential of cloud technology, driving growth, innovation, and success for both individuals and companies in the digital era.</p>
+    <p class="emphasis">Let's rule the clouds.</p>
+  </div>
+</section>
+
+<section id="our-vision" class="section anchor-section">
+  <div class="container narrow">
+    <h2>Our Vision</h2>
+    <p>Our vision is to be the trusted partner for individuals and companies in their cloud journey, providing exceptional training, insightful consulting, and transformative coaching services.</p>
+    <p>We strive to empower individuals with the knowledge and skills to excel in the world of cloud computing, while assisting businesses in harnessing the full potential of cloud technology to drive innovation, growth, and success. Through our unwavering commitment to excellence, expertise, and personalized guidance, we envision a future where individuals and companies thrive in the digital landscape, achieving their goals and realizing their fullest potential with WirfonCloud as their trusted cloud partner.</p>
+    <p class="emphasis">Let's rule the clouds.</p>
+  </div>
+</section>
+
+<section id="contact" class="section section-alt anchor-section">
+  <div class="container narrow">
+    <h2>Contact Us</h2>
+    <form class="contact-form" method="POST" action="/contact">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-row">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required />
+      </div>
+      <div class="form-row">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+    <p class="contact-email">Or email us directly: <a href="mailto:contact@wirfoncloud.com">contact@wirfoncloud.com</a></p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

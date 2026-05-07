@@ -1,0 +1,176 @@
+{
+  "branding": {
+    "logoUrl": "/images/logo-v2.png"
+  },
+  "hero": [
+    {
+      "title": "Master the Cloud with WirfonCloud",
+      "text": "Hands-on training programs designed to launch and advance your cloud career.",
+      "ctaHref": "/academy",
+      "ctaLabel": "Explore Academy",
+      "bgFrom": "#0199ef",
+      "bgTo": "#005fa3",
+      "backgroundImage": "/images/IMG_20230625_133031_342.jpg"
+    },
+    {
+      "title": "Your Trusted Cloud Consulting Partner",
+      "text": "From infrastructure design to security and cost optimization — we guide your cloud journey.",
+      "ctaHref": "/consultancy",
+      "ctaLabel": "Our Services",
+      "bgFrom": "#005fa3",
+      "bgTo": "#003d6b",
+      "backgroundImage": "/images/professional-night.jpg"
+    }
+  ],
+  "homeIntro": [
+    {
+      "title": "Transform Your Career with Cloud Skills",
+      "text": "At WirfonCloud, our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you are more than certified — you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.",
+      "image": "/images/phoneshutterstock_133514576.jpg",
+      "fallbackLabel": "Cloud training in your pocket",
+      "ctaHref": "/academy",
+      "ctaLabel": "Learn More",
+      "reverse": false
+    },
+    {
+      "title": "Strategic Cloud Consulting Tailored for You",
+      "text": "Our certified and experienced consultants provide strategic guidance and practical solutions. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to your specific needs.",
+      "image": "/images/shutterstock_1405194650.jpg",
+      "fallbackLabel": "Strategic cloud consulting",
+      "ctaHref": "/consultancy",
+      "ctaLabel": "Learn More",
+      "reverse": true
+    }
+  ],
+  "homeTestimonials": [
+    { "src": "https://www.youtube.com/embed/aByknzTTOaY", "title": "AWS Deep Dive on Amazon S3", "caption": "AWS Deep Dive on Amazon S3" },
+    { "src": "https://www.youtube.com/embed/n4qHUXrRcds", "title": "AWS re:Invent Recap", "caption": "AWS re:Invent Recap at WirfonCloud" },
+    { "src": "https://www.youtube.com/embed/aByknzTTOaY", "title": "WirfonCloud Testimonial", "caption": "WirfonCloud Client Story" }
+  ],
+  "partners": [],
+  "homeCta": {
+    "title": "Ready to Get Started?",
+    "text": "Book a free appointment with our team via Google Calendar or connect with us on LinkedIn.",
+    "primaryHref": "https://calendar.google.com",
+    "primaryLabel": "Book Appointment",
+    "secondaryHref": "https://www.linkedin.com/company/wirfoncloud/",
+    "secondaryLabel": "Connect on LinkedIn"
+  },
+  "about": {
+    "bannerImage": "/images/002_blk_girl_shutterstock_2030694452.jpg",
+    "bannerTitle": "About WirfonCloud",
+    "bannerSubtitle": "Your trusted partner in cloud computing.",
+    "sections": [
+      {
+        "id": "who-we-are",
+        "title": "Who We Are",
+        "paragraphs": [
+          "At WirfonCloud, we are your trusted partner in cloud computing. With a strong focus on training and consulting, we empower individuals and businesses to harness the full potential of the cloud.",
+          "**Training:** Our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you're more than certified. We ensure you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.",
+          "**Consulting:** Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs.",
+          "Whether you're an individual seeking to switch your career, advance your cloud career, or a business looking to transform with cloud technologies, WirfonCloud is your go-to partner. Join us and unlock endless possibilities in the world of cloud computing."
+        ]
+      },
+      {
+        "id": "our-mission",
+        "title": "Our Mission",
+        "paragraphs": [
+          "At WirfonCloud, our mission is to demystify the complexities of cloud technology and make it accessible to individuals and companies alike.",
+          "We are dedicated to empowering individuals and organizations, regardless of their background or level of expertise, to embrace the power of cloud computing. Through education, guidance, and innovative solutions, we strive to unlock the full potential of cloud technology, driving growth, innovation, and success for both individuals and companies in the digital era.",
+          "_Let's rule the clouds._"
+        ]
+      },
+      {
+        "id": "our-vision",
+        "title": "Our Vision",
+        "paragraphs": [
+          "Our vision is to be the trusted partner for individuals and companies in their cloud journey, providing exceptional training, insightful consulting, and transformative coaching services.",
+          "We strive to empower individuals with the knowledge and skills to excel in the world of cloud computing, while assisting businesses in harnessing the full potential of cloud technology to drive innovation, growth, and success. Through our unwavering commitment to excellence, expertise, and personalized guidance, we envision a future where individuals and companies thrive in the digital landscape, achieving their goals and realizing their fullest potential with WirfonCloud as their trusted cloud partner.",
+          "_Let's rule the clouds._"
+        ]
+      }
+    ]
+  },
+  "academy": {
+    "bannerImage": "/images/IMG_20230625_133031_342.jpg",
+    "bannerTitle": "WirfonCloud Academy",
+    "bannerSubtitle": "Your gateway to a cloud computing career.",
+    "fundamentals": [
+      { "title": "Linux", "description": "Master the Linux command line, file system, permissions, and shell scripting — the foundation of cloud infrastructure.", "previewUrl": "", "signupUrl": "" },
+      { "title": "Networking", "description": "Understand TCP/IP, subnetting, routing, DNS, and the network fundamentals every cloud engineer needs.", "previewUrl": "", "signupUrl": "" },
+      { "title": "Python", "description": "Build automation scripts and cloud tooling with Python — from basics to working with cloud SDKs.", "previewUrl": "", "signupUrl": "" }
+    ],
+    "intermediate": [
+      { "title": "AWS Practitioner", "description": "Lay the groundwork for your AWS journey and prepare for the Cloud Practitioner certification.", "previewUrl": "", "signupUrl": "" },
+      { "title": "AWS Solutions Architect", "description": "Design resilient, scalable, and cost-effective architectures on AWS — and earn the SAA certification.", "previewUrl": "", "signupUrl": "" },
+      { "title": "Ansible", "description": "Automate configuration management and application deployment with Ansible playbooks and roles.", "previewUrl": "", "signupUrl": "" },
+      { "title": "Terraform", "description": "Provision infrastructure as code across AWS and beyond using HashiCorp Terraform.", "previewUrl": "", "signupUrl": "" }
+    ],
+    "learningPaths": [
+      { "title": "DevOps Engineer", "description": "A guided path from Linux and Git through CI/CD, Docker, Kubernetes, and infrastructure as code.", "subject": "Interest in DevOps Engineer Path" },
+      { "title": "Cloud Engineer", "description": "Become a confident AWS cloud engineer — networking, compute, storage, security, and architecture.", "subject": "Interest in Cloud Engineer Path" },
+      { "title": "Cyber Security", "description": "Learn cloud security fundamentals, identity and access, encryption, and threat detection.", "subject": "Interest in Cyber Security Path" }
+    ],
+    "discordLink": "#",
+    "testimonialVideos": [
+      { "src": "https://www.youtube.com/embed/aByknzTTOaY", "title": "AWS Deep Dive", "caption": "AWS Deep Dive on Amazon S3" },
+      { "src": "https://www.youtube.com/embed/n4qHUXrRcds", "title": "re:Invent Recap", "caption": "AWS re:Invent Recap at WirfonCloud" }
+    ],
+    "testimonialQuotes": [
+      { "text": "WirfonCloud's training gave me the confidence and the skills to land my first cloud role. The hands-on labs make all the difference.", "author": "Alumni Name" },
+      { "text": "The mentorship and community at WirfonCloud accelerated my career change into cloud engineering by months.", "author": "Alumni Name" }
+    ]
+  },
+  "consultancy": {
+    "image": "/images/shutterstock_1405194650.jpg",
+    "fallbackLabel": "Strategic cloud consulting",
+    "title": "WirfonCloud Consultancy",
+    "text": "Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs.",
+    "ctaHref": "/about#contact",
+    "ctaLabel": "Get in Touch",
+    "services": [
+      { "icon": "fa-cloud-arrow-up", "title": "Cloud Migration", "text": "Seamlessly move your infrastructure and applications to the cloud." },
+      { "icon": "fa-users-gear", "title": "Team Upskilling", "text": "Empower your team with the cloud skills they need to succeed." },
+      { "icon": "fa-brain", "title": "AI", "text": "Leverage artificial intelligence to drive smarter business decisions." },
+      { "icon": "fa-shield-halved", "title": "Security", "text": "Protect your cloud environment with robust security frameworks." }
+    ],
+    "testimonials": [
+      { "src": "https://www.youtube.com/embed/aByknzTTOaY", "title": "AWS Deep Dive on Amazon S3", "caption": "AWS Deep Dive on Amazon S3" },
+      { "src": "https://www.youtube.com/embed/n4qHUXrRcds", "title": "AWS re:Invent Recap", "caption": "AWS re:Invent Recap at WirfonCloud" },
+      { "src": "https://www.youtube.com/embed/aByknzTTOaY", "title": "WirfonCloud Testimonial", "caption": "WirfonCloud Client Story" }
+    ]
+  },
+  "blog": {
+    "title": "Stay in the Loop",
+    "text": "Subscribe to our newsletter for the latest cloud news, tutorials, and event invites.",
+    "posts": [
+      { "date": "August 12, 2025", "title": "Getting Started with AWS Solutions Architect", "slug": "getting-started-with-aws-solutions-architect", "text": "Your roadmap to passing the SAA-C03 exam, told by engineers who've done it.", "image": "https://picsum.photos/seed/aws/600/300", "body": "", "link": "" },
+      { "date": "July 30, 2025", "title": "Cloud Cost Optimization: 7 Wins for Week One", "slug": "cloud-cost-optimization-7-wins-for-week-one", "text": "Quick, low-risk changes to start trimming your AWS bill in your first week.", "image": "https://picsum.photos/seed/cloud/600/300", "body": "", "link": "" },
+      { "date": "July 15, 2025", "title": "From Helpdesk to Cloud Engineer in 12 Months", "slug": "from-helpdesk-to-cloud-engineer-in-12-months", "text": "How a WirfonCloud alumni used our learning paths to land their first cloud role.", "image": "https://picsum.photos/seed/engineer/600/300", "body": "", "link": "" }
+    ]
+  },
+  "faqs": [
+    { "q": "What types of training courses does WirfonCloud offer?", "a": "WirfonCloud offers a wide range of training courses in various areas of cloud computing, including AWS fundamentals, Linux fundamentals, networking fundamentals, AWS architecture, and SCRUM. We also provide coaching and mentoring services for individuals starting their cloud journey." },
+    { "q": "Who can benefit from WirfonCloud's training services?", "a": "Our training services are designed to benefit individuals from all backgrounds, whether they are complete beginners or experienced professionals. We welcome anyone who is eager to learn and build a career in cloud computing." },
+    { "q": "Are the training courses suitable for individuals without a technical background?", "a": "Absolutely! Our courses are designed to cater to individuals with diverse backgrounds. We believe that cloud computing should be accessible to everyone, regardless of their technical expertise. Our trainers provide comprehensive explanations and hands-on exercises to ensure a clear understanding of the concepts." },
+    { "q": "Can I receive a certificate upon completing a training course?", "a": "Yes, upon successful completion of our training courses, you will receive a certificate of completion. Our courses are designed to prepare individuals for industry-recognized certifications, such as AWS certifications, which can further enhance your professional credentials." },
+    { "q": "Does WirfonCloud offer online or in-person training?", "a": "We offer both online and in-person training options to accommodate different learning preferences and locations. Our online sessions are conducted via video conferencing tools and are just as interactive and hands-on as our in-person sessions." },
+    { "q": "How long does a typical training course take?", "a": "Course duration varies depending on the program. Fundamentals courses typically run over a few weeks, while more advanced certifications like AWS Solutions Architect may take 6 to 8 weeks of structured learning." },
+    { "q": "Does WirfonCloud offer consulting for small businesses?", "a": "Yes! We work with businesses of all sizes — from startups to large enterprises. Our consulting services are fully tailored to your specific needs and budget, whether you need a quick cloud assessment or a full migration strategy." },
+    { "q": "How do I get started with WirfonCloud?", "a": "Getting started is easy. You can explore our Academy courses, book a free appointment via our website, or reach out directly at contact@wirfoncloud.com. Our team will guide you from there." }
+  ],
+  "social": {
+    "linkedin": "https://www.linkedin.com/company/wirfoncloud/",
+    "twitter": "https://twitter.com/JoinWirfonCloud",
+    "facebook": "https://www.facebook.com/wirfoncloud",
+    "youtube": "https://www.youtube.com/@wirfoncloud",
+    "whatsapp": "https://wa.me/250791921156",
+    "discord": "#"
+  },
+  "contact": {
+    "email": "contact@wirfoncloud.com"
+  },
+  "footer": {
+    "copyrightYear": 2026
+  }
+}

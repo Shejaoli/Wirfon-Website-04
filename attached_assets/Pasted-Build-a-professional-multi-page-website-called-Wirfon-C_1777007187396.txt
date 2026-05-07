@@ -1,0 +1,237 @@
+Build a professional multi-page website called "Wirfon Cloud" using Node.js with Express for the backend and EJS as the templating engine.
+
+Tagline: "Let's rule the clouds"
+Brand color: #0199ef (blue). Secondary colors: white and light grey.
+Design must be clean, modern, and corporate.
+
+---
+
+## IMAGE ASSETS
+
+The following images will be provided as files — use them exactly where specified:
+- IMG_20230625_133031_342.jpg → Use on Academy page hero section (woman presenting WirfonCloud slide)
+- shutterstock_1405194650.jpg → Use on Consultancy page and home consultancy section (woman with digital globe)
+- phoneshutterstock_133514576.jpg → Use on Academy section of home page (phone + tech graphic)
+- 002_blk_girl_shutterstock_2030694452.jpg → Use on About Us page (woman in server room)
+
+Place all images in the public/images/ folder. Reference them as /images/filename.jpg in the code.
+
+---
+
+## PAGES
+
+- Home
+- About Us (single page, 4 anchor sections)
+- Academy (single page, 3 anchor sections)
+- Consultancy
+- Blog
+- FAQ
+
+---
+
+## NAVIGATION BAR (included on every page as a partial)
+
+Left: Logo — text "WirfonCloud" styled with brand color #0199ef, with tagline "Let's rule the clouds" in small grey text beneath it.
+
+Right nav links: Academy | Consultancy | Blog | About Us | FAQ
+
+HOVER DROPDOWN on "About Us":
+- Who We Are → /about#who-we-are
+- Our Mission → /about#our-mission
+- Our Vision → /about#our-vision
+- Contact → /about#contact
+All are sections on ONE About Us page. Use anchor scroll.
+
+HOVER DROPDOWN on "Academy":
+- Courses → /academy#courses
+- Learning Paths → /academy#learning-paths
+- More → /academy#more
+All are sections on ONE Academy page. Use anchor scroll.
+
+Dropdowns: CSS fade-in animation. JS scroll handler for post-navigation anchor targeting.
+
+---
+
+## HERO SECTION (Home Page only)
+
+Height: max 480px. NOT full page.
+Auto-slides every 5 seconds. Two slides:
+
+Slide 1 — Academy:
+- Headline: "Master the Cloud with WirfonCloud"
+- Subtext: "Hands-on training programs designed to launch and advance your cloud career."
+- CTA button: "Explore Academy" → links to /academy
+- Background: gradient from #0199ef to #005fa3
+
+Slide 2 — Consultancy:
+- Headline: "Your Trusted Cloud Consulting Partner"
+- Subtext: "From infrastructure design to security and cost optimization — we guide your cloud journey."
+- CTA button: "Our Services" → links to /consultancy
+- Background: gradient from #005fa3 to #003d6b
+
+Smooth CSS slide transition. Dot indicators at bottom of hero.
+
+---
+
+## HOME PAGE SECTIONS
+
+### Section 1 — Academy Info
+Two columns:
+- Left: Heading "Transform Your Career with Cloud Skills", paragraph: "At WirfonCloud, our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you are more than certified — you are well-prepared to leverage cloud technologies, with a special emphasis on AWS." + "Learn More" button → /academy
+- Right: image phoneshutterstock_133514576.jpg
+
+### Section 2 — Consultancy Info
+Two columns (mirrored — image left, text right):
+- Left: image shutterstock_1405194650.jpg
+- Right: Heading "Strategic Cloud Consulting Tailored for You", paragraph: "Our certified and experienced consultants provide strategic guidance and practical solutions. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to your specific needs." + "Learn More" button → /consultancy
+
+### Section 3 — Testimonials
+Heading: "What Our Clients Say"
+Video carousel with left/right arrow navigation. Three placeholder YouTube embeds using: https://www.youtube.com/embed/dQw4w9WgXcQ
+Arrows styled with #0199ef. Each slide shows the embedded iframe + a name/caption below it.
+Note: Replace placeholder YouTube URLs with real WirfonCloud testimonial videos from https://www.youtube.com/@wirfoncloud
+
+### Section 4 — Partners
+Heading: "Our Partners"
+Three partner logo placeholders in a centered row. Each wrapped in a link (href="#" — replace with real partner URLs). Labels: Partner 1, Partner 2, Partner 3.
+Note in code comment: <!-- REPLACE WITH REAL PARTNER LOGOS AND LINKS -->
+
+### Section 5 — Book an Appointment
+Centered section.
+Heading: "Ready to Get Started?"
+Subtext: "Book a free appointment with our team via Google Calendar or connect with us on LinkedIn."
+Two buttons side by side:
+- "Book Appointment" → https://calendar.google.com (new tab), #0199ef background, white text
+- "Connect on LinkedIn" → https://www.linkedin.com/company/wirfoncloud/ (new tab), white background, #0199ef border and text
+
+### Floating WhatsApp Button
+Fixed position bottom-right corner on ALL pages.
+Green circular button with WhatsApp icon, label "Chat with us".
+Links to: https://wa.me/ (placeholder — add comment: <!-- REPLACE WITH REAL WHATSAPP NUMBER -->)
+Appears on every page via the footer partial or a global layout include.
+
+---
+
+## ABOUT US PAGE (/about)
+
+Four anchor sections on one page. When clicking "About Us" in nav → page opens from top. When clicking a submenu item → scrolls to that section.
+
+Image: 002_blk_girl_shutterstock_2030694452.jpg used as a header/banner image at the top of the page.
+
+#who-we-are — "Who We Are"
+Content: "At WirfonCloud, we are your trusted partner in cloud computing. With a strong focus on training and consulting, we empower individuals and businesses to harness the full potential of the cloud. Our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you're more than certified — we ensure you are well-prepared to leverage cloud technologies, with a special emphasis on AWS. Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs. Whether you're an individual seeking to advance your cloud career or a business looking to transform with cloud technologies, WirfonCloud is your go-to partner. Join us and unlock endless possibilities in the world of cloud computing."
+
+#our-mission — "Our Mission"
+Content: "At WirfonCloud, our mission is to demystify the complexities of cloud technology and make it accessible to individuals and companies alike. We are dedicated to empowering individuals and organizations, regardless of their background or level of expertise, to embrace the power of cloud computing. Through education, guidance, and innovative solutions, we strive to unlock the full potential of cloud technology, driving growth, innovation, and success for both individuals and companies in the digital era. Let's rule the clouds."
+
+#our-vision — "Our Vision"
+Content: "Our vision is to be the trusted partner for individuals and companies in their cloud journey, providing exceptional training, insightful consulting, and transformative coaching services. We strive to empower individuals with the knowledge and skills to excel in the world of cloud computing, while assisting businesses in harnessing the full potential of cloud technology to drive innovation, growth, and success. Through our unwavering commitment to excellence, expertise, and personalized guidance, we envision a future where individuals and companies thrive in the digital landscape, achieving their goals and realizing their fullest potential with WirfonCloud as their trusted cloud partner. Let's rule the clouds."
+
+#contact — "Contact Us"
+Simple contact form: Name, Email, Subject, Message, Submit button (styled #0199ef).
+Below form, display: contact@wirfoncloud.com
+
+---
+
+## ACADEMY PAGE (/academy)
+
+Top section: Image IMG_20230625_133031_342.jpg as banner. Heading: "WirfonCloud Academy" with subtext: "Your gateway to a cloud computing career."
+
+#courses — "Courses"
+Two course groups displayed as cards:
+
+Group 1 — "Fundamentals of IT"
+Cards: Linux (with preview + signup links), Networking, Python
+
+Group 2 — "Intermediate to Advanced"
+Cards: AWS Practitioner, AWS Solutions Architect, Ansible, Terraform
+
+Each card has: course name, short description placeholder, and two buttons: "Preview" and "Sign Up".
+
+#learning-paths — "Learning Paths"
+Cards: DevOps Engineer, Cloud Engineer, Cyber Security
+Each card has a short description placeholder and a "Register Your Interest" button (links to a simple interest form or mailto:contact@wirfoncloud.com).
+
+#more — "More"
+- "Join WirfonCloud Community on Discord" button → placeholder link (<!-- REPLACE WITH DISCORD LINK -->)
+- Testimonials section (YouTube + hand-written): 
+  Two placeholder YouTube embeds from https://www.youtube.com/@wirfoncloud and space for 2 hand-written testimonial quotes with name and placeholder photo.
+
+---
+
+## CONSULTANCY PAGE (/consultancy)
+
+Top section: Image shutterstock_1405194650.jpg on left, Information on right.
+Heading: "WirfonCloud Consultancy"
+Text: "Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs."
+
+Services Section — heading: "Our Services"
+Four service cards:
+- Cloud Migration: "Seamlessly move your infrastructure and applications to the cloud."
+- Team Upskilling: "Empower your team with the cloud skills they need to succeed."
+- AI: "Leverage artificial intelligence to drive smarter business decisions."
+- Security: "Protect your cloud environment with robust security frameworks."
+
+Testimonials Section — same carousel component as homepage.
+
+Floating "Chat with us" WhatsApp button (same as all pages).
+
+---
+
+## BLOG PAGE (/blog)
+
+Layout:
+- Newsletter section at top: Heading "Stay in the Loop", email input + "Subscribe" button. Note: <!-- WIRE UP TO EMAIL AUTOMATION SERVICE OF CHOICE e.g. Mailchimp -->
+- LinkedIn Follow button/banner: "Follow us on LinkedIn for the latest updates" → https://www.linkedin.com/company/wirfoncloud/ (opens new tab)
+- Blog post cards grid (3 placeholder posts with title, date, excerpt, "Read More" button)
+
+---
+
+## FAQ PAGE (/faq)
+
+Accordion-style Q&A. Include the following real questions and answers:
+
+Q: What types of training courses does WirfonCloud offer?
+A: WirfonCloud offers a wide range of training courses in various areas of cloud computing, including AWS fundamentals, Linux fundamentals, networking fundamentals, AWS architecture, and SCRUM. We also provide coaching and mentoring services for individuals starting their cloud journey.
+
+Q: Who can benefit from WirfonCloud's training services?
+A: Our training services are designed to benefit individuals from all backgrounds, whether they are complete beginners or experienced professionals. We welcome anyone who is eager to learn and build a career in cloud computing.
+
+Q: Are the training courses suitable for individuals without a technical background?
+A: Absolutely! Our courses are designed to cater to individuals with diverse backgrounds. We believe that cloud computing should be accessible to everyone, regardless of their technical expertise. Our trainers provide comprehensive explanations and hands-on exercises to ensure a clear understanding of the concepts.
+
+Q: Can I receive a certificate upon completing a training course?
+A: Yes, upon successful completion of our training courses, you will receive a certificate of completion. Our courses are designed to prepare individuals for industry-recognized certifications, such as AWS certifications, which can further enhance your professional credentials.
+
+Style: each question is a clickable toggle that expands the answer. Brand color #0199ef for active state.
+
+---
+
+## FOOTER (partial — included on every page)
+
+Left: "WirfonCloud" logo text + tagline "Let's rule the clouds"
+Middle: Quick links — Home, Academy, Consultancy, Blog, About Us, FAQ, Contact
+Right: Social media icons with real links:
+- LinkedIn: https://www.linkedin.com/company/wirfoncloud/
+- Twitter: https://twitter.com/JoinWirfonCloud
+- Facebook: https://www.facebook.com/wirfoncloud
+- YouTube: https://www.youtube.com/@wirfoncloud
+
+Bottom bar: "© 2025 WirfonCloud. All rights reserved." | contact@wirfoncloud.com
+
+Background: dark navy #0a1628, white text.
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+- Node.js + Express
+- EJS templating with partials for navbar, footer, and floating WhatsApp button
+- All CSS in public/style.css
+- All JS in public/main.js
+- Images in public/images/
+- Mobile responsive — flexbox and grid
+- Smooth global scroll behavior
+- Anchor scroll handler in JS: on page load, check URL hash and scroll to matching section with offset for fixed navbar
+- Server on port 3000, starts with npm start
+- All placeholder content clearly commented: <!-- REPLACE WITH ... -->

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+  <title>Blog — WirfonCloud</title>
+</head>
+<body>
+<%- include('partials/navbar') %>
+
+<section class="section newsletter-section">
+  <div class="container narrow text-center">
+    <h1>Stay in the Loop</h1>
+    <p>Subscribe to our newsletter for the latest cloud news, tutorials, and event invites.</p>
+    <!-- WIRE UP TO EMAIL AUTOMATION SERVICE OF CHOICE e.g. Mailchimp -->
+    <form class="newsletter-form" method="POST" action="/subscribe">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <a href="https://www.linkedin.com/company/wirfoncloud/" target="_blank" rel="noopener" class="linkedin-banner">
+      <i class="fa-brands fa-linkedin"></i>
+      <span>Follow us on LinkedIn for the latest updates</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="cards-grid">
+      <article class="card blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #0199ef, #005fa3);"></div>
+        <div class="blog-body">
+          <span class="blog-date">August 12, 2025</span>
+          <h4>Getting Started with AWS Solutions Architect</h4>
+          <p>Your roadmap to passing the SAA-C03 exam, told by engineers who've done it.</p>
+          <a href="#" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </article>
+      <article class="card blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #005fa3, #003d6b);"></div>
+        <div class="blog-body">
+          <span class="blog-date">July 30, 2025</span>
+          <h4>Cloud Cost Optimization: 7 Wins for Week One</h4>
+          <p>Quick, low-risk changes to start trimming your AWS bill in your first week.</p>
+          <a href="#" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </article>
+      <article class="card blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #0199ef, #003d6b);"></div>
+        <div class="blog-body">
+          <span class="blog-date">July 15, 2025</span>
+          <h4>From Helpdesk to Cloud Engineer in 12 Months</h4>
+          <p>How a WirfonCloud alumni used our learning paths to land their first cloud role.</p>
+          <a href="#" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,92 @@
+Fix the following issues on the WirfonCloud website:
+
+1. HERO SLIDE 1 BROKEN — The Academy slide (Slide 1) is not displaying its content 
+(headline, subtext, CTA button). Fix the slider so both slides are properly positioned, 
+fully visible, and centered. Ensure the slide transition works correctly and slide 1 
+shows: headline "Master the Cloud with WirfonCloud", subtext, and "Explore Academy" button.
+
+2. ALL MISSING IMAGES — Images are uploaded in public/images/ but not displaying. 
+Fix all image references across the entire site:
+- Home page Academy section → phoneshutterstock_133514576.jpg
+- Home page Consultancy section → shutterstock_1405194650.jpg  
+- Consultancy page top section → shutterstock_1405194650.jpg
+- About Us page → add 002_blk_girl_shutterstock_2030694452.jpg as a banner/visual
+- Academy page banner → IMG_20230625_133031_342.jpg as background or side image
+
+3. ACADEMY PAGE COURSE GRID — The Terraform card appears alone on its own row 
+separated from AWS Practitioner, AWS Solutions Architect, and Ansible. 
+Fix the CSS grid so all 4 "Intermediate to Advanced" cards appear in the same 
+consistent grid layout (2x2 on mobile, or all 4 in one row on desktop).
+
+4. REGISTER YOUR INTEREST BUTTONS — On the Academy Learning Paths section, 
+the "Register Your Interest" buttons currently link to "#". 
+Change them to: mailto:contact@wirfoncloud.com
+
+5. CONSULTANCY GET IN TOUCH BUTTON — The "Get in Touch" button on the 
+Consultancy page links to "#". Change it to link to /about#contact
+
+6. TESTIMONIAL VIDEOS — Replace the Rick Astley placeholder video on the 
+Home page and Consultancy page testimonial sections with real WirfonCloud videos.
+Use these two real videos already correctly used on the Academy page:
+- Slot 1: https://www.youtube.com/embed/ (AWS Deep Dive on Amazon S3 — get the 
+  correct video ID from the Academy page testimonials section)
+- Slot 2: https://www.youtube.com/embed/ (AWS re:Invent Recap — same source)
+- Slot 3: Add comment <!-- REPLACE WITH THIRD TESTIMONIAL VIDEO -->
+
+7. BLOG POST IMAGES — The 3 blog post cards show solid colour boxes. 
+Replace with relevant placeholder images using:
+- Post 1: https://picsum.photos/seed/aws/600/300
+- Post 2: https://picsum.photos/seed/cloud/600/300
+- Post 3: https://picsum.photos/seed/engineer/600/300
+
+8. BLOG SUBSCRIBE BUTTON — When someone clicks Subscribe, show a simple 
+inline success message: "Thank you for subscribing! We'll be in touch." 
+Handle this with basic JavaScript — no backend needed yet.
+
+9. ABOUT US SECTIONS — Add alternating light grey background (#f8f9fa) 
+to every other section (Our Mission, Contact Us) so the sections feel 
+visually distinct and separated.
+
+10. CONTACT FORM — Add an Express POST route at /contact that accepts the 
+form submission (name, email, subject, message) and returns a simple 
+success page or JSON response: { success: true, message: "Thank you, 
+we will be in touch shortly." }. Update the contact form action to POST /contact.
+
+11. FOOTER MOBILE FIX — The contact email in the footer bottom bar is 
+getting cut off on mobile screens. Make the footer bottom bar stack 
+vertically on screens smaller than 600px wide so copyright and email 
+each appear on their own line.
+
+12. COPYRIGHT YEAR — Change "© 2025 WirfonCloud" to "© 2026 WirfonCloud" 
+across all pages.
+
+13. SOCIAL MEDIA LINKS — Verify and update all social media links in the 
+footer to use these exact URLs:
+- LinkedIn: https://www.linkedin.com/company/wirfoncloud/
+- Twitter/X: https://twitter.com/JoinWirfonCloud
+- Facebook: https://www.facebook.com/wirfoncloud
+- YouTube: https://www.youtube.com/@wirfoncloud
+
+14. FAQ ADDITIONAL QUESTIONS — Add these 4 extra questions to the FAQ accordion:
+
+Q: Does WirfonCloud offer online or in-person training?
+A: We offer both online and in-person training options to accommodate 
+different learning preferences and locations. Our online sessions are 
+conducted via video conferencing tools and are just as interactive and 
+hands-on as our in-person sessions.
+
+Q: How long does a typical training course take?
+A: Course duration varies depending on the program. Fundamentals courses 
+typically run over a few weeks, while more advanced certifications like 
+AWS Solutions Architect may take 6 to 8 weeks of structured learning.
+
+Q: Does WirfonCloud offer consulting for small businesses?
+A: Yes! We work with businesses of all sizes — from startups to large 
+enterprises. Our consulting services are fully tailored to your specific 
+needs and budget, whether you need a quick cloud assessment or a full 
+migration strategy.
+
+Q: How do I get started with WirfonCloud?
+A: Getting started is easy. You can explore our Academy courses, book a 
+free appointment via our website, or reach out directly at 
+contact@wirfoncloud.com. Our team will guide you from there.

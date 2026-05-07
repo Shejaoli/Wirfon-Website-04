@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+  <title>WirfonCloud — Let's rule the clouds</title>
+</head>
+<body>
+<%- include('partials/navbar') %>
+
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background: linear-gradient(135deg, #0199ef 0%, #005fa3 100%);">
+      <div class="container hero-content">
+        <h1>Master the Cloud with WirfonCloud</h1>
+        <p>Hands-on training programs designed to launch and advance your cloud career.</p>
+        <a href="/academy" class="btn btn-light">Explore Academy</a>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(135deg, #005fa3 0%, #003d6b 100%);">
+      <div class="container hero-content">
+        <h1>Your Trusted Cloud Consulting Partner</h1>
+        <p>From infrastructure design to security and cost optimization — we guide your cloud journey.</p>
+        <a href="/consultancy" class="btn btn-light">Our Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="dot" data-index="1" aria-label="Slide 2"></button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div class="col-text">
+      <h2>Transform Your Career with Cloud Skills</h2>
+      <p>At WirfonCloud, our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you are more than certified — you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.</p>
+      <a href="/academy" class="btn btn-primary">Learn More</a>
+    </div>
+    <div class="col-image">
+      <img src="/images/phoneshutterstock_133514576.jpg" alt="Phone with cloud technology graphic" />
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container two-col reverse">
+    <div class="col-image">
+      <img src="/images/shutterstock_1405194650.jpg" alt="Woman interacting with a digital globe" />
+    </div>
+    <div class="col-text">
+      <h2>Strategic Cloud Consulting Tailored for You</h2>
+      <p>Our certified and experienced consultants provide strategic guidance and practical solutions. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to your specific needs.</p>
+      <a href="/consultancy" class="btn btn-primary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="video-carousel">
+      <button class="carousel-arrow prev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="carousel-track">
+        <div class="carousel-slide active">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 1" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 1</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 2" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 2</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 3" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 3</p>
+        </div>
+      </div>
+      <button class="carousel-arrow next" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Our Partners</h2>
+    <div class="partners-row">
+      <a href="#" class="partner"><div class="partner-logo">Partner 1</div></a>
+      <a href="#" class="partner"><div class="partner-logo">Partner 2</div></a>
+      <a href="#" class="partner"><div class="partner-logo">Partner 3</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container text-center">
+    <h2>Ready to Get Started?</h2>
+    <p>Book a free appointment with our team via Google Calendar or connect with us on LinkedIn.</p>
+    <div class="cta-buttons">
+      <a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn btn-primary">Book Appointment</a>
+      <a href="https://www.linkedin.com/company/wirfoncloud/" target="_blank" rel="noopener" class="btn btn-outline">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

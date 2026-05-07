@@ -1,0 +1,120 @@
+Add the following new features to the existing WirfonCloud website. 
+The admin panel and database are already set up. Extend them.
+
+---
+
+## 1. LOGO MANAGEMENT
+
+- Add a logo image field to the admin panel under a "Branding" section.
+- Admin can upload a logo image file through the admin panel.
+- The uploaded logo image must replace the current text-based 
+  "WirfonCloud" logo in:
+  - The navbar (all pages, desktop and mobile)
+  - The footer (all pages)
+- If no logo has been uploaded yet, fall back to the text logo 
+  "WirfonCloud" as currently displayed.
+- Store the logo file path in the database or existing data store.
+- Serve the uploaded logo from the public/images/ folder.
+- The logo in the navbar must be responsive — max height 50px on 
+  desktop, 40px on mobile, width auto.
+
+---
+
+## 2. HERO SLIDER — BACKGROUND IMAGES + ADMIN CONTROL
+
+- Each hero slide (Slide 1 - Academy, Slide 2 - Consultancy) must 
+  support a background image instead of just a gradient.
+- In the admin panel under "Hero Slides", admin can for each slide:
+  - Upload a background image
+  - Edit the headline text
+  - Edit the subtext
+  - Edit the CTA button text
+  - Edit the CTA button link
+  - Delete the slide or add a new slide
+- If no background image is uploaded for a slide, fall back to 
+  the current gradient color.
+- When a background image is set, overlay it with a semi-transparent 
+  dark overlay (rgba(0,0,0,0.45)) so the white text remains readable.
+- Slides must still auto-transition every 5 seconds with dot indicators.
+
+---
+
+## 3. COURSE CARDS — ADMIN EDITABLE LINKS
+
+- In the admin panel under "Academy Courses", admin can for each course:
+  - Edit the course name
+  - Edit the course description
+  - Input/edit the Preview button external link (URL)
+  - Input/edit the Sign Up button external link (URL)
+- All Preview and Sign Up buttons on the Academy page must load 
+  their href values from the database, not hardcoded values.
+- Links must open in a new tab (target="_blank").
+- Add comment in code: <!-- LINKS MANAGED VIA ADMIN PANEL -->
+
+---
+
+## 4. BOOK APPOINTMENT — ADMIN EDITABLE LINK
+
+- In the admin panel under "Settings" or "Links", admin can input 
+  and update the Google Calendar booking link.
+- The "Book Appointment" button on the home page must load its 
+  href from the database dynamically.
+- Default value if not set: https://calendar.google.com
+- Link must open in a new tab.
+
+---
+
+## 5. PARTNER LOGOS — ADMIN EDITABLE
+
+- In the admin panel under "Partners", admin can for each partner:
+  - Upload a partner logo image
+  - Input the partner website URL
+  - Delete a partner or add a new one (up to 6 partners)
+- The Partners section on the home page must render partners 
+  dynamically from the database.
+- If no logo is uploaded for a partner, show the dashed placeholder 
+  box with the partner name as before.
+
+---
+
+## 6. TESTIMONIAL VIDEOS — ADMIN EDITABLE + IMPROVED LAYOUT
+
+- In the admin panel under "Testimonials", admin can:
+  - Add a YouTube video embed URL
+  - Edit the video caption/label
+  - Delete a video
+  - Reorder videos (optional — use drag or up/down buttons)
+- The testimonials carousel on the Home page and Consultancy page 
+  must load videos dynamically from the database.
+- Improve the testimonials layout:
+  - Show one video at a time in the carousel (not multiple side by side)
+  - Large iframe centered, max-width 720px, 16:9 aspect ratio
+  - Caption displayed below the video
+  - Left and right arrow buttons to navigate
+  - Dot indicators below showing current slide position
+  - Smooth CSS transition between slides
+  - On mobile: iframe fills full width, arrows remain visible on sides
+
+---
+
+## 7. ADMIN PANEL — CONNECT ON LINKEDIN LINK
+
+- In the admin panel under "Settings" or "Links", admin can input 
+  and update the LinkedIn URL used in the "Connect on LinkedIn" 
+  button on the home page.
+- Default: https://www.linkedin.com/company/wirfoncloud/
+
+---
+
+## TECHNICAL NOTES
+
+- All new admin fields must be added to the existing admin panel 
+  using the existing authentication and database already in place.
+- All dynamic content must be loaded server-side via EJS templating 
+  using data fetched from the existing database.
+- File uploads (logo, slide images, partner logos) must be handled 
+  using multer middleware, saved to public/images/uploads/.
+- All existing pages and features must continue to work after 
+  these changes.
+- If any existing admin panel routes conflict, extend them rather 
+  than replacing them.

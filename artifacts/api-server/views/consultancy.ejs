@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+  <title>Consultancy — WirfonCloud</title>
+</head>
+<body>
+<%- include('partials/navbar') %>
+
+<section class="section">
+  <div class="container two-col">
+    <div class="col-image">
+      <img src="/images/shutterstock_1405194650.jpg" alt="Woman with digital globe" />
+    </div>
+    <div class="col-text">
+      <h1>WirfonCloud Consultancy</h1>
+      <p>Our certified and experienced consultants provide strategic guidance and practical solutions to help you navigate your cloud journey. From infrastructure design to application architecture, security, and cost optimization, we tailor our services to meet your specific needs.</p>
+      <a href="/about#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="cards-grid services-grid">
+      <div class="card service-card">
+        <div class="service-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h4>Cloud Migration</h4>
+        <p>Seamlessly move your infrastructure and applications to the cloud.</p>
+      </div>
+      <div class="card service-card">
+        <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
+        <h4>Team Upskilling</h4>
+        <p>Empower your team with the cloud skills they need to succeed.</p>
+      </div>
+      <div class="card service-card">
+        <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+        <h4>AI</h4>
+        <p>Leverage artificial intelligence to drive smarter business decisions.</p>
+      </div>
+      <div class="card service-card">
+        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4>Security</h4>
+        <p>Protect your cloud environment with robust security frameworks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="video-carousel">
+      <button class="carousel-arrow prev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="carousel-track">
+        <div class="carousel-slide active">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 1" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 1</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 2" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 2</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimonial 3" frameborder="0" allowfullscreen></iframe></div>
+          <p class="caption">Client Testimonial 3</p>
+        </div>
+      </div>
+      <button class="carousel-arrow next" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
