@@ -36,12 +36,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", apiRouter);
 app.use("/", apiRouter);
 
-if (process.env.NODE_ENV === "production") {
-  const frontendDist = path.resolve(here, "..", "..", "wirfoncloud", "dist", "public");
-  app.use(express.static(frontendDist));
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(frontendDist, "index.html"));
-  });
-}
+// Serve the built frontend from the API server (works in both dev and production)
+const frontendDist = path.resolve(here, "..", "..", "wirfoncloud", "dist", "public");
+app.use(express.static(frontendDist));
+app.get("/{*path}", (_req, res) => {
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
 
 export default app;
