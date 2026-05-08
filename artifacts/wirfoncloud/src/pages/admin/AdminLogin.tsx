@@ -66,6 +66,15 @@ export default function AdminLogin() {
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  function copyEmail() {
+    navigator.clipboard.writeText("admin@wirfoncloud.com").then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
 
   useEffect(() => {
     void (async () => {
@@ -168,9 +177,27 @@ export default function AdminLogin() {
 
             <div className="auth-help">
               <span>Forget your password?</span>
-              <a href={`mailto:contact@wirfoncloud.com?subject=Admin%20Password%20Reset`} className="auth-help-link">
+              <button
+                type="button"
+                className="auth-help-link"
+                onClick={() => setHelpOpen((v) => !v)}
+              >
                 Get help signing in.
-              </a>
+              </button>
+              {helpOpen && (
+                <div className="auth-help-popup">
+                  <p><i className="fa-solid fa-envelope" /> Contact your administrator:</p>
+                  <div className="auth-help-email-row">
+                    <span className="auth-help-email">admin@wirfoncloud.com</span>
+                    <button type="button" className="auth-copy-btn" onClick={copyEmail}>
+                      {copied
+                        ? <><i className="fa-solid fa-check" /> Copied!</>
+                        : <><i className="fa-regular fa-copy" /> Copy</>
+                      }
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="auth-legal">

@@ -1401,13 +1401,67 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   flex-direction: column;
   gap: 0.15rem;
   margin-bottom: 1.5rem;
+  position: relative;
 }
 .auth-help-link {
   color: var(--brand);
   font-weight: 600;
   text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
 }
 .auth-help-link:hover { color: var(--brand-dark); }
+.auth-help-popup {
+  margin-top: 0.5rem;
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.auth-help-popup p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--grey-700);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.auth-help-email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.auth-help-email {
+  font-weight: 700;
+  color: var(--brand);
+  font-size: 0.85rem;
+  flex: 1;
+}
+.auth-copy-btn {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.auth-copy-btn:hover { background: var(--brand-dark); }
 
 .auth-legal {
   display: flex;
@@ -1504,11 +1558,13 @@ body { padding-top: calc(78px + var(--ticker-h)); }
 }
 
 .admin-shell {
-  height: 100vh;
-  overflow: hidden;
+  position: fixed;
+  inset: 0;
   background: #f0f2f5;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  z-index: 9000;
 }
 
 /* ── Topbar ──────────────────────────────────────── */
@@ -1520,10 +1576,8 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   height: 62px;
   background: #fff;
   border-bottom: 1px solid #e5e9ef;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   flex-shrink: 0;
+  z-index: 100;
 }
 .admin-nav-toggle {
   background: none;
@@ -1640,12 +1694,79 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   flex-shrink: 0;
   overflow-y: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .admin-sidebar-inner {
-  padding: 1rem 0.75rem 2rem;
+  padding: 1rem 0.75rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  flex: 1;
+}
+
+/* Sidebar user footer */
+.admin-sidebar-footer {
+  border-top: 1px solid #e5e9ef;
+  padding: 0.75rem;
+  flex-shrink: 0;
+}
+.admin-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.admin-sidebar-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.admin-sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.admin-sidebar-user-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-sidebar-user-role {
+  font-size: 0.7rem;
+  color: var(--grey-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-sidebar-signout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-500);
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.admin-sidebar-signout:hover {
+  color: #dc2626;
+  background: #fee2e2;
 }
 .admin-nav-group-label {
   font-size: 0.68rem;
@@ -1721,7 +1842,6 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   max-width: 900px;
   overflow-y: auto;
   height: 100%;
-  padding-bottom: 4rem;
 }
 .admin-page-header {
   display: flex;
@@ -2476,17 +2596,7 @@ a[href*="replit.com"]:not(nav a) {
 }
 .gallery-album:last-child { border-bottom: 0; margin-bottom: 0; }
 .gallery-album-header { margin-bottom: 1.25rem; }
-.gallery-album-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.gallery-album-cover {
-  width: 72px;
-  height: 56px;
-  border-radius: 10px;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-.gallery-album-cover img { width: 100%; height: 100%; object-fit: cover; }
-.gallery-album-meta > div { display: flex; flex-direction: column; gap: 0.3rem; }
+.gallery-album-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem 1.5rem; }
 .gallery-album-title {
   font-size: 1.5rem;
   font-weight: 800;
@@ -2498,14 +2608,9 @@ a[href*="replit.com"]:not(nav a) {
 .gallery-album-count {
   font-size: 0.85rem;
   color: var(--grey-500);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 5px;
-  margin-right: 1rem;
-}
-.lightbox-counter {
-  opacity: 0.7;
-  font-size: 0.88em;
 }
 .gallery-album-footer {
   margin-top: 1.25rem;

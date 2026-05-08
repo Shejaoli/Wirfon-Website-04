@@ -227,6 +227,24 @@ export default function AdminDashboard() {
               </div>
             ))}
           </div>
+          <div className="admin-sidebar-footer">
+            <div className="admin-sidebar-user">
+              <div className="admin-sidebar-avatar">
+                <i className="fa-solid fa-user" />
+              </div>
+              <div className="admin-sidebar-user-info">
+                <span className="admin-sidebar-user-name">Administrator</span>
+                <span className="admin-sidebar-user-role">WirfonCloud Admin</span>
+              </div>
+              <button
+                className="admin-sidebar-signout"
+                onClick={handleLogout}
+                title="Sign out"
+              >
+                <i className="fa-solid fa-right-from-bracket" />
+              </button>
+            </div>
+          </div>
         </aside>
 
         <main className="admin-main">
