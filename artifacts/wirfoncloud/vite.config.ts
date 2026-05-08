@@ -1,29 +1,34 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { createServer as createNetServer, connect } from "net";
 
 const rawPort = process.env.PORT;
+const port = rawPort ? Number(rawPort) : 24427;
 
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
+const basePath = process.env.BASE_PATH ?? "/";
 
-const port = Number(rawPort);
-
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
-
-const basePath = process.env.BASE_PATH;
-
-if (!basePath) {
-  throw new Error(
-    "BASE_PATH environment variable is required but was not provided.",
-  );
+function webviewProxyPlugin(vitePort: number, proxyPort: number): Plugin {
+  return {
+    name: "webview-proxy",
+    configureServer() {
+      if (vitePort === proxyPort) return;
+      const server = createNetServer((src) => {
+        const dst = connect(vitePort, "127.0.0.1");
+        src.pipe(dst);
+        dst.pipe(src);
+        src.on("error", () => dst.destroy());
+        dst.on("error", () => src.destroy());
+      });
+      server.listen(proxyPort, "0.0.0.0", () => {
+        console.log(
+          `[webview-proxy] :${proxyPort} → :${vitePort}  (webview bridge)`,
+        );
+      });
+    },
+  };
 }
 
 export default defineConfig({
@@ -32,6 +37,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
+    webviewProxyPlugin(port, 5000),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
