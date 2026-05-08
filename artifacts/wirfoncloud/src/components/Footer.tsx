@@ -193,7 +193,7 @@ export default function Footer() {
           <div className="footer-map">
             <iframe
               title="WirfonCloud location"
-              src="https://www.google.com/maps?q=Brussels%2C+Belgium&output=embed"
+              src="https://www.google.com/maps?q=Chigariranda%2C+Mount+Bruso&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

@@ -2,6 +2,27 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useSite } from "@/hooks/useSite";
 
+function scrollToHash(hash: string) {
+  const id = hash.startsWith("#") ? hash.slice(1) : hash;
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function useHashLinkClick(location: string) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const hashIdx = href.indexOf("#");
+    if (hashIdx === -1) return;
+    const path = href.slice(0, hashIdx) || "/";
+    const hash = href.slice(hashIdx);
+    const currentPath = location === "" ? "/" : location;
+    if (currentPath === path) {
+      e.preventDefault();
+      scrollToHash(hash);
+    }
+  };
+  return handleClick;
+}
+
 const links: { href: string; label: string; key: string; dropdown?: { href: string; label: string }[] }[] = [
   {
     href: "/academy",
@@ -55,6 +76,7 @@ export default function Navbar() {
   const active = activeKey(location);
   const site = useSite();
   const logoUrl = site.branding?.logoUrl || "";
+  const handleHashClick = useHashLinkClick(location);
 
   useEffect(() => {
     setOpen(false);
@@ -96,7 +118,14 @@ export default function Navbar() {
                   <ul className="dropdown">
                     {link.dropdown.map((d) => (
                       <li key={d.href}>
-                        <Link href={d.href}>{d.label}</Link>
+                        <Link
+                          href={d.href}
+                          onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                            handleHashClick(e, d.href)
+                          }
+                        >
+                          {d.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
