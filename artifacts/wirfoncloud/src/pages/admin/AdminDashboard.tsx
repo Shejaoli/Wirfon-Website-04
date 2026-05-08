@@ -201,50 +201,61 @@ export default function AdminDashboard() {
       <div className="admin-body">
         {navOpen && <div className="admin-sidebar-overlay" onClick={() => setNavOpen(false)} />}
         <aside className={"admin-sidebar" + (navOpen ? " open" : "")}>
-          <div className="admin-sidebar-inner">
+
+          {/* Brand header */}
+          <div className="admin-sb-brand">
+            <span className="admin-sb-logo">WC</span>
+            <div className="admin-sb-brand-text">
+              <span className="admin-sb-name">WirfonCloud</span>
+              <span className="admin-sb-sub">Content Manager</span>
+            </div>
+          </div>
+
+          {/* User profile row */}
+          <div className="admin-sb-user">
+            <div className="admin-sb-avatar">
+              <i className="fa-solid fa-user" />
+            </div>
+            <div className="admin-sb-user-info">
+              <span className="admin-sb-user-name">Administrator</span>
+              <span className="admin-sb-user-role">Admin 1</span>
+            </div>
+            <i className="fa-solid fa-chevron-right admin-sb-user-arrow" />
+          </div>
+
+          <div className="admin-sb-divider" />
+
+          {/* Nav */}
+          <nav className="admin-sb-nav">
             {TAB_GROUPS.map((group) => (
-              <div key={group.label} className="admin-nav-group">
-                <p className="admin-nav-group-label">{group.label}</p>
+              <div key={group.label} className="admin-sb-group">
+                <p className="admin-sb-group-label">{group.label}</p>
                 <ul>
                   {group.tabs.map((t) => (
                     <li key={t.id}>
                       <button
-                        className={t.id === tab ? "active" : ""}
+                        className={"admin-sb-item" + (t.id === tab ? " active" : "")}
                         onClick={() => { setTab(t.id); setNavOpen(false); }}
-                        title={t.desc}
                       >
-                        <span className="admin-nav-icon" style={{ background: TAB_COLORS[t.id] }}>
-                          <i className={`fa-solid ${t.icon}`} />
-                        </span>
-                        <span className="admin-nav-text">
-                          <span className="admin-nav-label">{t.label}</span>
-                          <span className="admin-nav-desc">{t.desc}</span>
-                        </span>
+                        <i className={`fa-solid ${t.icon} admin-sb-item-icon`} />
+                        <span className="admin-sb-item-label">{t.label}</span>
+                        <i className="fa-solid fa-chevron-down admin-sb-item-chevron" />
                       </button>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+          </nav>
+
+          {/* Sign-out footer */}
+          <div className="admin-sb-footer">
+            <button className="admin-sb-signout" onClick={handleLogout}>
+              <i className="fa-solid fa-right-from-bracket" />
+              <span>Sign out</span>
+            </button>
           </div>
-          <div className="admin-sidebar-footer">
-            <div className="admin-sidebar-user">
-              <div className="admin-sidebar-avatar">
-                <i className="fa-solid fa-user" />
-              </div>
-              <div className="admin-sidebar-user-info">
-                <span className="admin-sidebar-user-name">Administrator</span>
-                <span className="admin-sidebar-user-role">WirfonCloud Admin</span>
-              </div>
-              <button
-                className="admin-sidebar-signout"
-                onClick={handleLogout}
-                title="Sign out"
-              >
-                <i className="fa-solid fa-right-from-bracket" />
-              </button>
-            </div>
-          </div>
+
         </aside>
 
         <main className="admin-main">
