@@ -554,34 +554,34 @@ export default function AdminDashboard() {
                     transition={{ duration: 0.2 }}
                   />
                 </button>
-                <AnimatePresence initial={false}>
-                  {expandedGroups[group.label] && (
-                    <motion.ul
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      style={{ overflow: "hidden" }}
-                    >
-                      {group.tabs.map((t) => (
-                        <li key={t.id}>
-                          <button
-                            className={"admin-sb-item" + (t.id === tab ? " active" : "")}
-                            onClick={() => selectTab(t.id)}
-                            style={t.id === tab ? { borderLeft: `3px solid ${TAB_COLORS[t.id]}` } : {}}
-                          >
-                            <i
-                              className={`fa-solid ${t.icon} admin-sb-item-icon`}
-                              style={t.id === tab ? { color: TAB_COLORS[t.id] } : {}}
-                            />
-                            <span className="admin-sb-item-label">{t.label}</span>
-                            <i className="fa-solid fa-chevron-right admin-sb-item-chevron" />
-                          </button>
-                        </li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
+                <div
+                  className="admin-sb-group-items"
+                  style={{
+                    maxHeight: expandedGroups[group.label] ? "600px" : "0px",
+                    opacity: expandedGroups[group.label] ? 1 : 0,
+                    overflow: "hidden",
+                    transition: "max-height 0.25s ease, opacity 0.2s ease",
+                  }}
+                >
+                  <ul>
+                    {group.tabs.map((t) => (
+                      <li key={t.id}>
+                        <button
+                          className={"admin-sb-item" + (t.id === tab ? " active" : "")}
+                          onClick={() => selectTab(t.id)}
+                          style={t.id === tab ? { borderLeft: `3px solid ${TAB_COLORS[t.id]}` } : {}}
+                        >
+                          <i
+                            className={`fa-solid ${t.icon} admin-sb-item-icon`}
+                            style={t.id === tab ? { color: TAB_COLORS[t.id] } : {}}
+                          />
+                          <span className="admin-sb-item-label">{t.label}</span>
+                          <i className="fa-solid fa-chevron-right admin-sb-item-chevron" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </nav>
@@ -609,7 +609,7 @@ export default function AdminDashboard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              style={{ display: "contents" }}
+              style={{ display: "flex", flexDirection: "column", gap: "1.25rem", width: "100%", minHeight: 0 }}
             >
               {/* Dashboard overview */}
               {tab === "dashboard" && (

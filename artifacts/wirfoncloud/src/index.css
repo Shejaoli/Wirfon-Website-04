@@ -1874,7 +1874,6 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
   min-width: 0;
   max-width: 900px;
   overflow-y: auto;
