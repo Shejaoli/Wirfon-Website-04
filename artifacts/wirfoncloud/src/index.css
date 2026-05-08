@@ -1566,8 +1566,8 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   position: fixed;
   inset: 0;
   background: #f0f2f5;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 62px 1fr;
   overflow: hidden;
   z-index: 9000;
 }
@@ -1682,8 +1682,8 @@ body { padding-top: calc(78px + var(--ticker-h)); }
 
 /* ── Body ────────────────────────────────────────── */
 .admin-body {
-  display: flex;
-  flex: 1;
+  display: grid;
+  grid-template-columns: 236px 1fr;
   min-height: 0;
   overflow: hidden;
 }
@@ -1691,14 +1691,14 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   display: none;
 }
 
-/* ── Sidebar (new compact design) ────────────────── */
+/* ── Sidebar ─────────────────────────────────────── */
 .admin-sidebar {
   width: 236px;
+  min-width: 236px;
   background: #fff;
   border-right: 1px solid #e8edf2;
-  flex-shrink: 0;
   overflow-y: auto;
-  height: 100%;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -1788,6 +1788,7 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   flex-direction: column;
   gap: 1.25rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .admin-sb-group {}
 .admin-sb-group-label {
@@ -1870,14 +1871,13 @@ body { padding-top: calc(78px + var(--ticker-h)); }
 
 /* ── Main content ────────────────────────────────── */
 .admin-main {
-  flex: 1;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  max-width: 900px;
+  min-height: 0;
   overflow-y: auto;
-  height: 100%;
+  overflow-x: hidden;
 }
 .admin-page-header {
   display: flex;
@@ -2167,7 +2167,7 @@ body { padding-top: calc(78px + var(--ticker-h)); }
 }
 
 /* ── Responsive ──────────────────────────────────── */
-@media (max-width: 860px) {
+@media (max-width: 600px) {
   .admin-nav-toggle { display: inline-flex; }
   .admin-sidebar-overlay {
     display: block;
@@ -2177,18 +2177,21 @@ body { padding-top: calc(78px + var(--ticker-h)); }
     z-index: 199;
     backdrop-filter: blur(2px);
   }
+  .admin-body {
+    grid-template-columns: 1fr;
+  }
   .admin-sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100dvh;
     transform: translateX(-110%);
     transition: transform 0.22s ease;
     z-index: 200;
     box-shadow: 0 0 50px rgba(0,0,0,0.2);
   }
   .admin-sidebar.open { transform: translateX(0); }
-  .admin-main { padding: 1rem; max-width: 100%; }
+  .admin-main { padding: 1rem; }
   .admin-topbar-actions .btn-outline:has(.fa-arrow-up-right-from-square) span { display: none; }
 }
 
@@ -2726,7 +2729,7 @@ a[href*="replit.com"]:not(nav a) {
   color: var(--ink);
   margin: 0;
 }
-@media (max-width: 860px) {
+@media (max-width: 600px) {
   .admin-topbar-title { display: none; }
   .admin-brand { display: flex; }
   .admin-nav-toggle { display: inline-flex; }

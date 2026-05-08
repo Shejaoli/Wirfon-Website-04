@@ -609,7 +609,7 @@ export default function AdminDashboard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              style={{ display: "flex", flexDirection: "column", gap: "1.25rem", width: "100%", minHeight: 0 }}
+              style={{ display: "flex", flexDirection: "column", gap: "1.25rem", minWidth: 0, minHeight: 0 }}
             >
               {/* Dashboard overview */}
               {tab === "dashboard" && (
