@@ -1,0 +1,1338 @@
+Discover what your real users are experiencing
+No Data
+
+Diagnose performance issues
+38
+Performance
+86
+Accessibility
+56
+Best Practices
+83
+SEO
+38
+FCP
++0
+LCP
++0
+TBT
++13
+CLS
++25
+SI
++0
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+Final Screenshot
+
+Metrics
+Expand view
+First Contentful Paint
+18.9 s
+Largest Contentful Paint
+27.6 s
+Total Blocking Time
+680 ms
+Cumulative Layout Shift
+0
+Speed Index
+18.9 s
+Captured at May 18, 2026, 4:42 PM GMT+2
+Emulated Moto G Power with Lighthouse 13.0.1
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 146.0.7680.177 with lr
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+
+TBT
+
+CLS
+Insights
+Render blocking requests Est savings of 2,840 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+54.74.48.184 1st party
+59.7 KiB	2,480 ms
+/assets/index-xRJ2ZPgC.css(54.74.48.184)
+59.7 KiB
+2,480 ms
+Cloudflare CDN cdn 
+19.4 KiB	1,350 ms
+…css/all.min.css(cdnjs.cloudflare.com)
+19.4 KiB
+1,350 ms
+Google Fonts cdn 
+1.5 KiB	750 ms
+/css2?family=Inter:wght@300;400;500;600;700;800&display=swap(fonts.googleapis.com)
+1.5 KiB
+750 ms
+Improve image delivery Est savings of 718 KiB
+Reducing the download time of images can improve the perceived load time of the page and LCP. Learn more about optimizing image sizeLCPFCPUnscored
+URL
+Resource Size
+Est Savings
+54.74.48.184 1st party
+860.8 KiB	717.8 KiB
+Strategic Cloud Consulting Tailored for You
+<img alt="Strategic Cloud Consulting Tailored for You" loading="lazy" src="/images/shutterstock_1405194650.jpg">
+/images/shutterstock_140….jpg(54.74.48.184)
+450.5 KiB
+409.9 KiB
+Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.
+118.9 KiB
+This image file is larger than it needs to be (1920x1061) for its displayed dimensions (672x371). Use responsive images to reduce the image download size.
+395.3 KiB
+Transform Your Career with Cloud Skills
+<img alt="Transform Your Career with Cloud Skills" loading="lazy" src="/images/phoneshutterstock_133514576.jpg">
+/images/phoneshutterstock_133….jpg(54.74.48.184)
+199.6 KiB
+175.2 KiB
+This image file is larger than it needs to be (1920x1151) for its displayed dimensions (672x403). Use responsive images to reduce the image download size.
+175.2 KiB
+WirfonCloud
+<img alt="WirfonCloud" class="footer-brand-logo" src="/images/logo-v2.png">
+/images/logo.png(54.74.48.184)
+62.5 KiB
+59.5 KiB
+This image file is larger than it needs to be (1600x400) for its displayed dimensions (350x88). Use responsive images to reduce the image download size.
+59.5 KiB
+WirfonCloud
+<img alt="WirfonCloud" class="footer-brand-logo" src="/images/logo-v2.png">
+/images/logo-v2.png(54.74.48.184)
+62.5 KiB
+59.5 KiB
+This image file is larger than it needs to be (1600x400) for its displayed dimensions (350x88). Use responsive images to reduce the image download size.
+59.5 KiB
+WirfonCloud Founder
+<img alt="WirfonCloud Founder" class="founder-photo" src="/assets/Photo_from_Mfoome_Bahti_-Ban(3)_1777412731019-B6tu2tGf.jpg">
+/assets/Photo_fro…(3)_17774127….jpg(54.74.48.184)
+85.7 KiB
+13.7 KiB
+Using a modern image format (WebP, AVIF) or increasing the image compression could improve this image's download size.
+13.7 KiB
+Font display Est savings of 30 ms
+Consider setting font-display to swap or optional to ensure text is consistently visible. swap can be further optimized to mitigate layout shifts with font metric overrides.FCPUnscored
+URL
+Est Savings
+Cloudflare CDN cdn 
+…webfonts/fa-brands-400.woff2(cdnjs.cloudflare.com)
+30 ms
+…webfonts/fa-solid-900.woff2(cdnjs.cloudflare.com)
+30 ms
+Google Fonts cdn 
+…v48/KFO7CnqEu….woff2(fonts.gstatic.com)
+10 ms
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…rs=AGKMywEcx…/m=root,base:895:462(www.youtube.com)
+77 ms
+Source
+Total reflow time
+[unattributed]
+10 ms
+/assets/index-BcMIWWKU.js:9:55899(54.74.48.184)
+24 ms
+…en_US/base.js:5594:506(www.youtube.com)
+77 ms
+LCP request discovery
+Optimize LCP by making the LCP image discoverable from the HTML immediately, and avoiding lazy-loadingLCPUnscored
+lazy load not applied
+fetchpriority=high should be applied
+Request is discoverable in initial document
+main > section.hero-frame > div.hero-stage > div.hero-layer
+<div class="hero-layer active" style="">
+Network dependency tree
+Warnings: More than 4 preconnect connections were found. These should be used sparingly and only to the most important origins.
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 1,052 ms
+Initial Navigation
+http://54.74.48.184 - 120 ms, 1.36 KiB
+/css2?family=Inter:wght@300;400;500;600;700;800&display=swap(fonts.googleapis.com) - 130 ms, 1.54 KiB
+…v20/UcC73FwrK….woff2(fonts.gstatic.com) - 641 ms, 48.09 KiB
+…css/all.min.css(cdnjs.cloudflare.com) - 152 ms, 19.37 KiB
+…webfonts/fa-brands-400.woff2(cdnjs.cloudflare.com) - 643 ms, 114.89 KiB
+…webfonts/fa-solid-900.woff2(cdnjs.cloudflare.com) - 644 ms, 153.82 KiB
+/assets/index-BcMIWWKU.js(54.74.48.184) - 430 ms, 427.97 KiB
+/api/content?t=177…(54.74.48.184) - 1,052 ms, 12.97 KiB
+/assets/index-xRJ2ZPgC.css(54.74.48.184) - 307 ms, 59.67 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+Origin
+Source
+https://fonts.googleapis.com/
+head > link
+<link rel="preconnect" href="https://fonts.googleapis.com">
+https://fonts.gstatic.com/
+head > link
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+https://i.ytimg.com/
+head > link
+<link rel="preconnect" href="https://i.ytimg.com">
+Unused preconnect. Only use preconnect for origins that the page is likely to request.
+https://i.ytimg.com/
+head > link
+<link rel="preconnect" href="https://i.ytimg.com">
+Unused preconnect. Only use preconnect for origins that the page is likely to request.
+https://i.ytimg.com/
+head > link
+<link rel="preconnect" href="https://i.ytimg.com">
+Unused preconnect. Only use preconnect for origins that the page is likely to request.
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Use efficient cache lifetimes Est savings of 2 KiB
+A long cache lifetime can speed up repeat visits to your page. Learn more about caching.LCPFCPUnscored
+Request
+Cache TTL
+Transfer Size
+Google/Doubleclick Ads ad 
+2 KiB
+/instream/ad_status.js(static.doubleclick.net)
+15m
+1 KiB
+/instream/ad_status.js(static.doubleclick.net)
+15m
+1 KiB
+/instream/ad_status.js(static.doubleclick.net)
+15m
+1 KiB
+Optimize DOM size
+A large DOM can increase the duration of style calculations and layout reflows, impacting page responsiveness. A large DOM will also increase memory usage. Learn how to avoid an excessive DOM size.Unscored
+Statistic
+Element
+Value
+Total elements
+291
+DOM depth
+div.video-carousel-track > div.video-carousel-slide > div.video-wrap > iframe
+<iframe src="https://www.youtube.com/embed/aByknzTTOaY" allowfullscreen="">
+12
+Most children
+Getting Started with AWS Solutions Architect • Cloud Cost Optimization: 7 Wins …
+<div class="ticker-track">
+9
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Resource load delay
+510 ms
+Resource load duration
+50 ms
+Element render delay
+1,740 ms
+main > section.hero-frame > div.hero-stage > div.hero-layer
+<div class="hero-layer active" style="">
+3rd parties
+3rd party code can significantly impact load performance. Reduce and defer loading of 3rd party code to prioritize your page's content.Unscored
+3rd party
+Transfer size
+Main thread time
+YouTube video 
+2,817 KiB	1,677 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+425 KiB
+673 ms
+…en_US/base.js(www.youtube.com)
+874 KiB
+360 ms
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+582 KiB
+327 ms
+…en_US/base.js(www.youtube.com)
+439 KiB
+184 ms
+/embed/aByknzTTOaY(www.youtube.com)
+115 KiB
+91 ms
+/embed/n4qHUXrRcds(www.youtube.com)
+57 KiB
+41 ms
+…br=1/rs=AGKMywHYS…(www.youtube.com)
+148 KiB
+0 ms
+…2d01abf7/www-player.css(www.youtube.com)
+117 KiB
+0 ms
+…96c57227/www-player.css(www.youtube.com)
+58 KiB
+0 ms
+…stats/qoe?cpn=…(www.youtube.com)
+0 KiB
+0 ms
+…stats/qoe?cpn=…(www.youtube.com)
+0 KiB
+0 ms
+…stats/qoe?cpn=…(www.youtube.com)
+0 KiB
+0 ms
+/generate_204?P6Me8Q(www.youtube.com)
+0 KiB
+0 ms
+/generate_204?fMf9DQ(www.youtube.com)
+0 KiB
+0 ms
+/generate_204?n6ZVdw(www.youtube.com)
+0 KiB
+0 ms
+Other Google APIs/SDKs utility 
+74 KiB	38 ms
+…th/SXktXD7Ig….js(www.google.com)
+72 KiB
+37 ms
+…google.internal.waa.v1.Waa/GenerateIT(jnn-pa.googleapis.com)
+2 KiB
+0 ms
+Google/Doubleclick Ads ad 
+5 KiB	2 ms
+/instream/ad_status.js(static.doubleclick.net)
+2 KiB
+1 ms
+/pagead/id(googleads.g.doubleclick.net)
+0 KiB
+1 ms
+/pagead/id?slf_rd=1(googleads.g.doubleclick.net)
+3 KiB
+0 ms
+Google Fonts cdn 
+154 KiB	0 ms
+…v48/KFO7CnqEu….woff2(fonts.gstatic.com)
+104 KiB
+0 ms
+…v20/UcC73FwrK….woff2(fonts.gstatic.com)
+48 KiB
+0 ms
+/css2?family=Inter:wght@300;400;500;600;700;800&display=swap(fonts.googleapis.com)
+2 KiB
+0 ms
+Cloudflare CDN cdn 
+288 KiB	0 ms
+…webfonts/fa-solid-900.woff2(cdnjs.cloudflare.com)
+154 KiB
+0 ms
+…webfonts/fa-brands-400.woff2(cdnjs.cloudflare.com)
+115 KiB
+0 ms
+…css/all.min.css(cdnjs.cloudflare.com)
+19 KiB
+0 ms
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce JavaScript execution time 2.4 s
+Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to reduce Javascript execution time.TBTUnscored
+URL
+Total CPU Time
+Script Evaluation
+Script Parse
+YouTube video 
+2,483 ms	1,133 ms	1,047 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+1,068 ms
+747 ms
+164 ms
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+485 ms
+181 ms
+302 ms
+…en_US/base.js(www.youtube.com)
+428 ms
+70 ms
+357 ms
+…en_US/base.js(www.youtube.com)
+218 ms
+26 ms
+192 ms
+/embed/aByknzTTOaY(www.youtube.com)
+187 ms
+62 ms
+22 ms
+/embed/n4qHUXrRcds(www.youtube.com)
+98 ms
+49 ms
+11 ms
+54.74.48.184 1st party
+513 ms	102 ms	30 ms
+http://54.74.48.184
+332 ms
+2 ms
+0 ms
+/assets/index-BcMIWWKU.js(54.74.48.184)
+181 ms
+99 ms
+30 ms
+Unattributable
+301 ms	4 ms	0 ms
+Unattributable
+301 ms
+4 ms
+0 ms
+Other Google APIs/SDKs utility 
+110 ms	99 ms	10 ms
+…th/SXktXD7Ig….js(www.google.com)
+110 ms
+99 ms
+10 ms
+Minimize main-thread work 4.3 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+Time Spent
+Script Evaluation
+2,195 ms
+Script Parsing & Compilation
+1,088 ms
+Style & Layout
+391 ms
+Other
+390 ms
+Parse HTML & CSS
+101 ms
+Garbage Collection
+97 ms
+Rendering
+37 ms
+Reduce unused JavaScript Est savings of 1,830 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+YouTube video 
+2,312.2 KiB	1,546.1 KiB
+…en_US/base.js(www.youtube.com)
+438.4 KiB
+305.9 KiB
+…en_US/base.js(www.youtube.com)
+436.4 KiB
+305.3 KiB
+…en_US/base.js(www.youtube.com)
+436.4 KiB
+304.8 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.0 KiB
+138.3 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.0 KiB
+138.3 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.0 KiB
+138.3 KiB
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+140.7 KiB
+71.8 KiB
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+140.7 KiB
+71.7 KiB
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+140.7 KiB
+71.7 KiB
+54.74.48.184 1st party
+427.5 KiB	283.9 KiB
+/assets/index-BcMIWWKU.js(54.74.48.184)
+427.5 KiB
+283.9 KiB
+Reduce unused CSS Est savings of 221 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+YouTube video 
+163.4 KiB	162.1 KiB
+…2d01abf7/www-player.css(www.youtube.com)
+57.6 KiB
+57.1 KiB
+…96c57227/www-player.css(www.youtube.com)
+57.6 KiB
+57.1 KiB
+…br=1/rs=AGKMywHYS…(www.youtube.com)
+48.2 KiB
+47.9 KiB
+54.74.48.184 1st party
+59.3 KiB	40.6 KiB
+/assets/index-xRJ2ZPgC.css(54.74.48.184)
+59.3 KiB
+40.6 KiB
+Cloudflare CDN cdn 
+18.3 KiB	18.1 KiB
+…css/all.min.css(cdnjs.cloudflare.com)
+18.3 KiB
+18.1 KiB
+Image elements do not have explicit width and height
+Set an explicit width and height on image elements to reduce layout shifts and improve CLS. Learn how to set image dimensionsCLSUnscored
+URL
+54.74.48.184 1st party
+Transform Your Career with Cloud Skills
+<img alt="Transform Your Career with Cloud Skills" loading="lazy" src="/images/phoneshutterstock_133514576.jpg">
+/images/phoneshutterstock_133….jpg(54.74.48.184)
+Strategic Cloud Consulting Tailored for You
+<img alt="Strategic Cloud Consulting Tailored for You" loading="lazy" src="/images/shutterstock_1405194650.jpg">
+/images/shutterstock_140….jpg(54.74.48.184)
+WirfonCloud
+<img alt="WirfonCloud" class="brand-logo" src="/images/logo-v2.png">
+/images/logo-v2.png(54.74.48.184)
+WirfonCloud
+<img alt="WirfonCloud" class="footer-brand-logo" src="/images/logo-v2.png">
+/images/logo-v2.png(54.74.48.184)
+Avoid enormous network payloads Total size was 5,217 KiB
+Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
+URL
+Transfer Size
+YouTube video 
+1,895.3 KiB
+…en_US/base.js(www.youtube.com)
+439.2 KiB
+…en_US/base.js(www.youtube.com)
+437.1 KiB
+…en_US/base.js(www.youtube.com)
+437.1 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.9 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.9 KiB
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+193.9 KiB
+54.74.48.184 1st party
+1,290.8 KiB
+/images/shutterstock_140….jpg(54.74.48.184)
+450.8 KiB
+/assets/index-BcMIWWKU.js(54.74.48.184)
+428.0 KiB
+/assets/001wirfon….png(54.74.48.184)
+212.1 KiB
+/images/phoneshutterstock_133….jpg(54.74.48.184)
+199.9 KiB
+Avoid long main-thread tasks 15 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+YouTube video 
+1,664 ms
+…en_US/base.js(www.youtube.com)
+27,333 ms
+251 ms
+…en_US/base.js(www.youtube.com)
+24,137 ms
+223 ms
+…en_US/base.js(www.youtube.com)
+27,584 ms
+183 ms
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+30,783 ms
+157 ms
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+31,086 ms
+152 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+27,767 ms
+148 ms
+…rs=AGKMywEcx…/m=r78Drb(www.youtube.com)
+30,940 ms
+146 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+24,035 ms
+102 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+23,957 ms
+78 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+24,444 ms
+75 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+27,915 ms
+75 ms
+…rs=AGKMywEcx…/m=root,base(www.youtube.com)
+23,883 ms
+74 ms
+54.74.48.184 1st party
+133 ms
+http://54.74.48.184
+720 ms
+78 ms
+/assets/index-BcMIWWKU.js(54.74.48.184)
+11,295 ms
+55 ms
+Unattributable
+59 ms
+Unattributable
+798 ms
+59 ms
+User Timing marks and measures 101 user timings
+Consider instrumenting your app with the User Timing API to measure your app's real-world performance during key user experiences. Learn more about User Timing marks.Unscored
+Name
+Type
+Start Time
+Duration
+mark_nreqs
+Mark
+496.62 ms
+mark_nreqs
+Mark
+500.51 ms
+mark_nreqs
+Mark
+505.53 ms
+mark_srt
+Mark
+577.62 ms
+mark_nress
+Mark
+577.62 ms
+mark_nrese
+Mark
+577.62 ms
+mark_srt
+Mark
+583.53 ms
+mark_nress
+Mark
+583.53 ms
+mark_nrese
+Mark
+583.53 ms
+mark_srt
+Mark
+588.51 ms
+mark_nress
+Mark
+588.51 ms
+mark_nrese
+Mark
+588.51 ms
+mark_rsf_pc
+Mark
+688.62 ms
+mark_rsf_pj
+Mark
+689.62 ms
+mark_rsf_ecj
+Mark
+689.62 ms
+mark_rsf_ecc
+Mark
+689.62 ms
+mark_rsf_pc
+Mark
+702.53 ms
+mark_rse_ecj
+Mark
+702.62 ms
+mark_rsf_pj
+Mark
+703.53 ms
+mark_rsf_ecj
+Mark
+703.53 ms
+mark_rsf_ecc
+Mark
+703.53 ms
+mark_rse_ecc
+Mark
+712.62 ms
+mark_rse_pc
+Mark
+714.62 ms
+mark_rse_ecj
+Mark
+718.53 ms
+mark_rsf_pc
+Mark
+719.51 ms
+mark_rsf_ecc
+Mark
+719.51 ms
+mark_rsf_pj
+Mark
+720.51 ms
+mark_rsf_ecj
+Mark
+720.51 ms
+mark_rse_pj
+Mark
+721.62 ms
+mark_rse_ecc
+Mark
+729.53 ms
+mark_wffs
+Mark
+732.62 ms
+mark_rse_pj
+Mark
+737.53 ms
+mark_rse_pc
+Mark
+740.53 ms
+mark_rse_ecj
+Mark
+742.51 ms
+mark_wffe
+Mark
+743.62 ms
+mark_rse_pj
+Mark
+757.51 ms
+mark_rse_pc
+Mark
+760.51 ms
+mark_rse_ecc
+Mark
+762.51 ms
+mark_rses_dpj
+Mark
+874.02 ms
+mark_mm_is
+Mark
+881.15 ms
+mark_mm_ie
+Mark
+888.02 ms
+mark_ep_init_cus
+Mark
+893.44 ms
+mark_ep_init_eps
+Mark
+894.11 ms
+mark_ep_init_epe
+Mark
+894.70 ms
+mark_ep_init_cue
+Mark
+894.83 ms
+mark_rses_dpj
+Mark
+944.33 ms
+mark_mm_is
+Mark
+951.39 ms
+mark_mm_ie
+Mark
+956.66 ms
+mark_ep_init_cus
+Mark
+961.75 ms
+mark_ep_init_eps
+Mark
+962.14 ms
+mark_ep_init_epe
+Mark
+962.71 ms
+mark_ep_init_cue
+Mark
+962.87 ms
+mark_rses_dpj
+Mark
+1,024.81 ms
+mark_mm_is
+Mark
+1,032.36 ms
+mark_mm_ie
+Mark
+1,039.58 ms
+mark_ep_init_cus
+Mark
+1,047.09 ms
+mark_ep_init_eps
+Mark
+1,048.03 ms
+mark_ep_init_epe
+Mark
+1,048.93 ms
+mark_ep_init_cue
+Mark
+1,049.32 ms
+mark_pe
+Mark
+1,255.77 ms
+mark_pe
+Mark
+1,488.81 ms
+mark_pe
+Mark
+1,642.74 ms
+mark_ep_init_wes
+Mark
+1,648.85 ms
+mark_ep_init_wee
+Mark
+1,668.75 ms
+mark_ep_init_wes
+Mark
+1,676.18 ms
+mark_ep_init_wee
+Mark
+1,694.30 ms
+mark_ep_init_wes
+Mark
+1,698.88 ms
+mark_ep_init_wee
+Mark
+1,716.28 ms
+mark_qoes
+Mark
+1,890.21 ms
+mark_fs
+Mark
+1,892.39 ms
+mark_ep_init_pr
+Mark
+1,979.35 ms
+mark_qoes
+Mark
+2,046.69 ms
+mark_fs
+Mark
+2,049.46 ms
+mark_ep_init_pr
+Mark
+2,116.72 ms
+mark_qoes
+Mark
+2,182.49 ms
+mark_fs
+Mark
+2,185.03 ms
+mark_ep_init_pr
+Mark
+2,251.64 ms
+mark_ep_init_ijs
+Mark
+2,401.86 ms
+mark_ep_init_ije
+Mark
+2,404.80 ms
+mark_ep_init_rs
+Mark
+2,406.55 ms
+mark_ep_init_re
+Mark
+2,416.56 ms
+mark_ep_init_ijs
+Mark
+2,530.13 ms
+mark_ep_init_ije
+Mark
+2,532.89 ms
+mark_ep_init_rs
+Mark
+2,534.71 ms
+mark_ep_init_re
+Mark
+2,544.68 ms
+mark_ep_init_ijs
+Mark
+2,671.43 ms
+mark_ep_init_ije
+Mark
+2,674.24 ms
+mark_ep_init_rs
+Mark
+2,675.95 ms
+mark_ep_init_re
+Mark
+2,687.60 ms
+mark_pot_ist
+Mark
+3,120.89 ms
+mark_pot_ist
+Mark
+3,130.59 ms
+mark_pot_ist
+Mark
+3,140.50 ms
+mark_pot_if
+Mark
+4,062.28 ms
+mark_pot_cms
+Mark
+4,062.80 ms
+mark_pot_cmf
+Mark
+4,064.71 ms
+mark_pot_if
+Mark
+4,082.31 ms
+mark_pot_cms
+Mark
+4,082.75 ms
+mark_pot_cmf
+Mark
+4,084.89 ms
+mark_pot_if
+Mark
+4,145.15 ms
+mark_pot_cms
+Mark
+4,145.61 ms
+mark_pot_cmf
+Mark
+4,148.17 ms
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+Passed audits (9)
+Show
+86
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+Best practices
+[user-scalable="no"] is used in the <meta name="viewport"> element or the [maximum-scale] attribute is less than 5.
+Disabling zooming is problematic for users with low vision who rely on screen magnification to properly see the contents of a web page. Learn more about the viewport meta tag.
+Failing Elements
+head > meta
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+Touch targets do not have sufficient size or spacing.
+Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. Learn more about touch targets.
+Failing Elements
+Cloud Cost Optimization: 7 Wins for Week One •
+<a href="/blog/cloud-cost-optimization-7-wins-for-week-one" class="ticker-item">
+X/Twitter
+<a href="https://twitter.com/JoinWirfonCloud" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter" class="ticker-social-btn">
+Slide 1
+<button class="dot" aria-label="Slide 1">
+Slide 2
+<button class="dot active" aria-label="Slide 2">
+Slide 2
+<button class="dot active" aria-label="Slide 2">
+Slide 1
+<button class="dot" aria-label="Slide 1">
+Slide 1
+<button type="button" class="dot active" aria-label="Slide 1">
+Slide 2
+<button type="button" class="dot" aria-label="Slide 2">
+Slide 2
+<button type="button" class="dot" aria-label="Slide 2">
+Slide 1
+<button type="button" class="dot active" aria-label="Slide 1">
+Slide 3
+<button type="button" class="dot" aria-label="Slide 3">
+Slide 3
+<button type="button" class="dot" aria-label="Slide 3">
+Slide 2
+<button type="button" class="dot" aria-label="Slide 2">
+Identical links have the same purpose.
+Links with the same destination should have the same description, to help users understand the link's purpose and decide whether to follow it. Learn more about identical links.Unscored
+Failing Elements
+Learn More
+<a href="/academy" class="btn btn-primary">
+Learn More
+<a href="/consultancy" class="btn btn-primary">
+These items highlight common accessibility best practices.
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast.
+Failing Elements
+Learn More
+<a href="/academy" class="btn btn-primary">
+Learn More
+<a href="/consultancy" class="btn btn-primary">
+A WORD FROM OUR FOUNDER
+<span class="founder-eyebrow">
+A WORD FROM OUR FOUNDER "Cloud computing is not just a technology — it's an equ…
+<section class="section founder-section">
+Learn More About Us
+<a href="/about" class="btn btn-outline btn-sm">
+Book Appointment
+<a href="https://calendar.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+Connect on LinkedIn
+<a href="https://www.linkedin.com/company/wirfoncloud/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+Thank you for visiting WirfonCloud — let's rule the clouds together.
+<p>
+Thank you for visiting WirfonCloud — let's rule the clouds together. Powered b…
+<div class="footer-thanks">
+Let's rule the clouds Cloud training, certification and consulting for teams a…
+<div class="footer-main">
+Powered by Wirfon Group Investments Ltd
+<p class="footer-powered">
+Thank you for visiting WirfonCloud — let's rule the clouds together. Powered b…
+<div class="footer-thanks">
+Let's rule the clouds Cloud training, certification and consulting for teams a…
+<div class="footer-main">
+These are opportunities to improve the legibility of your content.
+Additional items to manually check (10)
+Hide
+Interactive controls are keyboard focusable
+Custom interactive controls are keyboard focusable and display a focus indicator. Learn how to make custom controls focusable.Unscored
+Interactive elements indicate their purpose and state
+Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements. Learn how to decorate interactive elements with affordance hints.Unscored
+The page has a logical tab order
+Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen. Learn more about logical tab ordering.Unscored
+Visual order on the page follows DOM order
+DOM order matches the visual order, improving navigation for assistive technology. Learn more about DOM and visual ordering.Unscored
+User focus is not accidentally trapped in a region
+A user can tab into and out of any control or region without accidentally trapping their focus. Learn how to avoid focus traps.Unscored
+The user's focus is directed to new content added to the page
+If new content, such as a dialog, is added to the page, the user's focus is directed to it. Learn how to direct focus to new content.Unscored
+HTML5 landmark elements are used to improve navigation
+Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology. Learn more about landmark elements.Unscored
+Offscreen content is hidden from assistive technology
+Offscreen content is hidden with display: none or aria-hidden=true. Learn how to properly hide offscreen content.Unscored
+Custom controls have associated labels
+Custom interactive controls have associated labels, provided by aria-label or aria-labelledby. Learn more about custom controls and labels.Unscored
+Custom controls have ARIA roles
+Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.Unscored
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+Passed audits (20)
+Hide
+[aria-*] attributes match their roles
+Each ARIA role supports a specific subset of aria-* attributes. Mismatching these invalidates the aria-* attributes. Learn how to match ARIA attributes to their roles.
+[aria-hidden="true"] is not present on the document <body>
+Assistive technologies, like screen readers, work inconsistently when aria-hidden="true" is set on the document <body>. Learn how aria-hidden affects the document body.
+[aria-*] attributes have valid values
+Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid values. Learn more about valid values for ARIA attributes.
+[aria-*] attributes are valid and not misspelled
+Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid names. Learn more about valid ARIA attributes.
+Buttons have an accessible name
+When a button doesn't have an accessible name, screen readers announce it as "button", making it unusable for users who rely on screen readers. Learn how to make buttons more accessible.
+Image elements have [alt] attributes
+Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. Learn more about the alt attribute.
+Form elements have associated labels
+Labels ensure that form controls are announced properly by assistive technologies, like screen readers. Learn more about form element labels.
+ARIA attributes are used as specified for the element's role
+Some ARIA attributes are only allowed on an element under certain conditions. Learn more about conditional ARIA attributes.
+[aria-hidden="true"] elements do not contain focusable descendents
+Focusable descendents within an [aria-hidden="true"] element prevent those interactive elements from being available to users of assistive technologies like screen readers. Learn how aria-hidden affects focusable elements.
+Elements use only permitted ARIA attributes
+Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. Learn more about prohibited ARIA roles.
+Document has a <title> element
+The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. Learn more about document titles.
+<frame> or <iframe> elements have a title
+Screen reader users rely on frame titles to describe the contents of frames. Learn more about frame titles.
+<html> element has a [lang] attribute
+If a page doesn't specify a lang attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. Learn more about the lang attribute.
+<html> element has a valid value for its [lang] attribute
+Specifying a valid BCP 47 language helps screen readers announce text properly. Learn how to use the lang attribute.
+Links are distinguishable without relying on color.
+Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. Learn how to make links distinguishable.
+Links have a discernible name
+Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. Learn how to make links accessible.
+Lists contain only <li> elements and script supporting elements (<script> and <template>).
+Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output. Learn more about proper list structure.
+List items (<li>) are contained within <ul>, <ol> or <menu> parent elements
+Screen readers require list items (<li>) to be contained within a parent <ul>, <ol> or <menu> to be announced properly. Learn more about proper list structure.
+Heading elements appear in a sequentially-descending order
+Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. Learn more about heading order.
+Document has a main landmark.
+One main landmark helps screen reader users navigate a web page. Learn more about landmarks.
+Not applicable (36)
+Hide
+[accesskey] values are unique
+Access keys let users quickly focus a part of the page. For proper navigation, each access key must be unique. Learn more about access keys.Unscored
+button, link, and menuitem elements have accessible names
+When an element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to make command elements more accessible.Unscored
+Deprecated ARIA roles were not used
+Deprecated ARIA roles may not be processed correctly by assistive technology. Learn more about deprecated ARIA roles.Unscored
+Elements with role="dialog" or role="alertdialog" have accessible names.
+ARIA dialog elements without accessible names may prevent screen readers users from discerning the purpose of these elements. Learn how to make ARIA dialog elements more accessible.Unscored
+ARIA input fields have accessible names
+When an input field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about input field labels.Unscored
+ARIA meter elements have accessible names
+When a meter element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to name meter elements.Unscored
+ARIA progressbar elements have accessible names
+When a progressbar element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to label progressbar elements.Unscored
+[role]s have all required [aria-*] attributes
+Some ARIA roles have required attributes that describe the state of the element to screen readers. Learn more about roles and required attributes.Unscored
+Elements with an ARIA [role] that require children to contain a specific [role] have all required children.
+Some ARIA parent roles must contain specific child roles to perform their intended accessibility functions. Learn more about roles and required children elements.Unscored
+[role]s are contained by their required parent element
+Some ARIA child roles must be contained by specific parent roles to properly perform their intended accessibility functions. Learn more about ARIA roles and required parent element.Unscored
+[role] values are valid
+ARIA roles must have valid values in order to perform their intended accessibility functions. Learn more about valid ARIA roles.Unscored
+Elements with the role=text attribute do not have focusable descendents.
+Adding role=text around a text node split by markup enables VoiceOver to treat it as one phrase, but the element's focusable descendents will not be announced. Learn more about the role=text attribute.Unscored
+ARIA toggle fields have accessible names
+When a toggle field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about toggle fields.Unscored
+ARIA tooltip elements have accessible names
+When a tooltip element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to name tooltip elements.Unscored
+ARIA treeitem elements have accessible names
+When a treeitem element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about labeling treeitem elements.Unscored
+The page contains a heading, skip link, or landmark region
+Adding ways to bypass repetitive content lets keyboard users navigate the page more efficiently. Learn more about bypass blocks.Unscored
+<dl>'s contain only properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements.
+When definition lists are not properly marked up, screen readers may produce confusing or inaccurate output. Learn how to structure definition lists correctly.Unscored
+Definition list items are wrapped in <dl> elements
+Definition list items (<dt> and <dd>) must be wrapped in a parent <dl> element to ensure that screen readers can properly announce them. Learn how to structure definition lists correctly.Unscored
+ARIA IDs are unique
+The value of an ARIA ID must be unique to prevent other instances from being overlooked by assistive technologies. Learn how to fix duplicate ARIA IDs.Unscored
+No form fields have multiple labels
+Form fields with multiple labels can be confusingly announced by assistive technologies like screen readers which use either the first, the last, or all of the labels. Learn how to use form labels.Unscored
+<html> element has an [xml:lang] attribute with the same base language as the [lang] attribute.
+If the webpage does not specify a consistent language, then the screen reader might not announce the page's text correctly. Learn more about the lang attribute.Unscored
+Input buttons have discernible text.
+Adding discernable and accessible text to input buttons may help screen reader users understand the purpose of the input button. Learn more about input buttons.Unscored
+<input type="image"> elements have [alt] text
+When an image is being used as an <input> button, providing alternative text can help screen reader users understand the purpose of the button. Learn about input image alt text.Unscored
+The document does not use <meta http-equiv="refresh">
+Users do not expect a page to refresh automatically, and doing so will move focus back to the top of the page. This may create a frustrating or confusing experience. Learn more about the refresh meta tag.Unscored
+<object> elements have alternate text
+Screen readers cannot translate non-text content. Adding alternate text to <object> elements helps screen readers convey meaning to users. Learn more about alt text for object elements.Unscored
+Select elements have associated label elements.
+Form elements without effective labels can create frustrating experiences for screen reader users. Learn more about the select element.Unscored
+Skip links are focusable.
+Including a skip link can help users skip to the main content to save time. Learn more about skip links.Unscored
+No element has a [tabindex] value greater than 0
+A value greater than 0 implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies. Learn more about the tabindex attribute.Unscored
+Cells in a <table> element that use the [headers] attribute refer to table cells within the same table.
+Screen readers have features to make navigating tables easier. Ensuring <td> cells using the [headers] attribute only refer to other cells in the same table may improve the experience for screen reader users. Learn more about the headers attribute.Unscored
+<th> elements and elements with [role="columnheader"/"rowheader"] have data cells they describe.
+Screen readers have features to make navigating tables easier. Ensuring table headers always refer to some set of cells may improve the experience for screen reader users. Learn more about table headers.Unscored
+[lang] attributes have a valid value
+Specifying a valid BCP 47 language on elements helps ensure that text is pronounced correctly by a screen reader. Learn how to use the lang attribute.Unscored
+<video> elements contain a <track> element with [kind="captions"]
+When a video provides a caption it is easier for deaf and hearing impaired users to access its information. Learn more about video captions.Unscored
+Tables have different content in the summary attribute and <caption>.
+The summary attribute should describe the table structure, while <caption> should have the onscreen title. Accurate table mark-up helps users of screen readers. Learn more about summary and caption.Unscored
+All heading elements contain content.
+A heading with no content or inaccessible text prevent screen reader users from accessing information on the page's structure. Learn more about headings.Unscored
+Uses ARIA roles only on compatible elements
+Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. Learn more about ARIA roles.Unscored
+Image elements do not have [alt] attributes that are redundant text.
+Informative elements should aim for short, descriptive alternative text. Alternative text that is exactly the same as the text adjacent to the link or image is potentially confusing for screen reader users, because the text will be read twice. Learn more about the alt attribute.Unscored
+56
+Best Practices
+Trust and Safety
+Does not use HTTPS 13 insecure requests found
+All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding mixed content, where some resources are loaded over HTTP despite the initial request being served over HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. Learn more about HTTPS.
+Insecure URL
+Request Resolution
+54.74.48.184 1st party
+http://54.74.48.184
+Allowed
+/assets/index-BcMIWWKU.js(54.74.48.184)
+Allowed
+/assets/index-xRJ2ZPgC.css(54.74.48.184)
+Allowed
+/images/logo.png(54.74.48.184)
+Allowed
+/assets/Photo_fro…(3)_17774127….jpg(54.74.48.184)
+Allowed
+/assets/001wirfon….png(54.74.48.184)
+Allowed
+/images/IMG_20230625_133031_342.jpg(54.74.48.184)
+Allowed
+/images/professional-night.jpg(54.74.48.184)
+Allowed
+/api/content?t=177…(54.74.48.184)
+Allowed
+/images/phoneshutterstock_133….jpg(54.74.48.184)
+Allowed
+/images/shutterstock_140….jpg(54.74.48.184)
+Allowed
+/images/logo-v2.png(54.74.48.184)
+Allowed
+…uploads/momnfymq-819ae5a52ae754b0.svg(54.74.48.184)
+Allowed
+Does not redirect HTTP traffic to HTTPS
+Make sure that you redirect all HTTP traffic to HTTPS in order to enable secure web features for all your users. Learn more.
+Ensure CSP is effective against XSS attacks
+A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks. Learn how to use a CSP to prevent XSSUnscored
+Description
+Directive
+Severity
+No CSP found in enforcement mode
+High
+Use a strong HSTS policy
+Deployment of the HSTS header significantly reduces the risk of downgrading HTTP connections and eavesdropping attacks. A rollout in stages, starting with a low max-age is recommended. Learn more about using a strong HSTS policy.Unscored
+Description
+Directive
+Severity
+No HSTS header found
+High
+Ensure proper origin isolation with COOP
+The Cross-Origin-Opener-Policy (COOP) can be used to isolate the top-level window from other documents such as pop-ups. Learn more about deploying the COOP header.Unscored
+Description
+Directive
+Severity
+No COOP header found
+High
+Mitigate clickjacking with XFO or CSP
+The X-Frame-Options (XFO) header or the frame-ancestors directive in the Content-Security-Policy (CSP) header control where a page can be embedded. These can mitigate clickjacking attacks by blocking some or all sites from embedding the page. Learn more about mitigating clickjacking.Unscored
+Description
+Severity
+No frame control policy found
+High
+Mitigate DOM-based XSS with Trusted Types
+The require-trusted-types-for directive in the Content-Security-Policy (CSP) header instructs user agents to control the data passed to DOM XSS sink functions. Learn more about mitigating DOM-based XSS with Trusted Types.Unscored
+Description
+Severity
+No `Content-Security-Policy` header with Trusted Types directive found
+High
+General
+Uses third-party cookies 4 cookies found
+Third-party cookies may be blocked in some contexts. Learn more about preparing for third-party cookie restrictions.
+Name
+URL
+YouTube video 
+__Secure-YNID
+/embed/aByknzTTOaY(www.youtube.com)
+YSC
+/embed/aByknzTTOaY(www.youtube.com)
+VISITOR_INFO1_LIVE
+/embed/aByknzTTOaY(www.youtube.com)
+__Secure-ROLLOUT_TOKEN
+/embed/aByknzTTOaY(www.youtube.com)
+Issues were logged in the Issues panel in Chrome Devtools
+Issues logged to the Issues panel in Chrome Devtools indicate unresolved problems. They can come from network request failures, insufficient security controls, and other browser concerns. Open up the Issues panel in Chrome DevTools for more details on each issue.
+Issue type
+Cookie
+/embed/aByknzTTOaY(www.youtube.com)
+/embed/n4qHUXrRcds(www.youtube.com)
+Passed audits (10)
+Hide
+Avoids deprecated APIs
+Deprecated APIs will eventually be removed from the browser. Learn more about deprecated APIs.
+Allows users to paste into input fields
+Preventing input pasting is a bad practice for the UX, and weakens security by blocking password managers.Learn more about user-friendly input fields.
+Avoids requesting the geolocation permission on page load
+Users are mistrustful of or confused by sites that request their location without context. Consider tying the request to a user action instead. Learn more about the geolocation permission.
+Avoids requesting the notification permission on page load
+Users are mistrustful of or confused by sites that request to send notifications without context. Consider tying the request to user gestures instead. Learn more about responsibly getting permission for notifications.
+Displays images with correct aspect ratio
+Image display dimensions should match natural aspect ratio. Learn more about image aspect ratio.
+Serves images with appropriate resolution
+Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. Learn how to provide responsive images.
+Page has the HTML doctype
+Specifying a doctype prevents the browser from switching to quirks-mode. Learn more about the doctype declaration.
+Properly defines charset
+A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. Learn more about declaring the character encoding.
+No browser errors logged to the console
+Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns. Learn more about this errors in console diagnostic audit
+Page has valid source maps
+Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. Learn more about source maps.Unscored
+URL
+Map URL
+Other Google APIs/SDKs utility 
+…th/SXktXD7Ig….js(www.google.com)
+…th/SXktXD7Ig….js(www.google.com)
+…th/SXktXD7Ig….js(www.google.com)
+Not applicable (1)
+Hide
+Detected JavaScript libraries
+All front-end JavaScript libraries detected on the page. Learn more about this JavaScript library detection diagnostic audit.Unscored
+83
+SEO
+These checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on Core Web Vitals. Learn more about Google Search Essentials.
+Content Best Practices
+Links do not have descriptive text 2 links found
+Descriptive link text helps search engines understand your content. Learn how to make links more accessible.
+Link destination
+Link Text
+54.74.48.184 1st party
+/academy(54.74.48.184)
+Learn More
+/consultancy(54.74.48.184)
+Learn More
+Format your HTML in a way that enables crawlers to better understand your app’s content.
+Crawling and Indexing
+robots.txt is not valid 20 errors found
+If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. Learn more about robots.txt.
+Line #
+Content
+Error
+1
+<!DOCTYPE html>
+Syntax not understood
+2
+<html lang="en">
+Syntax not understood
+3
+<head>
+Syntax not understood
+4
+<meta charset="UTF-8" />
+Syntax not understood
+5
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+Syntax not understood
+6
+<title>WirfonCloud — Let's rule the clouds</title>
+Syntax not understood
+7
+<meta name="description" content="WirfonCloud — Cloud training and consulting. Let's rule the clouds." />
+Syntax not understood
+8
+<link rel="icon" type="image/png" href="/favicon.png" />
+Syntax not understood
+9
+<link rel="apple-touch-icon" href="/favicon.png" />
+Syntax not understood
+10
+<link rel="preconnect" href="https://fonts.googleapis.com">
+Unknown directive
+11
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+Unknown directive
+12
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+Unknown directive
+13
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+Unknown directive
+14
+<script type="module" crossorigin src="/assets/index-BcMIWWKU.js"></script>
+Syntax not understood
+15
+<link rel="stylesheet" crossorigin href="/assets/index-xRJ2ZPgC.css">
+Syntax not understood
+16
+</head>
+Syntax not understood
+17
+<body>
+Syntax not understood
+18
+<div id="root"></div>
+Syntax not understood
+19
+</body>
+Syntax not understood
+20
+</html>
+Syntax not understood
+To appear in search results, crawlers need access to your app.
+Additional items to manually check (1)
+Hide
+Structured data is valid
+Run the Structured Data Testing Tool to validate structured data. Learn more about Structured Data.Unscored
+Run these additional validators on your site to check additional SEO best practices.
+Passed audits (7)
+Hide
+Page isn’t blocked from indexing
+Search engines are unable to include your pages in search results if they don't have permission to crawl them. Learn more about crawler directives.
+Document has a <title> element
+The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. Learn more about document titles.
+Document has a meta description
+Meta descriptions may be included in search results to concisely summarize page content. Learn more about the meta description.
+Page has successful HTTP status code
+Pages with unsuccessful HTTP status codes may not be indexed properly. Learn more about HTTP status codes.
+Links are crawlable
+Search engines may use href attributes on links to crawl websites. Ensure that the href attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. Learn how to make links crawlable
+Image elements have [alt] attributes
+Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. Learn more about the alt attribute.
+Document has a valid hreflang
+hreflang links tell search engines what version of a page they should list in search results for a given language or region. Learn more about hreflang.
+Not applicable (1)
+Hide
+Document has a valid rel=canonical
+Canonical links suggest which URL to show in search results. Learn more about canonical links.Unscored
+M

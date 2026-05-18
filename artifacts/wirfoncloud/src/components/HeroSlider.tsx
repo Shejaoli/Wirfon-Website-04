@@ -27,20 +27,35 @@ export default function HeroSlider() {
         {slides.map((slide, i) => {
           const gradient = `linear-gradient(135deg, ${slide.bgFrom} 0%, ${slide.bgTo} 100%)`;
           const hasImage = Boolean(slide.backgroundImage);
-          const backgroundImage = hasImage
-            ? `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), url('${slide.backgroundImage}'), ${gradient}`
-            : gradient;
+          const isFirst = i === 0;
+
           return (
             <div
               key={i}
               className={"hero-layer" + (i === index ? " active" : "")}
-              style={{
-                backgroundImage,
+              style={hasImage ? {} : {
+                backgroundImage: gradient,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
-            />
+            >
+              {hasImage && (
+                <>
+                  <img
+                    src={slide.backgroundImage}
+                    alt=""
+                    fetchPriority={isFirst ? "high" : "low"}
+                    loading={isFirst ? "eager" : "lazy"}
+                    decoding={isFirst ? "sync" : "async"}
+                    className="hero-bg-img"
+                  />
+                  <div className="hero-bg-overlay" style={{
+                    background: `linear-gradient(135deg, ${slide.bgFrom}55 0%, ${slide.bgTo}55 100%)`,
+                  }} />
+                </>
+              )}
+            </div>
           );
         })}
 

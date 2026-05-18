@@ -225,6 +225,20 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   pointer-events: none;
 }
 .hero-layer.active { opacity: 1; }
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.30);
+}
 .hero-headline {
   position: absolute;
   left: clamp(24px, 4vw, 56px);
@@ -485,6 +499,37 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   width: 100%;
   height: 100%;
   border: 0;
+}
+.yt-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.yt-facade-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.yt-play-btn {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.yt-facade:hover .yt-play-btn {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6));
 }
 .caption { margin-top: 1rem; font-weight: 500; color: var(--grey-700); }
 .carousel-arrow {
