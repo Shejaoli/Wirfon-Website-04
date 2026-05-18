@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useSite } from "@/hooks/useSite";
-import wirfonLogo from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
 
 export default function Footer() {
   const site = useSite();
@@ -68,16 +67,22 @@ export default function Footer() {
               <i className="fa-solid fa-arrow-right" />
             </button>
           </form>
-          <div className="footer-subscribe-logo-wrap">
-            <img
-              src={wirfonLogo}
-              alt="WirfonCloud"
-              className="footer-subscribe-logo"
-              onClick={handleLogoClick}
-              style={{ cursor: "default", userSelect: "none" }}
-              draggable={false}
-            />
-          </div>
+          {logoUrl && (
+            <div className="footer-subscribe-logo-wrap">
+              <img
+                src={logoUrl}
+                alt="WirfonCloud"
+                className="footer-subscribe-logo"
+                onClick={handleLogoClick}
+                width="350"
+                height="88"
+                loading="lazy"
+                decoding="async"
+                style={{ cursor: "default", userSelect: "none" }}
+                draggable={false}
+              />
+            </div>
+          )}
         </div>
         {status === "ok" && (
           <p className="container footer-subscribe-msg success">Thanks for subscribing!</p>
@@ -94,7 +99,15 @@ export default function Footer() {
         <div className="container footer-main-grid">
           <div className="footer-brand-col">
             {logoUrl ? (
-              <img src={logoUrl} alt="WirfonCloud" className="footer-brand-logo" />
+              <img
+                src={logoUrl}
+                alt="WirfonCloud"
+                className="footer-brand-logo"
+                width="350"
+                height="88"
+                loading="lazy"
+                decoding="async"
+              />
             ) : (
               <span className="footer-brand-name">WirfonCloud</span>
             )}
