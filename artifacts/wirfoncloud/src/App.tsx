@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
@@ -8,9 +9,18 @@ import Blog from "@/pages/Blog";
 import BlogPostPage from "@/pages/BlogPostPage";
 import FAQ from "@/pages/FAQ";
 import Gallery from "@/pages/Gallery";
-import AdminLogin from "@/pages/admin/AdminLogin";
-import AdminDashboard from "@/pages/admin/AdminDashboard";
 import NotFound from "@/pages/not-found";
+
+const AdminLogin = lazy(() => import("@/pages/admin/AdminLogin"));
+const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard"));
+
+function AdminFallback() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", background: "#f0f2f5" }}>
+      <div style={{ width: 36, height: 36, border: "3px solid #0199ef", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.7s linear infinite" }} />
+    </div>
+  );
+}
 
 function PublicRouter() {
   return (
@@ -35,9 +45,21 @@ function App() {
   return (
     <WouterRouter base={base}>
       <Switch>
-        <Route path="/admin/login" component={AdminLogin} />
-        <Route path="/admin" component={AdminDashboard} />
-        <Route path="/admin/:rest*" component={AdminDashboard} />
+        <Route path="/admin/login">
+          <Suspense fallback={<AdminFallback />}>
+            <AdminLogin />
+          </Suspense>
+        </Route>
+        <Route path="/admin">
+          <Suspense fallback={<AdminFallback />}>
+            <AdminDashboard />
+          </Suspense>
+        </Route>
+        <Route path="/admin/:rest*">
+          <Suspense fallback={<AdminFallback />}>
+            <AdminDashboard />
+          </Suspense>
+        </Route>
         <Route component={PublicRouter} />
       </Switch>
     </WouterRouter>

@@ -22,6 +22,9 @@ function webviewProxyPlugin(vitePort: number, proxyPort: number): Plugin {
         src.on("error", () => dst.destroy());
         dst.on("error", () => src.destroy());
       });
+      server.on("error", (err: NodeJS.ErrnoException) => {
+        if (err.code !== "EADDRINUSE") throw err;
+      });
       server.listen(proxyPort, "0.0.0.0", () => {
         console.log(
           `[webview-proxy] :${proxyPort} → :${vitePort}  (webview bridge)`,
@@ -63,6 +66,15 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["framer-motion"],
+        },
+      },
+    },
   },
   server: {
     port,
