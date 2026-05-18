@@ -62,15 +62,7 @@ function FounderMessage() {
     <section className="section founder-section">
       <div className="container founder-container">
         <div className="founder-image-wrap">
-          <img
-            src={founderImg}
-            alt="WirfonCloud Founder"
-            className="founder-photo"
-            width="420"
-            height="420"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={founderImg} alt="WirfonCloud Founder" className="founder-photo" />
         </div>
         <div className="founder-content">
           <span className="founder-eyebrow">A Word from Our Founder</span>

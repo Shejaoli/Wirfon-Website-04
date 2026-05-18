@@ -1,4 +1,3 @@
-import "./admin.css";
 import { useState, useEffect, FormEvent } from "react";
 import { useLocation } from "wouter";
 import { adminLogin, setToken, adminMe } from "@/lib/api";

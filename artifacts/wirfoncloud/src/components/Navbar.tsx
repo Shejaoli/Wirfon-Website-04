@@ -87,15 +87,7 @@ export default function Navbar() {
       <div className="container nav-container">
         <Link href="/" className="brand">
           {logoUrl ? (
-            <img
-              src={logoUrl}
-              alt="WirfonCloud"
-              className="brand-logo"
-              width="180"
-              height="45"
-              fetchPriority="high"
-              decoding="async"
-            />
+            <img src={logoUrl} alt="WirfonCloud" className="brand-logo" />
           ) : (
             <>
               <span className="brand-name">WirfonCloud</span>
