@@ -23,9 +23,8 @@ import {
   BlogEditor,
   FaqsEditor,
   GalleryEditor,
-  SocialEditor,
-  ContactEditor,
 } from "./editors";
+import { SettingsPage } from "./SettingsPage";
 
 type Tab =
   | "dashboard"
@@ -670,21 +669,7 @@ export default function AdminDashboard() {
                     />
                   )}
                   {tab === "settings" && (
-                    <>
-                      <SocialEditor social={data.social} onChange={(social) => update({ ...data, social })} />
-                      <ContactEditor
-                        contact={data.contact}
-                        footer={data.footer}
-                        onChange={(contact, footer) => update({ ...data, contact, footer })}
-                      />
-                      <section className="admin-card admin-danger">
-                        <h3>Reset content</h3>
-                        <p>Restore every section to the original defaults. Use with caution.</p>
-                        <button onClick={handleReset} className="btn btn-outline btn-sm" disabled={saving}>
-                          Reset to defaults
-                        </button>
-                      </section>
-                    </>
+                    <SettingsPage data={data} onChange={update} />
                   )}
                 </>
               )}
