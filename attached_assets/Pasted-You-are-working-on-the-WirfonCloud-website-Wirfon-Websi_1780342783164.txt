@@ -1,0 +1,99 @@
+You are working on the WirfonCloud website (Wirfon-Website-04 repo).
+The stack is: Node.js, Express, EJS, React 19, Vite, TypeScript, PostgreSQL, pnpm monorepo.
+The frontend is deployed on Vercel. The backend runs on a VPS with PM2 on port 3001.
+
+Make the following two sets of changes. Do them carefully and completely.
+
+═══════════════════════════════════════════════════════════
+TASK 1 — EDIT THE "READY TO GET STARTED?" SECTION (Homepage)
+═══════════════════════════════════════════════════════════
+
+Locate the "Ready to Get Started?" section on the homepage.
+Make these exact changes:
+
+  1. SUBTITLE TEXT
+     Find: "Book a free appointment with our team via Google Calendar or connect with us on LinkedIn."
+     Replace with: "Get your step-by-step beginner roadmap to start Cloud, Infrastructure, and AI engineering with WirfonCloud Academy."
+
+  2. REMOVE BUTTON
+     Delete the "Connect on LinkedIn" button entirely. Remove its surrounding
+     wrapper/container too if it becomes empty after removal.
+
+  3. RENAME + REWIRE THE MAIN BUTTON
+     Find the "Book Appointment" button.
+     - Change its label text to: "Click to Get Your Free RoadMap"
+     - Remove any existing href, router link, or onClick navigation it currently has.
+     - Add class: "ml-onclick-form"
+     - Add onclick handler: onclick="ml('show', 'orZO2n', true)"
+     - If the button is a React component or <Link>, convert it to a plain <button>
+       or <a> tag so the MailerLite onclick works correctly in the browser.
+
+  4. MAILERLITE UNIVERSAL SCRIPT
+     In the main HTML entry point (likely index.html or the EJS layout/base template),
+     add the following script ONCE, right before the closing </head> tag,
+     only if it is not already present:
+
+     <!-- MailerLite Universal -->
+     <script>
+     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+     .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+     n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+     (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+     ml('account', '2387241');
+     </script>
+     <!-- End MailerLite Universal -->
+
+     This script must be present on every page of the site since it powers
+     all MailerLite forms including the newsletter subscription in the footer.
+
+═══════════════════════════════════════════════════════════
+TASK 2 — ADD LINUX QUIZ SECTION ON THE ACADEMY PAGE
+═══════════════════════════════════════════════════════════
+
+Locate the Academy page component/template.
+Add a new highlighted CTA banner section. Place it AFTER the Academy
+page hero/intro section but BEFORE the courses or learning paths listing.
+
+The section must contain:
+
+  1. HEADING
+     "Not sure where to start?"
+
+  2. SUBTEXT (one paragraph)
+     "Take our free 10-question Linux Career Readiness Quiz and discover
+     your exact starting point in IT, Cloud, and AI — takes just 5 minutes,
+     no experience needed."
+
+  3. BUTTON
+     Label: "Take the Free Quiz →"
+     href: https://wirfoncloud.github.io/linux-quiz-assessment/
+     Open in a new tab: target="_blank" rel="noopener noreferrer"
+
+  4. DESIGN & STYLING
+     - Style it as a full-width standout banner that breaks the page flow visually.
+     - Background: the site's primary blue (same as the main nav/brand color).
+     - All text: white.
+     - Button: white background with primary blue text. On hover: slight shadow
+       or opacity shift for feedback.
+     - Add a subtle icon or emoji before the heading if it fits the site's style
+       (e.g. 🎯 or a terminal/cloud icon from the existing icon set).
+     - Padding: generous top and bottom (py-12 or equivalent).
+     - Text alignment: centered.
+     - Keep the design fully consistent with the rest of the Academy page
+       and the site's overall component style (same font sizes, border-radius, etc.)
+
+  5. NO EXTRA EMAIL FORM NEEDED
+     Do NOT add any email input or MailerLite form to this section.
+     The quiz at the link above already gates the results behind an email
+     capture form (name + email + country), so leads are collected automatically
+     when users complete the quiz. Just link directly to the quiz URL.
+
+═══════════════════════════════════════════════════════════
+GENERAL INSTRUCTIONS
+═══════════════════════════════════════════════════════════
+
+- Do not change anything else on the page outside of what is described above.
+- Do not break existing layout, spacing, or component structure.
+- Make sure all changes are TypeScript-safe if the files are .tsx/.ts.
+- After making all changes, show me a summary of every file you modified
+  and what you changed in each one.

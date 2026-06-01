@@ -51,6 +51,25 @@ export default function Academy() {
         </div>
       </section>
 
+      <section className="quiz-banner">
+        <div className="container text-center">
+          <p className="quiz-banner-icon">🎯</p>
+          <h2 className="quiz-banner-heading">Not sure where to start?</h2>
+          <p className="quiz-banner-text">
+            Take our free 10-question Linux Career Readiness Quiz and discover your exact starting
+            point in IT, Cloud, and AI — takes just 5 minutes, no experience needed.
+          </p>
+          <a
+            href="https://wirfoncloud.github.io/linux-quiz-assessment/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quiz-banner-btn"
+          >
+            Take the Free Quiz →
+          </a>
+        </div>
+      </section>
+
       <section id="courses" className="section anchor-section">
         <div className="container">
           <h2 className="section-title">Courses</h2>

@@ -78,11 +78,11 @@
   ],
   "homeCta": {
     "title": "Ready to Get Started?",
-    "text": "Book a free appointment with our team via Google Calendar or connect with us on LinkedIn.",
-    "primaryHref": "https://calendar.google.com",
-    "primaryLabel": "Book Appointment",
-    "secondaryHref": "https://www.linkedin.com/company/wirfoncloud/",
-    "secondaryLabel": "Connect on LinkedIn"
+    "text": "Get your step-by-step beginner roadmap to start Cloud, Infrastructure, and AI engineering with WirfonCloud Academy.",
+    "primaryHref": "",
+    "primaryLabel": "Click to Get Your Free RoadMap",
+    "secondaryHref": "",
+    "secondaryLabel": ""
   },
   "about": {
     "bannerImage": "/images/002_blk_girl_shutterstock_2030694452.jpg",

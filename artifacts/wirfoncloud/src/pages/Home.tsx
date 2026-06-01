@@ -158,12 +158,12 @@ export default function Home() {
           <h2>{site.homeCta.title}</h2>
           <p>{site.homeCta.text}</p>
           <div className="cta-buttons">
-            <a href={site.homeCta.primaryHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            <button
+              className="btn btn-primary ml-onclick-form"
+              onClick={() => (window as any).ml?.('show', 'orZO2n', true)}
+            >
               {site.homeCta.primaryLabel}
-            </a>
-            <a href={site.homeCta.secondaryHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-              {site.homeCta.secondaryLabel}
-            </a>
+            </button>
           </div>
         </div>
       </section>
