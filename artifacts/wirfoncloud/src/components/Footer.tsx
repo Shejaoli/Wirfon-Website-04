@@ -1,12 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useSite } from "@/hooks/useSite";
 import wirfonLogo from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
 
 export default function Footer() {
   const site = useSite();
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [, navigate] = useLocation();
   const clickCount = useRef(0);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -24,24 +22,6 @@ export default function Footer() {
     }, 600);
   };
 
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (!res.ok) throw new Error();
-      setStatus("ok");
-      setEmail("");
-    } catch {
-      setStatus("error");
-    }
-  };
-
   const logoUrl = site.branding?.logoUrl || "";
 
   return (
@@ -55,19 +35,9 @@ export default function Footer() {
               delivered straight to your inbox.
             </p>
           </div>
-          <form className="footer-subscribe-form" onSubmit={handleSubscribe}>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Write Email"
-              aria-label="Your email address"
-            />
-            <button type="submit" aria-label="Subscribe" disabled={status === "loading"}>
-              <i className="fa-solid fa-arrow-right" />
-            </button>
-          </form>
+          <div className="footer-subscribe-form-wrap">
+            <div className="ml-embedded" data-form="N8d2uP" />
+          </div>
           <div className="footer-subscribe-logo-wrap">
             <img
               src={wirfonLogo}
@@ -79,15 +49,6 @@ export default function Footer() {
             />
           </div>
         </div>
-        {status === "ok" && (
-          <p className="container footer-subscribe-msg success">Thanks for subscribing!</p>
-        )}
-        {status === "error" && (
-          <p className="container footer-subscribe-msg error">
-            Something went wrong. Please try again or email{" "}
-            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
-          </p>
-        )}
       </div>
 
       <div className="footer-main">
