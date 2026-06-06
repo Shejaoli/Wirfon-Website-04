@@ -27,8 +27,8 @@ function MissionVisionApproach() {
     },
     {
       icon: "fa-route",
-      title: "Our Approach",
-      text: "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill.",
+      title: site.homeApproach?.title ?? "Our Approach",
+      text: site.homeApproach?.text ?? "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill.",
       color: "#003d6b",
     },
   ];

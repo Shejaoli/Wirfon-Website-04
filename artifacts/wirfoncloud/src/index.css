@@ -3331,6 +3331,93 @@ a[href*="replit.com"]:not(nav a) {
   .adm-banner-btn { display: none; }
 }
 
+/* ── Quiz standalone page ───────────────────────────────────────────────── */
+.quiz-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 62px);
+}
+.quiz-page-header {
+  background: linear-gradient(135deg, #0199ef 0%, #003d6b 100%);
+  color: #fff;
+  text-align: center;
+  padding: 2.5rem 1.5rem 2rem;
+}
+.quiz-page-header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+.quiz-page-header p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 560px;
+  margin: 0 auto;
+}
+.quiz-iframe-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.quiz-iframe-wrap iframe {
+  flex: 1;
+  width: 100%;
+  min-height: 700px;
+  border: none;
+  display: block;
+}
+
+/* ── TipTap rich editor ─────────────────────────────────────────────────── */
+.tiptap-wrap {
+  border: 1px solid #e5e9ef;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.tiptap-editor {
+  min-height: 260px;
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink);
+  outline: none;
+  cursor: text;
+}
+.tiptap-editor:focus-within {
+  box-shadow: 0 0 0 3px rgba(1,153,239,0.12);
+}
+.tiptap-editor .ProseMirror { outline: none; }
+.tiptap-editor .ProseMirror p { margin: 0 0 0.75em; }
+.tiptap-editor .ProseMirror p:last-child { margin-bottom: 0; }
+.tiptap-editor .ProseMirror h2 { font-size: 1.2rem; font-weight: 700; margin: 1em 0 0.4em; }
+.tiptap-editor .ProseMirror h3 { font-size: 1.05rem; font-weight: 700; margin: 0.9em 0 0.35em; }
+.tiptap-editor .ProseMirror ul,
+.tiptap-editor .ProseMirror ol { padding-left: 1.4em; margin: 0 0 0.75em; }
+.tiptap-editor .ProseMirror li { margin-bottom: 0.25em; }
+.tiptap-editor .ProseMirror a { color: var(--brand); text-decoration: underline; }
+.tiptap-editor .ProseMirror strong { font-weight: 700; }
+.tiptap-editor .ProseMirror em { font-style: italic; }
+.tiptap-editor .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--grey-400);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.rich-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: #e5e9ef;
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+.rich-btn.active {
+  background: #eff6ff;
+  color: var(--brand);
+  border-color: #bfdbfe;
+}
+
 /* ── Quiz Banner (Academy page) ─────────────────────────────────────────── */
 .quiz-banner {
   background: var(--brand);

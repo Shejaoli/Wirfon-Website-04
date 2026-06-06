@@ -76,6 +76,10 @@
       "logo": ""
     }
   ],
+  "homeApproach": {
+    "title": "Our Approach",
+    "text": "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill."
+  },
   "homeCta": {
     "title": "Ready to Get Started?",
     "text": "Get your step-by-step beginner roadmap to start Cloud, Infrastructure, and AI engineering with WirfonCloud Academy.",

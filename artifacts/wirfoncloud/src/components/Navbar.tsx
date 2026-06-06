@@ -34,6 +34,7 @@ const links: { href: string; label: string; key: string; dropdown?: { href: stri
       { href: "/academy#mastery", label: "Mastery" },
       { href: "/academy#more", label: "Workshops" },
       { href: "/blog", label: "Blog" },
+      { href: "/quiz", label: "Linux Quiz 🎯" },
     ],
   },
   {

@@ -59,6 +59,10 @@ export interface SiteContent {
     secondaryHref: string;
     secondaryLabel: string;
   };
+  homeApproach: {
+    title: string;
+    text: string;
+  };
   about: {
     bannerImage: string;
     bannerTitle: string;
@@ -166,6 +170,10 @@ export const DEFAULT_SITE: SiteContent = {
     primaryLabel: "Book Appointment",
     secondaryHref: "https://www.linkedin.com/company/wirfoncloud/",
     secondaryLabel: "Connect on LinkedIn",
+  },
+  homeApproach: {
+    title: "Our Approach",
+    text: "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill.",
   },
   about: {
     bannerImage: "/images/002_blk_girl_shutterstock_2030694452.jpg",

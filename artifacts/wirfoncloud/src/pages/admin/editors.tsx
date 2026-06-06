@@ -1,4 +1,7 @@
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useRef, useEffect } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import TipTapLink from "@tiptap/extension-link";
 import type {
   BlogPost,
   Course,
@@ -96,7 +99,6 @@ function RichArea({
   label,
   value,
   onChange,
-  rows = 5,
   placeholder,
 }: {
   label: string;
@@ -105,58 +107,71 @@ function RichArea({
   rows?: number;
   placeholder?: string;
 }) {
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      TipTapLink.configure({ openOnClick: false, HTMLAttributes: { target: "_blank", rel: "noopener noreferrer" } }),
+    ],
+    content: value || "",
+    onUpdate({ editor }) {
+      onChange(editor.getHTML());
+    },
+  });
 
-  function wrap(open: string, close: string) {
-    const el = ref.current;
-    if (!el) return;
-    const { selectionStart: s, selectionEnd: e } = el;
-    const sel = el.value.slice(s, e) || "text";
-    const next = el.value.slice(0, s) + open + sel + close + el.value.slice(e);
-    onChange(next);
-    setTimeout(() => {
-      el.focus();
-      el.setSelectionRange(s + open.length, s + open.length + sel.length);
-    }, 0);
-  }
+  useEffect(() => {
+    if (!editor) return;
+    const current = editor.getHTML();
+    if ((value || "") !== current) {
+      editor.commands.setContent(value || "", false);
+    }
+  }, [value]);
 
-  function insertLink() {
+  const setLink = () => {
     const url = prompt("Enter URL:", "https://");
     if (!url) return;
-    const el = ref.current;
-    if (!el) return;
-    const { selectionStart: s, selectionEnd: e } = el;
-    const sel = el.value.slice(s, e) || "link text";
-    const tag = `<a href="${url}" target="_blank" rel="noopener noreferrer">${sel}</a>`;
-    const next = el.value.slice(0, s) + tag + el.value.slice(e);
-    onChange(next);
-  }
+    editor?.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  };
 
   return (
     <div className="admin-field">
       <span className="admin-field-label">{label}</span>
-      <div className="rich-toolbar">
-        <button type="button" className="rich-btn" title="Bold" onClick={() => wrap("<strong>", "</strong>")}>
-          <i className="fa-solid fa-bold" />
-        </button>
-        <button type="button" className="rich-btn" title="Italic" onClick={() => wrap("<em>", "</em>")}>
-          <i className="fa-solid fa-italic" />
-        </button>
-        <button type="button" className="rich-btn" title="Insert link" onClick={insertLink}>
-          <i className="fa-solid fa-link" />
-        </button>
-        <button type="button" className="rich-btn" title="List item" onClick={() => wrap("<li>", "</li>")}>
-          <i className="fa-solid fa-list-ul" />
-        </button>
-        <span className="rich-toolbar-hint">Select text then click a button</span>
+      <div className="tiptap-wrap">
+        <div className="rich-toolbar">
+          <button type="button" className={`rich-btn${editor?.isActive("bold") ? " active" : ""}`} title="Bold" onClick={() => editor?.chain().focus().toggleBold().run()}>
+            <i className="fa-solid fa-bold" />
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("italic") ? " active" : ""}`} title="Italic" onClick={() => editor?.chain().focus().toggleItalic().run()}>
+            <i className="fa-solid fa-italic" />
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("heading", { level: 2 }) ? " active" : ""}`} title="Heading 2" onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}>
+            <span>H2</span>
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("heading", { level: 3 }) ? " active" : ""}`} title="Heading 3" onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()}>
+            <span>H3</span>
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("bulletList") ? " active" : ""}`} title="Bullet list" onClick={() => editor?.chain().focus().toggleBulletList().run()}>
+            <i className="fa-solid fa-list-ul" />
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("orderedList") ? " active" : ""}`} title="Numbered list" onClick={() => editor?.chain().focus().toggleOrderedList().run()}>
+            <i className="fa-solid fa-list-ol" />
+          </button>
+          <button type="button" className={`rich-btn${editor?.isActive("link") ? " active" : ""}`} title="Insert link" onClick={setLink}>
+            <i className="fa-solid fa-link" />
+          </button>
+          <button type="button" className="rich-btn" title="Remove link" onClick={() => editor?.chain().focus().unsetLink().run()} disabled={!editor?.isActive("link")}>
+            <i className="fa-solid fa-link-slash" />
+          </button>
+          <div className="rich-toolbar-sep" />
+          <button type="button" className="rich-btn" title="Undo" onClick={() => editor?.chain().focus().undo().run()}>
+            <i className="fa-solid fa-rotate-left" />
+          </button>
+          <button type="button" className="rich-btn" title="Redo" onClick={() => editor?.chain().focus().redo().run()}>
+            <i className="fa-solid fa-rotate-right" />
+          </button>
+          {placeholder && <span className="rich-toolbar-hint">{placeholder}</span>}
+        </div>
+        <EditorContent editor={editor} className="tiptap-editor" />
       </div>
-      <textarea
-        ref={ref}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        rows={rows}
-        placeholder={placeholder}
-      />
     </div>
   );
 }
@@ -514,6 +529,28 @@ export function HomeCtaEditor({
           onChange={(v) => onChange({ ...cta, secondaryLabel: v })}
         />
       </div>
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Home Approach                                                               */
+/* -------------------------------------------------------------------------- */
+
+export function HomeApproachEditor({
+  approach,
+  onChange,
+}: {
+  approach: SiteContent["homeApproach"];
+  onChange: (next: SiteContent["homeApproach"]) => void;
+}) {
+  return (
+    <Section
+      title='"Our Approach" card'
+      description='Appears on the homepage in the "Who We Are &amp; What We Stand For" section.'
+    >
+      <Field label="Title" value={approach.title} onChange={(v) => onChange({ ...approach, title: v })} />
+      <Area label="Description" value={approach.text} onChange={(v) => onChange({ ...approach, text: v })} rows={4} />
     </Section>
   );
 }

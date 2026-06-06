@@ -17,6 +17,7 @@ import {
   HomeTestimonialsEditor,
   PartnersEditor,
   HomeCtaEditor,
+  HomeApproachEditor,
   AboutEditor,
   AcademyEditor,
   ConsultancyEditor,
@@ -645,6 +646,10 @@ export default function AdminDashboard() {
                       <HomeTestimonialsEditor items={data.homeTestimonials} onChange={(homeTestimonials) => update({ ...data, homeTestimonials })} />
                       <PartnersEditor items={data.partners} onChange={(partners) => update({ ...data, partners })} />
                       <HomeCtaEditor cta={data.homeCta} onChange={(homeCta) => update({ ...data, homeCta })} />
+                      <HomeApproachEditor
+                        approach={data.homeApproach ?? { title: "Our Approach", text: "" }}
+                        onChange={(homeApproach) => update({ ...data, homeApproach })}
+                      />
                     </>
                   )}
                   {tab === "about" && (

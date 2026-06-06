@@ -8,6 +8,7 @@ import Blog from "@/pages/Blog";
 import BlogPostPage from "@/pages/BlogPostPage";
 import FAQ from "@/pages/FAQ";
 import Gallery from "@/pages/Gallery";
+import Quiz from "@/pages/Quiz";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import NotFound from "@/pages/not-found";
@@ -23,6 +24,7 @@ function PublicRouter() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPostPage} />
         <Route path="/gallery" component={Gallery} />
+        <Route path="/quiz" component={Quiz} />
         <Route path="/faq" component={FAQ} />
         <Route component={NotFound} />
       </Switch>
