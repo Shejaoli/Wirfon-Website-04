@@ -3331,6 +3331,76 @@ a[href*="replit.com"]:not(nav a) {
   .adm-banner-btn { display: none; }
 }
 
+/* ── Newsletter form (footer) ───────────────────────────────────────────── */
+.nl-form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.nl-label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0a1628;
+  margin-bottom: 0.35rem;
+}
+.nl-desc {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.nl-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+.nl-input {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #0a1628;
+}
+.nl-input:focus { border-color: var(--brand); }
+.nl-btn { width: 100%; justify-content: center; }
+.nl-error {
+  font-size: 0.8rem;
+  color: #dc2626;
+  margin-top: 0.5rem;
+}
+.nl-success {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.nl-success-icon {
+  font-size: 1.8rem;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+.nl-success strong {
+  display: block;
+  color: #0a1628;
+  font-size: 0.95rem;
+}
+.nl-success span {
+  font-size: 0.82rem;
+  color: #555;
+}
+
 /* ── Quiz CTA strip (homepage) ──────────────────────────────────────────── */
 .quiz-cta-strip {
   background: #0a1628;

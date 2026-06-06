@@ -4,7 +4,6 @@ import pagesRouter from "./pages";
 import contentRouter from "./content";
 import adminRouter from "./admin";
 import uploadsRouter from "./uploads";
-
 const router: IRouter = Router();
 
 router.use(healthRouter);

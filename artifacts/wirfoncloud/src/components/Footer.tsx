@@ -1,7 +1,70 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useSite } from "@/hooks/useSite";
 import wirfonLogo from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
+
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      if (res.ok) {
+        setStatus("ok");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "ok") {
+    return (
+      <div className="nl-success">
+        <i className="fa-solid fa-circle-check nl-success-icon" />
+        <div>
+          <strong>You're subscribed!</strong>
+          <span>Thanks — we'll keep you in the loop.</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form className="nl-form" onSubmit={handleSubmit} noValidate>
+      <label className="nl-label" htmlFor="nl-email">Newsletter</label>
+      <p className="nl-desc">Get cloud insights, training updates and event invitations from WirfonCloud delivered straight to your inbox.</p>
+      <div className="nl-row">
+        <input
+          id="nl-email"
+          className="nl-input"
+          type="email"
+          placeholder="Your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={status === "loading"}
+          required
+        />
+        <button className="nl-btn btn btn-primary" type="submit" disabled={status === "loading"}>
+          {status === "loading" ? "Sending…" : "Subscribe"}
+        </button>
+      </div>
+      {status === "error" && (
+        <p className="nl-error">Something went wrong — please try again.</p>
+      )}
+    </form>
+  );
+}
 
 export default function Footer() {
   const site = useSite();
@@ -36,7 +99,7 @@ export default function Footer() {
             </p>
           </div>
           <div className="footer-subscribe-form-wrap">
-            <div className="ml-embedded" data-form="N8d2uP" />
+            <NewsletterForm />
           </div>
           <div className="footer-subscribe-logo-wrap">
             <img
