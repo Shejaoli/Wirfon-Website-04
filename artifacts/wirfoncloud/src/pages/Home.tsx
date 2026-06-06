@@ -124,6 +124,21 @@ export default function Home() {
         );
       })}
 
+      <section className="quiz-cta-strip">
+        <div className="container quiz-cta-strip-inner">
+          <div className="quiz-cta-strip-text">
+            <i className="fa-solid fa-terminal quiz-cta-strip-icon" />
+            <div>
+              <strong>Not sure where to start?</strong>
+              <span>Take our free 5-minute Linux Career Readiness Quiz.</span>
+            </div>
+          </div>
+          <Link href="/quiz" className="btn btn-primary quiz-cta-strip-btn">
+            Test Your Linux Knowledge →
+          </Link>
+        </div>
+      </section>
+
       <MissionVisionApproach />
 
       <FounderMessage />
