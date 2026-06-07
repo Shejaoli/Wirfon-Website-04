@@ -1,4 +1,5 @@
 import { useSite } from "@/hooks/useSite";
+import { Link } from "wouter";
 import type { Course } from "@/lib/site";
 
 function CourseCard({ course, contactEmail }: { course: Course; contactEmail: string }) {
@@ -38,35 +39,18 @@ export default function Academy() {
   const a = site.academy;
   return (
     <>
-      <section
-        className="page-banner"
-        style={{
-          backgroundImage:
-            `linear-gradient(rgba(1,153,239,0.7), rgba(0,95,163,0.85)), url('${a.bannerImage}'), linear-gradient(135deg, #0199ef 0%, #003d6b 100%)`,
-        }}
-      >
-        <div className="container">
-          <h1>{a.bannerTitle}</h1>
-          <p>{a.bannerSubtitle}</p>
-        </div>
-      </section>
-
       <section className="quiz-banner">
         <div className="container text-center">
           <p className="quiz-banner-icon">🎯</p>
-          <h2 className="quiz-banner-heading">Not sure where to start?</h2>
+          <h1 className="quiz-banner-heading">WirfonCloud Academy</h1>
           <p className="quiz-banner-text">
-            Take our free 10-question Linux Career Readiness Quiz and discover your exact starting
-            point in IT, Cloud, and AI — takes just 5 minutes, no experience needed.
+            Not sure where to start? Take our free 10-question Linux Career Readiness Quiz and
+            discover your exact starting point in IT, Cloud and AI — takes just 5 minutes, no
+            experience needed.
           </p>
-          <a
-            href="https://wirfoncloud.github.io/linux-quiz-assessment/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="quiz-banner-btn"
-          >
+          <Link href="/quiz" className="quiz-banner-btn">
             Take the Free Quiz →
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -75,9 +59,11 @@ export default function Academy() {
           <h2 className="section-title">Courses</h2>
           {a.fundamentals.length > 0 && (
             <>
-              <h3 className="group-title">Fundamentals of IT</h3>
+              <h3 className="group-title">
+                {a.fundamentalsHeading ?? "Cloud Careers start here - not at AWS."}
+              </h3>
               <div className="cards-grid">
-                {a.fundamentals.slice(0, 4).map((c, i) => <CourseCard key={i} course={c} contactEmail={site.contact.email} />)}
+                {a.fundamentals.map((c, i) => <CourseCard key={i} course={c} contactEmail={site.contact.email} />)}
               </div>
             </>
           )}
@@ -85,7 +71,7 @@ export default function Academy() {
             <>
               <h3 className="group-title">Intermediate to Advanced</h3>
               <div className="cards-grid">
-                {a.intermediate.slice(0, 4).map((c, i) => <CourseCard key={i} course={c} contactEmail={site.contact.email} />)}
+                {a.intermediate.map((c, i) => <CourseCard key={i} course={c} contactEmail={site.contact.email} />)}
               </div>
             </>
           )}
@@ -93,11 +79,11 @@ export default function Academy() {
       </section>
 
       {a.learningPaths.length > 0 && (
-        <section id="learning-paths" className="section section-alt anchor-section">
+        <section id="career-paths" className="section section-alt anchor-section">
           <div className="container">
-            <h2 className="section-title">Learning Paths</h2>
+            <h2 className="section-title">Career Paths</h2>
             <div className="cards-grid">
-              {a.learningPaths.slice(0, 4).map((p, i) => (
+              {a.learningPaths.map((p, i) => (
                 <div key={i} className="card">
                   <h4>{p.title}</h4>
                   <p>{p.description}</p>
@@ -114,55 +100,6 @@ export default function Academy() {
         </section>
       )}
 
-      <section id="mastery" className="section anchor-section">
-        <div className="container">
-          <h2 className="section-title">Mastery</h2>
-          <p className="section-intro-text">
-            Mastery-level programmes are designed for cloud practitioners ready to deepen expertise,
-            achieve advanced certifications, and lead in their organisations. Reach out to our team
-            to design a tailored mastery programme for you or your team.
-          </p>
-          <div className="cards-grid">
-            {[
-              {
-                icon: "fa-cloud",
-                title: "AWS Solutions Architect — Professional",
-                text: "Advanced architecture design for complex, multi-account AWS environments.",
-              },
-              {
-                icon: "fa-infinity",
-                title: "DevOps Mastery",
-                text: "CI/CD pipelines, Kubernetes, Terraform IaC, and SRE practices at scale.",
-              },
-              {
-                icon: "fa-shield-halved",
-                title: "Cloud Security Specialist",
-                text: "Advanced identity, compliance, threat detection, and incident response on AWS.",
-              },
-              {
-                icon: "fa-brain",
-                title: "AI & ML on the Cloud",
-                text: "Build, train, and deploy machine learning models using AWS SageMaker and cloud-native AI tools.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="card service-card">
-                <div className="service-icon">
-                  <i className={`fa-solid ${item.icon}`} />
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.text}</p>
-                <a
-                  href={`mailto:${site.contact.email}?subject=Mastery%20Programme%20Enquiry`}
-                  className="btn btn-primary btn-sm"
-                >
-                  Enquire Now
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="more" className="section section-alt anchor-section">
         <div className="container">
           <h2 className="section-title">Workshops &amp; Community</h2>
@@ -176,7 +113,7 @@ export default function Academy() {
             <>
               <h3 className="group-title">Testimonials</h3>
               <div className="testimonials-grid">
-                {a.testimonialVideos.slice(0, 4).map((v, i) => (
+                {a.testimonialVideos.map((v, i) => (
                   <div key={`v-${i}`} className="video-card">
                     <div className="video-wrap">
                       <iframe src={v.src} title={v.title} allowFullScreen />
@@ -184,7 +121,7 @@ export default function Academy() {
                     <p className="caption">{v.caption}</p>
                   </div>
                 ))}
-                {a.testimonialQuotes.slice(0, 4).map((q, i) => (
+                {a.testimonialQuotes.map((q, i) => (
                   <div key={`q-${i}`} className="quote-card">
                     <i className="fa-solid fa-quote-left" />
                     <p>"{q.text}"</p>

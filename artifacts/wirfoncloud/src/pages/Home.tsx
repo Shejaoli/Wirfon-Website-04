@@ -58,23 +58,29 @@ function MissionVisionApproach() {
 }
 
 function FounderMessage() {
+  const site = useSite();
+  const founder = site.homeFounder;
+  const quote = founder?.quote ?? "Cloud computing is not just a technology — it's an equaliser. Whether you're switching careers, scaling a business, or modernising your infrastructure, the cloud opens doors that were once closed. At WirfonCloud we exist to make sure those doors are open to everyone.";
+  const founderName = founder?.founderName ?? "Founder & CEO, WirfonCloud";
+  const founderTitle = founder?.founderTitle ?? "Wirfon Group Investments Ltd";
+  const photoSrc = founder?.founderPhoto || "";
+
   return (
     <section className="section founder-section">
       <div className="container founder-container">
         <div className="founder-image-wrap">
-          <img src={founderImg} alt="WirfonCloud Founder" className="founder-photo" />
+          <img
+            src={photoSrc || founderImg}
+            alt="WirfonCloud Founder"
+            className="founder-photo"
+          />
         </div>
         <div className="founder-content">
           <span className="founder-eyebrow">A Word from Our Founder</span>
-          <blockquote className="founder-quote">
-            "Cloud computing is not just a technology — it's an equaliser. Whether you're
-            switching careers, scaling a business, or modernising your infrastructure, the
-            cloud opens doors that were once closed. At WirfonCloud we exist to make sure
-            those doors are open to everyone."
-          </blockquote>
+          <blockquote className="founder-quote">"{quote}"</blockquote>
           <div className="founder-meta">
-            <strong>Founder &amp; CEO, WirfonCloud</strong>
-            <span>Wirfon Group Investments Ltd</span>
+            <strong>{founderName}</strong>
+            <span>{founderTitle}</span>
           </div>
           <Link href="/about" className="btn btn-outline btn-sm">
             Learn More About Us
@@ -87,6 +93,8 @@ function FounderMessage() {
 
 export default function Home() {
   const site = useSite();
+  const quotes = site.academy?.testimonialQuotes ?? [];
+
   return (
     <>
       <HeroSlider />
@@ -188,6 +196,30 @@ export default function Home() {
           <div className="container">
             <h2 className="section-title">What Our Clients Say</h2>
             <VideoCarousel slides={site.homeTestimonials} />
+          </div>
+        </section>
+      )}
+
+      {quotes.length > 0 && (
+        <section className="section section-alt">
+          <div className="container">
+            <h2 className="section-title">Alumni Stories</h2>
+            <div className="testimonials-grid">
+              {quotes.map((q, i) => (
+                <div key={i} className="quote-card">
+                  <i className="fa-solid fa-quote-left" />
+                  <p>"{q.text}"</p>
+                  <div className="quote-author">
+                    {q.photo ? (
+                      <img className="quote-avatar" src={q.photo} alt={q.author} />
+                    ) : (
+                      <div className="avatar-placeholder" />
+                    )}
+                    <span>{q.author}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

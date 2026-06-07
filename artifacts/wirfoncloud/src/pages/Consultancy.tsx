@@ -6,6 +6,8 @@ import { useSite } from "@/hooks/useSite";
 export default function Consultancy() {
   const site = useSite();
   const c = site.consultancy;
+  const quotes = site.academy?.testimonialQuotes ?? [];
+
   return (
     <>
       <section className="section">
@@ -73,6 +75,30 @@ export default function Consultancy() {
           <div className="container">
             <h2 className="section-title">What Our Clients Say</h2>
             <VideoCarousel slides={c.testimonials} />
+          </div>
+        </section>
+      )}
+
+      {quotes.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <h2 className="section-title">Client Stories</h2>
+            <div className="testimonials-grid">
+              {quotes.map((q, i) => (
+                <div key={i} className="quote-card">
+                  <i className="fa-solid fa-quote-left" />
+                  <p>"{q.text}"</p>
+                  <div className="quote-author">
+                    {q.photo ? (
+                      <img className="quote-avatar" src={q.photo} alt={q.author} />
+                    ) : (
+                      <div className="avatar-placeholder" />
+                    )}
+                    <span>{q.author}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

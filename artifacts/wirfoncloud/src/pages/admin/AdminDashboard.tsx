@@ -18,6 +18,7 @@ import {
   PartnersEditor,
   HomeCtaEditor,
   HomeApproachEditor,
+  HomeFounderEditor,
   AboutEditor,
   AcademyEditor,
   ConsultancyEditor,
@@ -649,6 +650,10 @@ export default function AdminDashboard() {
                       <HomeApproachEditor
                         approach={data.homeApproach ?? { title: "Our Approach", text: "" }}
                         onChange={(homeApproach) => update({ ...data, homeApproach })}
+                      />
+                      <HomeFounderEditor
+                        founder={data.homeFounder ?? { quote: "", founderName: "", founderTitle: "", founderPhoto: "" }}
+                        onChange={(homeFounder) => update({ ...data, homeFounder })}
                       />
                     </>
                   )}

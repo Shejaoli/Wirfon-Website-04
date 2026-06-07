@@ -63,6 +63,12 @@ export interface SiteContent {
     title: string;
     text: string;
   };
+  homeFounder?: {
+    quote: string;
+    founderName: string;
+    founderTitle: string;
+    founderPhoto?: string;
+  };
   about: {
     bannerImage: string;
     bannerTitle: string;
@@ -73,6 +79,7 @@ export interface SiteContent {
     bannerImage: string;
     bannerTitle: string;
     bannerSubtitle: string;
+    fundamentalsHeading?: string;
     fundamentals: Course[];
     intermediate: Course[];
     learningPaths: LearningPath[];
@@ -174,6 +181,12 @@ export const DEFAULT_SITE: SiteContent = {
   homeApproach: {
     title: "Our Approach",
     text: "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill.",
+  },
+  homeFounder: {
+    quote: "Cloud computing is not just a technology — it's an equaliser. Whether you're switching careers, scaling a business, or modernising your infrastructure, the cloud opens doors that were once closed. At WirfonCloud we exist to make sure those doors are open to everyone.",
+    founderName: "Founder & CEO, WirfonCloud",
+    founderTitle: "Wirfon Group Investments Ltd",
+    founderPhoto: "",
   },
   about: {
     bannerImage: "/images/002_blk_girl_shutterstock_2030694452.jpg",

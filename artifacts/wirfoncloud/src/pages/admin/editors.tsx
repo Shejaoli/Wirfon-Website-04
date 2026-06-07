@@ -556,6 +556,52 @@ export function HomeApproachEditor({
 }
 
 /* -------------------------------------------------------------------------- */
+/* Home Founder                                                                */
+/* -------------------------------------------------------------------------- */
+
+export function HomeFounderEditor({
+  founder,
+  onChange,
+}: {
+  founder: NonNullable<SiteContent["homeFounder"]>;
+  onChange: (next: NonNullable<SiteContent["homeFounder"]>) => void;
+}) {
+  return (
+    <Section
+      title='"A Word from Our Founder" section'
+      description="Appears on the homepage below the Mission / Vision / Approach cards."
+    >
+      <Area
+        label="Quote text (no quotation marks needed)"
+        value={founder.quote}
+        onChange={(v) => onChange({ ...founder, quote: v })}
+        rows={4}
+      />
+      <div className="admin-grid-2">
+        <Field
+          label="Founder name / role line 1"
+          value={founder.founderName}
+          onChange={(v) => onChange({ ...founder, founderName: v })}
+          placeholder="Founder & CEO, WirfonCloud"
+        />
+        <Field
+          label="Organisation / role line 2"
+          value={founder.founderTitle}
+          onChange={(v) => onChange({ ...founder, founderTitle: v })}
+          placeholder="Wirfon Group Investments Ltd"
+        />
+      </div>
+      <ImageUpload
+        label="Founder photo (optional — falls back to default photo)"
+        value={founder.founderPhoto ?? ""}
+        onChange={(v) => onChange({ ...founder, founderPhoto: v })}
+        hint="Portrait photo, ideally square or 4:3."
+      />
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* About                                                                       */
 /* -------------------------------------------------------------------------- */
 
@@ -706,6 +752,12 @@ export function AcademyEditor({
       </Section>
 
       <Section title="Fundamentals of IT courses">
+        <Field
+          label="Section heading"
+          value={academy.fundamentalsHeading ?? "Cloud Careers start here - not at AWS."}
+          onChange={(v) => onChange({ ...academy, fundamentalsHeading: v })}
+          placeholder="Cloud Careers start here - not at AWS."
+        />
         <ListEditor
           items={academy.fundamentals}
           onChange={(fundamentals) => onChange({ ...academy, fundamentals })}
@@ -726,13 +778,13 @@ export function AcademyEditor({
       </Section>
 
       <Section
-        title="Learning paths"
+        title="Career paths"
         description="Multi-course tracks. The subject becomes the email subject when someone registers interest."
       >
         <ListEditor
           items={academy.learningPaths}
           onChange={(learningPaths) => onChange({ ...academy, learningPaths })}
-          addLabel="Add learning path"
+          addLabel="Add career path"
           newItem={() => ({
             title: "New path",
             description: "",

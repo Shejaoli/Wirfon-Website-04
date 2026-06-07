@@ -212,7 +212,8 @@
         "text": "The mentorship and community at WirfonCloud accelerated my career change into cloud engineering by months.",
         "author": "Alumni Name"
       }
-    ]
+    ],
+    "fundamentalsHeading": "Cloud Careers start here - not at AWS."
   },
   "consultancy": {
     "image": "/images/shutterstock_1405194650.jpg",
@@ -328,7 +329,7 @@
     "discord": "#"
   },
   "contact": {
-    "email": "contact@wirfoncloud.com"
+    "email": "nbanjika@wirfoncloud.com"
   },
   "footer": {
     "copyrightYear": 2026
@@ -337,5 +338,11 @@
     "bannerTitle": "WirfonCloud in Pictures",
     "bannerSubtitle": "Highlights from our Summits in Brussels, community events and the moments that bring our cloud journey to life.",
     "albums": []
+  },
+  "homeFounder": {
+    "quote": "Cloud computing is not just a technology — it's an equaliser. Whether you're switching careers, scaling a business, or modernising your infrastructure, the cloud opens doors that were once closed. At WirfonCloud we exist to make sure those doors are open to everyone.",
+    "founderName": "Founder & CEO, WirfonCloud",
+    "founderTitle": "Wirfon Group Investments Ltd",
+    "founderPhoto": ""
   }
 }
