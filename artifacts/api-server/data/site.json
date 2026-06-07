@@ -260,6 +260,32 @@
         "title": "WirfonCloud Testimonial",
         "caption": "WirfonCloud Client Story"
       }
+    ],
+    "howWeWork": [
+      {
+        "icon": "fa-magnifying-glass",
+        "step": "01",
+        "title": "Discovery",
+        "text": "We start by understanding your business, infrastructure, and goals through a free consultation."
+      },
+      {
+        "icon": "fa-map",
+        "step": "02",
+        "title": "Strategy",
+        "text": "Our experts design a tailored cloud roadmap aligned to your budget and timeline."
+      },
+      {
+        "icon": "fa-rocket",
+        "step": "03",
+        "title": "Delivery",
+        "text": "We implement solutions with minimal disruption, maintaining full transparency throughout."
+      },
+      {
+        "icon": "fa-headset",
+        "step": "04",
+        "title": "Support",
+        "text": "Post-project support and knowledge transfer to ensure your team is confident and independent."
+      }
     ]
   },
   "blog": {

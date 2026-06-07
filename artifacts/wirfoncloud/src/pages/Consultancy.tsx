@@ -3,6 +3,13 @@ import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
 import { useSite } from "@/hooks/useSite";
 
+const DEFAULT_HOW_WE_WORK = [
+  { icon: "fa-magnifying-glass", step: "01", title: "Discovery",  text: "We start by understanding your business, infrastructure, and goals through a free consultation." },
+  { icon: "fa-map",              step: "02", title: "Strategy",   text: "Our experts design a tailored cloud roadmap aligned to your budget and timeline." },
+  { icon: "fa-rocket",           step: "03", title: "Delivery",   text: "We implement solutions with minimal disruption, maintaining full transparency throughout." },
+  { icon: "fa-headset",          step: "04", title: "Support",    text: "Post-project support and knowledge transfer to ensure your team is confident and independent." },
+];
+
 export default function Consultancy() {
   const site = useSite();
   const c = site.consultancy;
@@ -51,12 +58,7 @@ export default function Consultancy() {
         <div className="container">
           <h2 className="section-title">How We Work</h2>
           <div className="cards-grid">
-            {[
-              { icon: "fa-magnifying-glass", step: "01", title: "Discovery", text: "We start by understanding your business, infrastructure, and goals through a free consultation." },
-              { icon: "fa-map", step: "02", title: "Strategy", text: "Our experts design a tailored cloud roadmap aligned to your budget and timeline." },
-              { icon: "fa-rocket", step: "03", title: "Delivery", text: "We implement solutions with minimal disruption, maintaining full transparency throughout." },
-              { icon: "fa-headset", step: "04", title: "Support", text: "Post-project support and knowledge transfer to ensure your team is confident and independent." },
-            ].map((item, i) => (
+            {(c.howWeWork ?? DEFAULT_HOW_WE_WORK).map((item, i) => (
               <div key={i} className="card how-card">
                 <span className="how-step">{item.step}</span>
                 <div className="service-icon">

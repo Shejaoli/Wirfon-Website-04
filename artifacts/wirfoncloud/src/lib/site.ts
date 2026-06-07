@@ -95,6 +95,7 @@ export interface SiteContent {
     ctaHref: string;
     ctaLabel: string;
     services: Service[];
+    howWeWork?: { icon: string; step: string; title: string; text: string }[];
     testimonials: VideoSlide[];
   };
   blog: {

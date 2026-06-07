@@ -861,6 +861,13 @@ export function AcademyEditor({
 /* Consultancy                                                                 */
 /* -------------------------------------------------------------------------- */
 
+const DEFAULT_HOW_WE_WORK_STEPS = [
+  { icon: "fa-magnifying-glass", step: "01", title: "Discovery",  text: "We start by understanding your business, infrastructure, and goals through a free consultation." },
+  { icon: "fa-map",              step: "02", title: "Strategy",   text: "Our experts design a tailored cloud roadmap aligned to your budget and timeline." },
+  { icon: "fa-rocket",           step: "03", title: "Delivery",   text: "We implement solutions with minimal disruption, maintaining full transparency throughout." },
+  { icon: "fa-headset",          step: "04", title: "Support",    text: "Post-project support and knowledge transfer to ensure your team is confident and independent." },
+];
+
 export function ConsultancyEditor({
   consultancy,
   onChange,
@@ -919,6 +926,43 @@ export function ConsultancyEditor({
                 onChange={(v) => update({ ...s, icon: v })}
                 placeholder="fa-cloud-arrow-up"
               />
+              <Field label="Title" value={s.title} onChange={(v) => update({ ...s, title: v })} />
+              <Area label="Description" value={s.text} onChange={(v) => update({ ...s, text: v })} rows={2} />
+            </>
+          )}
+        />
+      </Section>
+
+      <Section
+        title="How We Work steps"
+        description="The four steps shown in the 'How We Work' section. Each step has a number label (e.g. 01), a Font Awesome icon, a title and a description."
+      >
+        <ListEditor
+          items={consultancy.howWeWork ?? DEFAULT_HOW_WE_WORK_STEPS}
+          onChange={(howWeWork) => onChange({ ...consultancy, howWeWork })}
+          addLabel="Add step"
+          newItem={() => ({
+            icon: "fa-circle-check",
+            step: String(((consultancy.howWeWork ?? DEFAULT_HOW_WE_WORK_STEPS).length + 1)).padStart(2, "0"),
+            title: "New step",
+            text: "",
+          })}
+          renderItem={(s, _i, update) => (
+            <>
+              <div className="admin-grid-2">
+                <Field
+                  label="Step number label"
+                  value={s.step}
+                  onChange={(v) => update({ ...s, step: v })}
+                  placeholder="01"
+                />
+                <Field
+                  label="Font Awesome icon (without 'fa-solid')"
+                  value={s.icon}
+                  onChange={(v) => update({ ...s, icon: v })}
+                  placeholder="fa-magnifying-glass"
+                />
+              </div>
               <Field label="Title" value={s.title} onChange={(v) => update({ ...s, title: v })} />
               <Area label="Description" value={s.text} onChange={(v) => update({ ...s, text: v })} rows={2} />
             </>
