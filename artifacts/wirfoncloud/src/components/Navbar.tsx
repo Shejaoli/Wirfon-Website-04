@@ -72,6 +72,7 @@ function activeKey(location: string): string {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [location] = useLocation();
   const active = activeKey(location);
   const site = useSite();
@@ -80,6 +81,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setOpenDropdown(null);
   }, [location]);
 
   return (
@@ -111,7 +113,12 @@ export default function Navbar() {
           <ul className="nav-list">
             {links.map((link) =>
               link.dropdown ? (
-                <li key={link.key} className="has-dropdown">
+                <li
+                  key={link.key}
+                  className={"has-dropdown" + (openDropdown === link.key ? " dropdown-open" : "")}
+                  onMouseEnter={() => setOpenDropdown(link.key)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
                   <Link href={link.href} className={active === link.key ? "active" : ""}>
                     {link.label} <i className="fa-solid fa-chevron-down" />
                   </Link>

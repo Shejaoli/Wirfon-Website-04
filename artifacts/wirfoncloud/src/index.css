@@ -180,9 +180,8 @@ body { padding-top: calc(78px + var(--ticker-h)); }
   transform: translateY(-6px);
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
 }
-.has-dropdown:hover .dropdown,
-.has-dropdown:focus-within .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-.has-dropdown:hover .fa-chevron-down { transform: rotate(180deg); }
+.has-dropdown.dropdown-open .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.has-dropdown.dropdown-open .fa-chevron-down { transform: rotate(180deg); }
 .dropdown li a {
   display: block;
   padding: 0.6rem 0.85rem;
