@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
 import { useSite } from "@/hooks/useSite";
+import placeholderImg from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
 
 const DEFAULT_HOW_WE_WORK = [
   { icon: "fa-magnifying-glass", step: "01", title: "Discovery",  text: "We start by understanding your business, infrastructure, and goals through a free consultation." },
@@ -9,6 +10,15 @@ const DEFAULT_HOW_WE_WORK = [
   { icon: "fa-rocket",           step: "03", title: "Delivery",   text: "We implement solutions with minimal disruption, maintaining full transparency throughout." },
   { icon: "fa-headset",          step: "04", title: "Support",    text: "Post-project support and knowledge transfer to ensure your team is confident and independent." },
 ];
+
+const DEFAULT_AI_CONSULTANCY = {
+  image: "",
+  fallbackLabel: "AI Consultancy",
+  title: "AI Consultancy",
+  text: "We help organisations understand, adopt and operationalise Artificial Intelligence — from strategy and readiness assessments to hands-on implementation. Whether you are exploring AI for the first time or scaling existing initiatives, our experts guide you every step of the way.",
+  ctaHref: "/about#contact",
+  ctaLabel: "Talk to an Expert",
+};
 
 export default function Consultancy() {
   const site = useSite();
@@ -30,8 +40,30 @@ export default function Consultancy() {
         </div>
       </section>
 
+      {(() => {
+        const ai = c.aiConsultancy ?? DEFAULT_AI_CONSULTANCY;
+        return (
+          <section className="section section-alt">
+            <div className="container two-col reverse">
+              <div className="col-image">
+                <TwoColImage
+                  src={ai.image || placeholderImg}
+                  alt={ai.title}
+                  fallbackLabel={ai.fallbackLabel}
+                />
+              </div>
+              <div className="col-text">
+                <h2>{ai.title}</h2>
+                <p>{ai.text}</p>
+                <Link href={ai.ctaHref} className="btn btn-primary">{ai.ctaLabel}</Link>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
       {c.services.length > 0 && (
-        <section id="services" className="section section-alt anchor-section">
+        <section id="services" className="section anchor-section">
           <div className="container">
             <h2 className="section-title">Our Services</h2>
             <p className="section-intro-text">

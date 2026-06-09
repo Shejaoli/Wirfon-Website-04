@@ -43,6 +43,8 @@ export type HomeIntro = {
 };
 export type AboutSection = { id: string; title: string; paragraphs: string[] };
 
+export type CoreValue = { number: string; title: string; description: string };
+
 export interface SiteContent {
   branding: {
     logoUrl: string;
@@ -68,6 +70,10 @@ export interface SiteContent {
     founderName: string;
     founderTitle: string;
     founderPhoto?: string;
+  };
+  coreValues?: {
+    heading: string;
+    values: CoreValue[];
   };
   about: {
     bannerImage: string;
@@ -97,6 +103,14 @@ export interface SiteContent {
     services: Service[];
     howWeWork?: { icon: string; step: string; title: string; text: string }[];
     testimonials: VideoSlide[];
+    aiConsultancy?: {
+      image: string;
+      fallbackLabel: string;
+      title: string;
+      text: string;
+      ctaHref: string;
+      ctaLabel: string;
+    };
   };
   blog: {
     title: string;
@@ -215,6 +229,25 @@ export const DEFAULT_SITE: SiteContent = {
     ctaLabel: "Get in Touch",
     services: [],
     testimonials: [],
+    aiConsultancy: {
+      image: "",
+      fallbackLabel: "AI Consultancy",
+      title: "AI Consultancy",
+      text: "We help organisations understand, adopt and operationalise Artificial Intelligence — from strategy and readiness assessments to hands-on implementation. Whether you are exploring AI for the first time or scaling existing initiatives, our experts guide you every step of the way.",
+      ctaHref: "/about#contact",
+      ctaLabel: "Talk to an Expert",
+    },
+  },
+  coreValues: {
+    heading: "Our Core Values",
+    values: [
+      { number: "01", title: "Foundation First", description: "We never skip steps. Before Cloud, before AI — Linux, Networking, Python. The right order builds professionals who last." },
+      { number: "02", title: "Respect for the Learner", description: "We treat every student as an intelligent, capable adult. Clear, honest teaching that respects where you are and where you are going." },
+      { number: "03", title: "Cultural Relevance", description: "We teach through the world our learners already know — African markets, African infrastructure, African daily life. When a concept connects to your context, it sticks." },
+      { number: "04", title: "Proven Outcomes", description: "We measure success by professionals who get hired, not by enrolment numbers. Our graduates are working in real roles at real organisations." },
+      { number: "05", title: "Access and Inclusion", description: "Cloud and AI careers should not be reserved for people who grew up with a certain accent or postcode. We are building the bridge — from Kigali, across Africa, and into the diaspora." },
+      { number: "06", title: "Integrity in Teaching", description: "We do not sell shortcuts. We tell the truth about what the work involves — and we stay with our students through it." },
+    ],
   },
   blog: {
     title: "Stay in the Loop",

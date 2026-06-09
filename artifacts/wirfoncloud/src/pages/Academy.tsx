@@ -105,7 +105,7 @@ export default function Academy() {
           <h2 className="section-title">Workshops &amp; Community</h2>
           <div className="text-center">
             <a href={a.discordLink} className="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-              <i className="fa-brands fa-discord" /> Join WirfonCloud Community on Discord
+              Join WirfonCloud Community
             </a>
           </div>
 

@@ -4,6 +4,7 @@ import StarterKit from "@tiptap/starter-kit";
 import TipTapLink from "@tiptap/extension-link";
 import type {
   BlogPost,
+  CoreValue,
   Course,
   Faq,
   GalleryAlbum,
@@ -602,6 +603,65 @@ export function HomeFounderEditor({
 }
 
 /* -------------------------------------------------------------------------- */
+/* Core Values                                                                 */
+/* -------------------------------------------------------------------------- */
+
+export function CoreValuesEditor({
+  coreValues,
+  onChange,
+}: {
+  coreValues: NonNullable<SiteContent["coreValues"]>;
+  onChange: (next: NonNullable<SiteContent["coreValues"]>) => void;
+}) {
+  return (
+    <Section
+      title='"Our Core Values" section'
+      description="Appears on the homepage between the Mission/Vision cards and the Founder quote. Each card has a bold number, a title and a description."
+    >
+      <Field
+        label="Section heading"
+        value={coreValues.heading}
+        onChange={(v) => onChange({ ...coreValues, heading: v })}
+        placeholder="Our Core Values"
+      />
+      <ListEditor
+        items={coreValues.values}
+        onChange={(values) => onChange({ ...coreValues, values })}
+        addLabel="Add value"
+        newItem={(): CoreValue => ({
+          number: String((coreValues.values.length + 1)).padStart(2, "0"),
+          title: "New Value",
+          description: "",
+        })}
+        renderItem={(v, _i, update) => (
+          <>
+            <div className="admin-grid-2">
+              <Field
+                label="Number label (e.g. 01)"
+                value={v.number}
+                onChange={(val) => update({ ...v, number: val })}
+                placeholder="01"
+              />
+              <Field
+                label="Title"
+                value={v.title}
+                onChange={(val) => update({ ...v, title: val })}
+              />
+            </div>
+            <Area
+              label="Description"
+              value={v.description}
+              onChange={(val) => update({ ...v, description: val })}
+              rows={3}
+            />
+          </>
+        )}
+      />
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* About                                                                       */
 /* -------------------------------------------------------------------------- */
 
@@ -905,6 +965,43 @@ export function ConsultancyEditor({
             label="Button label"
             value={consultancy.ctaLabel}
             onChange={(v) => onChange({ ...consultancy, ctaLabel: v })}
+          />
+        </div>
+      </Section>
+
+      <Section title="AI Consultancy section" description="The AI Consultancy block that appears just before 'Our Services'. Image and text are editable here.">
+        <ImageUpload
+          label="Image"
+          value={consultancy.aiConsultancy?.image ?? ""}
+          onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, image: v } })}
+          hint="Upload a photo for the AI Consultancy section. A placeholder is shown if empty."
+        />
+        <Field
+          label="Caption / alt text"
+          value={consultancy.aiConsultancy?.fallbackLabel ?? ""}
+          onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, fallbackLabel: v } })}
+        />
+        <Field
+          label="Title"
+          value={consultancy.aiConsultancy?.title ?? "AI Consultancy"}
+          onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, title: v } })}
+        />
+        <Area
+          label="Description"
+          value={consultancy.aiConsultancy?.text ?? ""}
+          onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, text: v } })}
+          rows={4}
+        />
+        <div className="admin-grid-2">
+          <Field
+            label="Button URL"
+            value={consultancy.aiConsultancy?.ctaHref ?? "/about#contact"}
+            onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, ctaHref: v } })}
+          />
+          <Field
+            label="Button label"
+            value={consultancy.aiConsultancy?.ctaLabel ?? "Talk to an Expert"}
+            onChange={(v) => onChange({ ...consultancy, aiConsultancy: { ...consultancy.aiConsultancy!, ctaLabel: v } })}
           />
         </div>
       </Section>

@@ -4,6 +4,7 @@ import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
 import { useSite } from "@/hooks/useSite";
 import founderImg from "@assets/Photo_from_Mfoome_Bahti_-Ban(3)_1777412731019.jpg";
+import type { CoreValue } from "@/lib/site";
 
 function MissionVisionApproach() {
   const site = useSite();
@@ -49,6 +50,39 @@ function MissionVisionApproach() {
               </div>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const DEFAULT_CORE_VALUES: CoreValue[] = [
+  { number: "01", title: "Foundation First", description: "We never skip steps. Before Cloud, before AI — Linux, Networking, Python. The right order builds professionals who last." },
+  { number: "02", title: "Respect for the Learner", description: "We treat every student as an intelligent, capable adult. Clear, honest teaching that respects where you are and where you are going." },
+  { number: "03", title: "Cultural Relevance", description: "We teach through the world our learners already know — African markets, African infrastructure, African daily life. When a concept connects to your context, it sticks." },
+  { number: "04", title: "Proven Outcomes", description: "We measure success by professionals who get hired, not by enrolment numbers. Our graduates are working in real roles at real organisations." },
+  { number: "05", title: "Access and Inclusion", description: "Cloud and AI careers should not be reserved for people who grew up with a certain accent or postcode. We are building the bridge — from Kigali, across Africa, and into the diaspora." },
+  { number: "06", title: "Integrity in Teaching", description: "We do not sell shortcuts. We tell the truth about what the work involves — and we stay with our students through it." },
+];
+
+function CoreValuesSection() {
+  const site = useSite();
+  const cv = site.coreValues;
+  const heading = cv?.heading ?? "Our Core Values";
+  const values = cv?.values?.length ? cv.values : DEFAULT_CORE_VALUES;
+
+  return (
+    <section className="section core-values-section">
+      <div className="container">
+        <h2 className="section-title">{heading}</h2>
+        <div className="core-values-grid">
+          {values.map((v, i) => (
+            <div key={i} className="core-value-card">
+              <span className="core-value-number">{v.number}</span>
+              <h3 className="core-value-title">{v.title}</h3>
+              <p className="core-value-desc">{v.description}</p>
             </div>
           ))}
         </div>
@@ -148,6 +182,8 @@ export default function Home() {
       </section>
 
       <MissionVisionApproach />
+
+      <CoreValuesSection />
 
       <FounderMessage />
 

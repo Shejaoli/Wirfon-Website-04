@@ -19,6 +19,7 @@ import {
   HomeCtaEditor,
   HomeApproachEditor,
   HomeFounderEditor,
+  CoreValuesEditor,
   AboutEditor,
   AcademyEditor,
   ConsultancyEditor,
@@ -654,6 +655,10 @@ export default function AdminDashboard() {
                       <HomeFounderEditor
                         founder={data.homeFounder ?? { quote: "", founderName: "", founderTitle: "", founderPhoto: "" }}
                         onChange={(homeFounder) => update({ ...data, homeFounder })}
+                      />
+                      <CoreValuesEditor
+                        coreValues={data.coreValues ?? { heading: "Our Core Values", values: [] }}
+                        onChange={(coreValues) => update({ ...data, coreValues })}
                       />
                     </>
                   )}
