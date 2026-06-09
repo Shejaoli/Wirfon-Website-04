@@ -131,6 +131,7 @@ export interface SiteContent {
     whatsapp: string;
     discord?: string;
   };
+  bookingLink?: string;
   contact: { email: string };
   footer: { copyrightYear: number };
 }
@@ -267,6 +268,7 @@ export const DEFAULT_SITE: SiteContent = {
     youtube: "https://www.youtube.com/@wirfoncloud",
     whatsapp: "https://wa.me/250791921156",
   },
+  bookingLink: "https://calendar.app.google/6YG4yZQX2mXwo9qr5",
   contact: { email: "contact@wirfoncloud.com" },
   footer: { copyrightYear: 2026 },
 };

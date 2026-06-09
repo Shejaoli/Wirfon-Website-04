@@ -1,6 +1,6 @@
-import { Link } from "wouter";
 import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
+import { SmartLink } from "@/components/SmartLink";
 import { useSite } from "@/hooks/useSite";
 import placeholderImg from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
 
@@ -35,7 +35,7 @@ export default function Consultancy() {
           <div className="col-text">
             <h1>{c.title}</h1>
             <p>{c.text}</p>
-            <Link href={c.ctaHref} className="btn btn-primary">{c.ctaLabel}</Link>
+            <SmartLink href={c.ctaHref} className="btn btn-primary">{c.ctaLabel}</SmartLink>
           </div>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function Consultancy() {
               <div className="col-text">
                 <h2>{ai.title}</h2>
                 <p>{ai.text}</p>
-                <Link href={ai.ctaHref} className="btn btn-primary">{ai.ctaLabel}</Link>
+                <SmartLink href={ai.ctaHref} className="btn btn-primary">{ai.ctaLabel}</SmartLink>
               </div>
             </div>
           </section>
@@ -76,9 +76,9 @@ export default function Consultancy() {
                   <div className="service-icon"><i className={`fa-solid ${s.icon}`} /></div>
                   <h4>{s.title}</h4>
                   <p>{s.text}</p>
-                  <Link href="/about#contact" className="btn btn-primary btn-sm">
-                    Get in Touch
-                  </Link>
+                  <SmartLink href={site.bookingLink ?? "/about#contact"} className="btn btn-primary btn-sm">
+                    Book a Call
+                  </SmartLink>
                 </div>
               ))}
             </div>

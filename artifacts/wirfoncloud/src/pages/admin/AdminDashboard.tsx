@@ -13,6 +13,7 @@ import { useSiteCtx } from "@/hooks/useSite";
 import {
   BrandingEditor,
   HeroEditor,
+  BookingLinkEditor,
   HomeIntroEditor,
   HomeTestimonialsEditor,
   PartnersEditor,
@@ -644,6 +645,10 @@ export default function AdminDashboard() {
                   )}
                   {tab === "home" && (
                     <>
+                      <BookingLinkEditor
+                        value={data.bookingLink ?? ""}
+                        onChange={(bookingLink) => update({ ...data, bookingLink })}
+                      />
                       <HomeIntroEditor items={data.homeIntro} onChange={(homeIntro) => update({ ...data, homeIntro })} />
                       <HomeTestimonialsEditor items={data.homeTestimonials} onChange={(homeTestimonials) => update({ ...data, homeTestimonials })} />
                       <PartnersEditor items={data.partners} onChange={(partners) => update({ ...data, partners })} />

@@ -495,6 +495,28 @@ export function PartnersEditor({
   );
 }
 
+export function BookingLinkEditor({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <Section
+      title="Booking link"
+      description='The Google Calendar (or other scheduling) URL used by all "Book a call" buttons across the site. Paste the full URL here — it will open in a new tab when clicked.'
+    >
+      <Field
+        label="Booking URL"
+        value={value}
+        onChange={onChange}
+        placeholder="https://calendar.app.google/…"
+      />
+    </Section>
+  );
+}
+
 export function HomeCtaEditor({
   cta,
   onChange,

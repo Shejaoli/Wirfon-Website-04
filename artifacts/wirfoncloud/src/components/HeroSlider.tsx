@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { useSite } from "@/hooks/useSite";
+import { SmartLink } from "@/components/SmartLink";
 
 export default function HeroSlider() {
   const site = useSite();
@@ -63,9 +63,9 @@ export default function HeroSlider() {
 
         <div className="hero-card">
           <p>{slides[index].text}</p>
-          <Link href={slides[index].ctaHref} className="hero-card-btn">
+          <SmartLink href={slides[index].ctaHref} className="hero-card-btn">
             {slides[index].ctaLabel}
-          </Link>
+          </SmartLink>
         </div>
 
         {slides.length > 1 && (

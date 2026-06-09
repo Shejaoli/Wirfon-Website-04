@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import HeroSlider from "@/components/HeroSlider";
 import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
+import { SmartLink } from "@/components/SmartLink";
 import { useSite } from "@/hooks/useSite";
 import founderImg from "@assets/Photo_from_Mfoome_Bahti_-Ban(3)_1777412731019.jpg";
 import type { CoreValue } from "@/lib/site";
@@ -146,7 +147,7 @@ export default function Home() {
                   <div className="col-text">
                     <h2>{intro.title}</h2>
                     <p>{intro.text}</p>
-                    <Link href={intro.ctaHref} className="btn btn-primary">{intro.ctaLabel}</Link>
+                    <SmartLink href={intro.ctaHref} className="btn btn-primary">{intro.ctaLabel}</SmartLink>
                   </div>
                 </>
               ) : (
@@ -154,7 +155,7 @@ export default function Home() {
                   <div className="col-text">
                     <h2>{intro.title}</h2>
                     <p>{intro.text}</p>
-                    <Link href={intro.ctaHref} className="btn btn-primary">{intro.ctaLabel}</Link>
+                    <SmartLink href={intro.ctaHref} className="btn btn-primary">{intro.ctaLabel}</SmartLink>
                   </div>
                   <div className="col-image">
                     <TwoColImage src={intro.image} alt={intro.title} fallbackLabel={intro.fallbackLabel} />
@@ -217,12 +218,21 @@ export default function Home() {
           <h2>{site.homeCta.title}</h2>
           <p>{site.homeCta.text}</p>
           <div className="cta-buttons">
-            <button
-              className="btn btn-primary ml-onclick-form"
-              onClick={() => (window as any).ml?.('show', 'orZO2n', true)}
-            >
-              {site.homeCta.primaryLabel}
-            </button>
+            {site.bookingLink && (
+              <a
+                href={site.bookingLink}
+                className="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {site.homeCta.primaryLabel || "Book a Free Call"}
+              </a>
+            )}
+            {site.homeCta.secondaryHref && (
+              <SmartLink href={site.homeCta.secondaryHref} className="btn btn-outline">
+                {site.homeCta.secondaryLabel}
+              </SmartLink>
+            )}
           </div>
         </div>
       </section>

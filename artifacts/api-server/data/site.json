@@ -14,7 +14,7 @@
     },
     {
       "title": "Your Trusted Cloud Consulting Partner",
-      "text": "From infrastructure design to security and cost optimization — we guide your cloud journey.",
+      "text": "From infrastructure design to security and cost optimization \u2014 we guide your cloud journey.",
       "ctaHref": "/consultancy",
       "ctaLabel": "Our Services",
       "bgFrom": "#005fa3",
@@ -25,7 +25,7 @@
   "homeIntro": [
     {
       "title": "Transform Your Career with Cloud Skills",
-      "text": "At WirfonCloud, our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you are more than certified — you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.",
+      "text": "At WirfonCloud, our comprehensive training programs equip you with the knowledge and skills needed to thrive in the cloud. Led by industry experts, our hands-on sessions ensure you are more than certified \u2014 you are well-prepared to leverage cloud technologies, with a special emphasis on AWS.",
       "image": "/images/phoneshutterstock_133514576.jpg",
       "fallbackLabel": "Cloud training in your pocket",
       "ctaHref": "/academy",
@@ -78,7 +78,7 @@
   ],
   "homeApproach": {
     "title": "Our Approach",
-    "text": "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud — step by step, skill by skill."
+    "text": "We combine hands-on training, expert consulting, and community mentorship to guide every individual and organisation confidently into the cloud \u2014 step by step, skill by skill."
   },
   "homeCta": {
     "title": "Ready to Get Started?",
@@ -130,7 +130,7 @@
     "fundamentals": [
       {
         "title": "Linux",
-        "description": "Master the Linux command line, file system, permissions, and shell scripting — the foundation of cloud infrastructure.",
+        "description": "Master the Linux command line, file system, permissions, and shell scripting \u2014 the foundation of cloud infrastructure.",
         "previewUrl": "",
         "signupUrl": ""
       },
@@ -142,7 +142,7 @@
       },
       {
         "title": "Python",
-        "description": "Build automation scripts and cloud tooling with Python — from basics to working with cloud SDKs.",
+        "description": "Build automation scripts and cloud tooling with Python \u2014 from basics to working with cloud SDKs.",
         "previewUrl": "",
         "signupUrl": ""
       }
@@ -156,7 +156,7 @@
       },
       {
         "title": "AWS Solutions Architect",
-        "description": "Design resilient, scalable, and cost-effective architectures on AWS — and earn the SAA certification.",
+        "description": "Design resilient, scalable, and cost-effective architectures on AWS \u2014 and earn the SAA certification.",
         "previewUrl": "",
         "signupUrl": ""
       },
@@ -181,7 +181,7 @@
       },
       {
         "title": "Cloud Engineer",
-        "description": "Become a confident AWS cloud engineer — networking, compute, storage, security, and architecture.",
+        "description": "Become a confident AWS cloud engineer \u2014 networking, compute, storage, security, and architecture.",
         "subject": "Interest in Cloud Engineer Path"
       },
       {
@@ -339,7 +339,7 @@
     },
     {
       "q": "Does WirfonCloud offer consulting for small businesses?",
-      "a": "Yes! We work with businesses of all sizes — from startups to large enterprises. Our consulting services are fully tailored to your specific needs and budget, whether you need a quick cloud assessment or a full migration strategy."
+      "a": "Yes! We work with businesses of all sizes \u2014 from startups to large enterprises. Our consulting services are fully tailored to your specific needs and budget, whether you need a quick cloud assessment or a full migration strategy."
     },
     {
       "q": "How do I get started with WirfonCloud?",
@@ -366,9 +366,10 @@
     "albums": []
   },
   "homeFounder": {
-    "quote": "Cloud computing is not just a technology — it's an equaliser. Whether you're switching careers, scaling a business, or modernising your infrastructure, the cloud opens doors that were once closed. At WirfonCloud we exist to make sure those doors are open to everyone.",
+    "quote": "Cloud computing is not just a technology \u2014 it's an equaliser. Whether you're switching careers, scaling a business, or modernising your infrastructure, the cloud opens doors that were once closed. At WirfonCloud we exist to make sure those doors are open to everyone.",
     "founderName": "Founder & CEO, WirfonCloud",
     "founderTitle": "Wirfon Group Investments Ltd",
     "founderPhoto": ""
-  }
+  },
+  "bookingLink": "https://calendar.app.google/6YG4yZQX2mXwo9qr5"
 }
