@@ -27,7 +27,7 @@ export default function Consultancy() {
 
   return (
     <>
-      <section className="section">
+      <section id="corporate-teams" className="section anchor-section">
         <div className="container two-col">
           <div className="col-image">
             <TwoColImage src={c.image} alt={c.title} fallbackLabel={c.fallbackLabel} />
@@ -43,7 +43,7 @@ export default function Consultancy() {
       {(() => {
         const ai = c.aiConsultancy ?? DEFAULT_AI_CONSULTANCY;
         return (
-          <section className="section section-alt">
+          <section id="ai-adoption" className="section section-alt anchor-section">
             <div className="container two-col reverse">
               <div className="col-image">
                 <TwoColImage
@@ -105,7 +105,7 @@ export default function Consultancy() {
       </section>
 
       {c.testimonials.length > 0 && (
-        <section className="section section-alt">
+        <section id="testimonials" className="section section-alt anchor-section">
           <div className="container">
             <h2 className="section-title">What Our Clients Say</h2>
             <VideoCarousel slides={c.testimonials} />

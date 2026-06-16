@@ -224,6 +224,7 @@ export default function Home() {
                 className="btn btn-primary"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => { try { (window as any).ml('show', 'orZO2n', true); } catch (_) {} }}
               >
                 {site.homeCta.primaryLabel || "Book a Free Call"}
               </a>

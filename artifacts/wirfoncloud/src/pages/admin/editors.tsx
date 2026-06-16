@@ -121,11 +121,14 @@ function RichArea({
 
   useEffect(() => {
     if (!editor) return;
+    const incoming = value || "";
     const current = editor.getHTML();
-    if ((value || "") !== current) {
-      editor.commands.setContent(value || "", false);
+    const isEmpty = (html: string) => !html || html === "<p></p>";
+    if (isEmpty(incoming) && isEmpty(current)) return;
+    if (incoming !== current) {
+      editor.commands.setContent(incoming, false);
     }
-  }, [value]);
+  }, [value, editor]);
 
   const setLink = () => {
     const url = prompt("Enter URL:", "https://");
@@ -778,6 +781,13 @@ export function AboutEditor({
 /* Academy                                                                     */
 /* -------------------------------------------------------------------------- */
 
+const DEFAULT_ACADEMY_HOW_WE_WORK_STEPS = [
+  { icon: "fa-magnifying-glass", step: "01", title: "Assess Your Level", text: "We start with a free skills quiz and consultation to find exactly where you are and map the fastest path to your cloud career goal." },
+  { icon: "fa-graduation-cap",   step: "02", title: "Structured Learning", text: "Follow a proven curriculum — from Linux and Networking foundations through to Cloud and AI — with live sessions, labs and real-world projects." },
+  { icon: "fa-people-group",     step: "03", title: "Community & Mentorship", text: "Join our Discord community and get direct access to instructors and alumni who have walked the same path and made it." },
+  { icon: "fa-briefcase",        step: "04", title: "Career Outcomes", text: "We stay with you through job applications, interview prep and onboarding — because our success is measured by the roles our graduates land." },
+];
+
 function CourseFields({ course, update }: { course: Course; update: (c: Course) => void }) {
   return (
     <>
@@ -896,6 +906,43 @@ export function AcademyEditor({
           label="Discord invite URL"
           value={academy.discordLink}
           onChange={(v) => onChange({ ...academy, discordLink: v })}
+        />
+      </Section>
+
+      <Section
+        title="How We Work steps (Academy)"
+        description="The steps shown in the 'How We Work' section on the Academy page. Each step has a number label, a Font Awesome icon, a title and a description."
+      >
+        <ListEditor
+          items={academy.howWeWork ?? DEFAULT_ACADEMY_HOW_WE_WORK_STEPS}
+          onChange={(howWeWork) => onChange({ ...academy, howWeWork })}
+          addLabel="Add step"
+          newItem={() => ({
+            icon: "fa-circle-check",
+            step: String(((academy.howWeWork ?? DEFAULT_ACADEMY_HOW_WE_WORK_STEPS).length + 1)).padStart(2, "0"),
+            title: "New step",
+            text: "",
+          })}
+          renderItem={(s, _i, update) => (
+            <>
+              <div className="admin-grid-2">
+                <Field
+                  label="Step number label"
+                  value={s.step}
+                  onChange={(v) => update({ ...s, step: v })}
+                  placeholder="01"
+                />
+                <Field
+                  label="Font Awesome icon (without 'fa-solid')"
+                  value={s.icon}
+                  onChange={(v) => update({ ...s, icon: v })}
+                  placeholder="fa-graduation-cap"
+                />
+              </div>
+              <Field label="Title" value={s.title} onChange={(v) => update({ ...s, title: v })} />
+              <Area label="Description" value={s.text} onChange={(v) => update({ ...s, text: v })} rows={2} />
+            </>
+          )}
         />
       </Section>
 

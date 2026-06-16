@@ -2,6 +2,13 @@ import { useSite } from "@/hooks/useSite";
 import { Link } from "wouter";
 import type { Course } from "@/lib/site";
 
+const DEFAULT_ACADEMY_HOW_WE_WORK = [
+  { icon: "fa-magnifying-glass", step: "01", title: "Assess Your Level", text: "We start with a free skills quiz and consultation to find exactly where you are and map the fastest path to your cloud career goal." },
+  { icon: "fa-graduation-cap",   step: "02", title: "Structured Learning", text: "Follow a proven curriculum — from Linux and Networking foundations through to Cloud and AI — with live sessions, labs and real-world projects." },
+  { icon: "fa-people-group",     step: "03", title: "Community & Mentorship", text: "Join our Discord community and get direct access to instructors and alumni who have walked the same path and made it." },
+  { icon: "fa-briefcase",        step: "04", title: "Career Outcomes", text: "We stay with you through job applications, interview prep and onboarding — because our success is measured by the roles our graduates land." },
+];
+
 function CourseCard({ course, contactEmail }: { course: Course; contactEmail: string }) {
   const previewHref = course.previewUrl && course.previewUrl.trim() !== "" ? course.previewUrl : "#";
   const signupHref =
@@ -108,38 +115,58 @@ export default function Academy() {
               Join WirfonCloud Community
             </a>
           </div>
-
-          {(a.testimonialVideos.length > 0 || a.testimonialQuotes.length > 0) && (
-            <>
-              <h3 className="group-title">Testimonials</h3>
-              <div className="testimonials-grid">
-                {a.testimonialVideos.map((v, i) => (
-                  <div key={`v-${i}`} className="video-card">
-                    <div className="video-wrap">
-                      <iframe src={v.src} title={v.title} allowFullScreen />
-                    </div>
-                    <p className="caption">{v.caption}</p>
-                  </div>
-                ))}
-                {a.testimonialQuotes.map((q, i) => (
-                  <div key={`q-${i}`} className="quote-card">
-                    <i className="fa-solid fa-quote-left" />
-                    <p>"{q.text}"</p>
-                    <div className="quote-author">
-                      {q.photo ? (
-                        <img className="quote-avatar" src={q.photo} alt={q.author} />
-                      ) : (
-                        <div className="avatar-placeholder" />
-                      )}
-                      <span>{q.author}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
         </div>
       </section>
+
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">How We Work</h2>
+          <div className="cards-grid">
+            {(a.howWeWork ?? DEFAULT_ACADEMY_HOW_WE_WORK).map((item, i) => (
+              <div key={i} className="card how-card">
+                <span className="how-step">{item.step}</span>
+                <div className="service-icon">
+                  <i className={`fa-solid ${item.icon}`} />
+                </div>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {(a.testimonialVideos.length > 0 || a.testimonialQuotes.length > 0) && (
+        <section id="testimonials" className="section section-alt anchor-section">
+          <div className="container">
+            <h2 className="section-title">What Our Students Say</h2>
+            <div className="testimonials-grid">
+              {a.testimonialVideos.map((v, i) => (
+                <div key={`v-${i}`} className="video-card">
+                  <div className="video-wrap">
+                    <iframe src={v.src} title={v.title} allowFullScreen />
+                  </div>
+                  <p className="caption">{v.caption}</p>
+                </div>
+              ))}
+              {a.testimonialQuotes.map((q, i) => (
+                <div key={`q-${i}`} className="quote-card">
+                  <i className="fa-solid fa-quote-left" />
+                  <p>"{q.text}"</p>
+                  <div className="quote-author">
+                    {q.photo ? (
+                      <img className="quote-avatar" src={q.photo} alt={q.author} />
+                    ) : (
+                      <div className="avatar-placeholder" />
+                    )}
+                    <span>{q.author}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

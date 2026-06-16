@@ -92,6 +92,7 @@ export interface SiteContent {
     discordLink: string;
     testimonialVideos: VideoSlide[];
     testimonialQuotes: Quote[];
+    howWeWork?: { icon: string; step: string; title: string; text: string }[];
   };
   consultancy: {
     image: string;

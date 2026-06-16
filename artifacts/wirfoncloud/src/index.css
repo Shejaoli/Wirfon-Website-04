@@ -2630,21 +2630,22 @@ a[href*="replit.com"]:not(nav a) {
 @media (max-width: 700px) { .core-values-grid { grid-template-columns: 1fr; } }
 
 .core-value-card {
-  background: #0f2036;
+  background: #ffffff;
   border-radius: 16px;
   padding: 2rem 2rem 1.75rem;
-  border: 1px solid rgba(1,153,239,0.15);
-  transition: transform 0.22s ease, border-color 0.22s ease;
+  border: 1px solid rgba(1,153,239,0.2);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 .core-value-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(1,153,239,0.35);
+  border-color: rgba(1,153,239,0.45);
+  box-shadow: 0 8px 32px rgba(0,174,239,0.12);
 }
 .core-value-number {
   display: block;
   font-size: 2.5rem;
   font-weight: 800;
-  color: #f59e0b;
+  color: #00AEEF;
   line-height: 1;
   margin-bottom: 0.75rem;
   font-variant-numeric: tabular-nums;
@@ -2652,12 +2653,12 @@ a[href*="replit.com"]:not(nav a) {
 .core-value-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: #111827;
   margin: 0 0 0.6rem;
 }
 .core-value-desc {
   font-size: 0.93rem;
-  color: #94adc6;
+  color: #374151;
   line-height: 1.65;
   margin: 0;
 }
