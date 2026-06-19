@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { SiteContent } from "@/lib/site";
+import { adminBackup, adminRestore } from "@/lib/api";
 
 type Section =
   | "account" | "team" | "platform" | "courses"
   | "consulting" | "payments" | "email" | "seo"
-  | "security" | "audit";
+  | "security" | "audit" | "backup";
 
 const NAV: { id: Section; label: string; icon: string; group: string }[] = [
   { id: "account",    label: "Account",         icon: "fa-user",              group: "Personal" },
@@ -16,6 +17,7 @@ const NAV: { id: Section; label: string; icon: string; group: string }[] = [
   { id: "email",      label: "Email",           icon: "fa-envelope",          group: "Business" },
   { id: "seo",        label: "SEO & Analytics", icon: "fa-chart-line",        group: "Growth" },
   { id: "security",   label: "Security",        icon: "fa-shield-halved",     group: "Admin" },
+  { id: "backup",     label: "Backup & Restore",icon: "fa-floppy-disk",       group: "Admin" },
   { id: "audit",      label: "Audit Log",       icon: "fa-clock-rotate-left", group: "Admin" },
 ];
 
@@ -658,6 +660,113 @@ function SecuritySection() {
   );
 }
 
+/* ── Section: Backup & Restore ───────────────────────────────────────────── */
+
+function BackupSection() {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [backupStatus, setBackupStatus] = useState<"idle" | "busy" | "ok" | "error">("idle");
+  const [backupMsg, setBackupMsg]       = useState("");
+  const [restoreStatus, setRestoreStatus] = useState<"idle" | "busy" | "ok" | "error">("idle");
+  const [restoreMsg, setRestoreMsg]       = useState("");
+
+  async function handleBackup() {
+    setBackupStatus("busy");
+    setBackupMsg("");
+    const result = await adminBackup();
+    if (result.success) {
+      setBackupStatus("ok");
+      setBackupMsg("Backup downloaded successfully.");
+    } else {
+      setBackupStatus("error");
+      setBackupMsg(result.error ?? "Backup failed.");
+    }
+    setTimeout(() => { setBackupStatus("idle"); setBackupMsg(""); }, 4000);
+  }
+
+  async function handleRestoreFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!fileRef.current) fileRef.current = e.target;
+    e.target.value = "";
+    if (!file) return;
+    if (!confirm(`Restore from "${file.name}"? This will overwrite all current site content. This cannot be undone.`)) return;
+    setRestoreStatus("busy");
+    setRestoreMsg("");
+    const result = await adminRestore(file);
+    if (result.success) {
+      setRestoreStatus("ok");
+      setRestoreMsg("Site content restored. Reload the page to see the updated content.");
+    } else {
+      setRestoreStatus("error");
+      setRestoreMsg(result.error ?? "Restore failed.");
+    }
+  }
+
+  return (
+    <div className="st-sections">
+      <Card title="Download backup" desc="Export a full JSON snapshot of all site content and subscriber emails." icon="fa-floppy-disk">
+        <Row label="Create backup" desc="Downloads a timestamped .json file you can store safely off-site.">
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={handleBackup}
+            disabled={backupStatus === "busy"}
+          >
+            {backupStatus === "busy" ? (
+              <><i className="fa-solid fa-spinner fa-spin" /> Preparing…</>
+            ) : backupStatus === "ok" ? (
+              <><i className="fa-solid fa-check" /> Downloaded</>
+            ) : (
+              <><i className="fa-solid fa-download" /> Download backup</>
+            )}
+          </button>
+        </Row>
+        {backupMsg && (
+          <div className={`st-info-box${backupStatus === "error" ? " danger" : ""}`} style={{ marginTop: "0.75rem" }}>
+            <i className={`fa-solid ${backupStatus === "error" ? "fa-triangle-exclamation" : "fa-circle-check"}`} />
+            <span>{backupMsg}</span>
+          </div>
+        )}
+      </Card>
+
+      <Card
+        title="Restore from backup"
+        desc="Upload a previously downloaded backup file to overwrite the current site content."
+        icon="fa-upload"
+        danger
+      >
+        <div className="st-info-box danger" style={{ marginBottom: "1rem" }}>
+          <i className="fa-solid fa-triangle-exclamation" />
+          <span><strong>Warning:</strong> Restoring will immediately replace all current site content with the content from the backup file. This cannot be undone — download a fresh backup first if needed.</span>
+        </div>
+        <Row label="Upload backup file" desc="Accepts .json files exported from this admin panel.">
+          <label className="btn btn-outline btn-sm" style={{ cursor: "pointer" }}>
+            {restoreStatus === "busy" ? (
+              <><i className="fa-solid fa-spinner fa-spin" /> Restoring…</>
+            ) : restoreStatus === "ok" ? (
+              <><i className="fa-solid fa-check" /> Restored — reload page</>
+            ) : (
+              <><i className="fa-solid fa-upload" /> Choose backup file</>
+            )}
+            <input
+              ref={fileRef}
+              type="file"
+              accept="application/json,.json"
+              style={{ display: "none" }}
+              onChange={handleRestoreFile}
+              disabled={restoreStatus === "busy"}
+            />
+          </label>
+        </Row>
+        {restoreMsg && (
+          <div className={`st-info-box${restoreStatus === "error" ? " danger" : ""}`} style={{ marginTop: "0.75rem" }}>
+            <i className={`fa-solid ${restoreStatus === "error" ? "fa-triangle-exclamation" : "fa-circle-check"}`} />
+            <span>{restoreMsg}</span>
+          </div>
+        )}
+      </Card>
+    </div>
+  );
+}
+
 /* ── Section: Audit Log ──────────────────────────────────────────────────── */
 
 function AuditSection() {
@@ -725,6 +834,7 @@ const SECTION_CONTENT: Record<Section, { title: string; desc: string }> = {
   email:      { title: "Email & Notifications", desc: "SMTP configuration, sender identity and notification triggers" },
   seo:        { title: "SEO & Analytics",       desc: "Meta defaults, tracking IDs and crawl settings" },
   security:   { title: "Security & Compliance", desc: "Login protection, IP control, legal pages and GDPR" },
+  backup:     { title: "Backup & Restore",      desc: "Download a full JSON backup or restore from a previous one" },
   audit:      { title: "Audit Log",             desc: "Read-only record of every admin action" },
 };
 
@@ -771,6 +881,7 @@ export function SettingsPage({ data, onChange }: { data: SiteContent; onChange: 
         {active === "email"      && <EmailSection />}
         {active === "seo"        && <SEOSection />}
         {active === "security"   && <SecuritySection />}
+        {active === "backup"     && <BackupSection />}
         {active === "audit"      && <AuditSection />}
       </div>
     </div>

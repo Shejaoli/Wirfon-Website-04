@@ -44,4 +44,21 @@ router.get("/admin/backup", requireAdmin, async (_req, res) => {
     .json(backup);
 });
 
+router.post("/admin/restore", requireAdmin, async (req, res) => {
+  if (!req.body || typeof req.body !== "object") {
+    res.status(400).json({ error: "Body must be an object" });
+    return;
+  }
+  const body = req.body as Record<string, unknown>;
+  const payload = (body.siteConfig && typeof body.siteConfig === "object")
+    ? body.siteConfig
+    : body;
+  if (!payload || typeof payload !== "object") {
+    res.status(400).json({ error: "Invalid backup format — expected a siteConfig object" });
+    return;
+  }
+  await saveSite(payload as Parameters<typeof saveSite>[0]);
+  res.json({ success: true });
+});
+
 export default router;

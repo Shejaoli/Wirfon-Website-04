@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+echo "Freeing port 5000 if in use..."
+fuser -k 5000/tcp 2>/dev/null || true
+sleep 1
+
 echo "Building frontend..."
 PORT=5000 BASE_PATH=/ pnpm --filter @workspace/wirfoncloud run build
 

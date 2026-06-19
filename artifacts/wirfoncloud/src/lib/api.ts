@@ -116,3 +116,42 @@ export async function adminResetContent(): Promise<{ success: boolean; data?: Si
     return { success: false, error: "Network error" };
   }
 }
+
+export async function adminBackup(): Promise<{ success: boolean; error?: string }> {
+  try {
+    const res = await fetch("/api/admin/backup", { headers: authHeaders() });
+    if (!res.ok) return { success: false, error: "Backup failed" };
+    const blob = await res.blob();
+    const cd = res.headers.get("Content-Disposition") ?? "";
+    const match = cd.match(/filename="([^"]+)"/);
+    const filename = match?.[1] ?? `wirfoncloud-backup-${Date.now()}.json`;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    return { success: true };
+  } catch {
+    return { success: false, error: "Network error" };
+  }
+}
+
+export async function adminRestore(file: File): Promise<{ success: boolean; error?: string }> {
+  try {
+    const text = await file.text();
+    const json = JSON.parse(text) as unknown;
+    const res = await fetch("/api/admin/restore", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...authHeaders() },
+      body: JSON.stringify(json),
+    });
+    const data = await res.json();
+    if (!res.ok) return { success: false, error: data?.error || "Restore failed" };
+    return { success: true };
+  } catch {
+    return { success: false, error: "Invalid backup file or network error" };
+  }
+}

@@ -1,4 +1,4 @@
-import { type ReactNode, useRef, useEffect } from "react";
+import { type ReactNode, useRef, useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TipTapLink from "@tiptap/extension-link";
@@ -1318,6 +1318,40 @@ export function GalleryEditor({
   gallery: SiteContent["gallery"];
   onChange: (next: SiteContent["gallery"]) => void;
 }) {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  function addAlbum() {
+    const newAlbum: GalleryAlbum = {
+      id: `album-${Date.now()}`,
+      title: "New Album",
+      dateLabel: "",
+      cover: "",
+      photos: [],
+    };
+    onChange({ ...gallery, albums: [...gallery.albums, newAlbum] });
+    setExpandedId(newAlbum.id);
+  }
+
+  function updateAlbum(idx: number, updated: GalleryAlbum) {
+    const albums = gallery.albums.slice();
+    albums[idx] = updated;
+    onChange({ ...gallery, albums });
+  }
+
+  function deleteAlbum(idx: number, title: string) {
+    if (!confirm(`Delete album "${title}"? This cannot be undone.`)) return;
+    const albums = gallery.albums.filter((_, i) => i !== idx);
+    onChange({ ...gallery, albums });
+    setExpandedId(null);
+  }
+
+  function moveAlbum(from: number, to: number) {
+    const albums = gallery.albums.slice();
+    const [item] = albums.splice(from, 1);
+    albums.splice(to, 0, item);
+    onChange({ ...gallery, albums });
+  }
+
   return (
     <>
       <Section title="Gallery page banner">
@@ -1336,78 +1370,144 @@ export function GalleryEditor({
 
       <Section
         title="Albums"
-        description="Each album groups photos together. Upload a cover image and add photos with captions."
+        description="Each album groups photos. Add real albums here — once saved, they replace the placeholder photos shown on the public gallery page."
       >
-        <ListEditor
-          items={gallery.albums}
-          onChange={(albums) => onChange({ ...gallery, albums })}
-          addLabel="Add album"
-          newItem={(): GalleryAlbum => ({
-            id: `album-${Date.now()}`,
-            title: "New Album",
-            dateLabel: "",
-            cover: "",
-            photos: [],
-          })}
-          renderItem={(album, _i, updateAlbum) => (
-            <>
-              <div className="admin-grid-2">
-                <Field
-                  label="Album title"
-                  value={album.title}
-                  onChange={(v) => updateAlbum({ ...album, title: v })}
-                  placeholder="WirfonCloud Summit 2024"
-                />
-                <Field
-                  label="Date label"
-                  value={album.dateLabel}
-                  onChange={(v) => updateAlbum({ ...album, dateLabel: v })}
-                  placeholder="June 2024"
-                />
-              </div>
-              <ImageUpload
-                label="Cover image (shown in album header)"
-                value={album.cover ?? ""}
-                onChange={(v) => updateAlbum({ ...album, cover: v })}
-                hint="First photo is used as cover if none set."
-              />
-              <div className="admin-subgroup">
-                <span className="admin-field-label" style={{ marginBottom: "0.5rem", display: "block" }}>
-                  Photos ({album.photos.length})
-                </span>
-                <ListEditor
-                  items={album.photos}
-                  onChange={(photos) => updateAlbum({ ...album, photos })}
-                  addLabel="Add photo"
-                  newItem={(): GalleryPhoto => ({ src: "", alt: "", caption: "" })}
-                  renderItem={(photo, _pi, updatePhoto) => (
-                    <>
-                      <ImageUpload
-                        label="Photo"
-                        value={photo.src}
-                        onChange={(v) => updatePhoto({ ...photo, src: v })}
-                      />
-                      <div className="admin-grid-2">
-                        <Field
-                          label="Caption"
-                          value={photo.caption}
-                          onChange={(v) => updatePhoto({ ...photo, caption: v })}
-                          placeholder="Hands-on cloud workshop"
-                        />
-                        <Field
-                          label="Alt text (accessibility)"
-                          value={photo.alt}
-                          onChange={(v) => updatePhoto({ ...photo, alt: v })}
-                          placeholder="Attendees at the summit"
-                        />
-                      </div>
-                    </>
+        {gallery.albums.length === 0 && (
+          <div className="gallery-empty-notice">
+            <i className="fa-solid fa-images" style={{ fontSize: "2rem", color: "var(--grey-400)", marginBottom: "0.5rem" }} />
+            <p style={{ fontWeight: 600, marginBottom: "0.25rem" }}>No albums yet</p>
+            <p className="muted" style={{ fontSize: "0.875rem", maxWidth: "34rem", textAlign: "center" }}>
+              The public gallery currently shows placeholder photos. Add at least one album with photos below and hit <strong>Publish</strong> — the placeholders will be replaced automatically.
+            </p>
+          </div>
+        )}
+
+        <div className="gallery-album-list">
+          {gallery.albums.map((album, idx) => {
+            const isExpanded = expandedId === album.id;
+            return (
+              <div key={album.id} className={"gallery-album-card" + (isExpanded ? " expanded" : "")}>
+                <div className="gallery-album-card-header">
+                  {album.cover ? (
+                    <div
+                      className="gallery-album-thumb"
+                      style={{ backgroundImage: `url(${album.cover})` }}
+                    />
+                  ) : (
+                    <div className="gallery-album-thumb gallery-album-thumb--empty">
+                      <i className="fa-solid fa-image" />
+                    </div>
                   )}
-                />
+                  <div className="gallery-album-info">
+                    <strong>{album.title || "Untitled album"}</strong>
+                    <span className="muted" style={{ fontSize: "0.8rem" }}>
+                      {album.dateLabel || "No date"} &nbsp;·&nbsp; {album.photos.length} photo{album.photos.length !== 1 ? "s" : ""}
+                    </span>
+                  </div>
+                  <div className="gallery-album-actions">
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      disabled={idx === 0}
+                      onClick={() => moveAlbum(idx, idx - 1)}
+                      title="Move up"
+                    >
+                      <i className="fa-solid fa-arrow-up" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      disabled={idx === gallery.albums.length - 1}
+                      onClick={() => moveAlbum(idx, idx + 1)}
+                      title="Move down"
+                    >
+                      <i className="fa-solid fa-arrow-down" />
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline btn-sm"
+                      onClick={() => setExpandedId(isExpanded ? null : album.id)}
+                    >
+                      <i className={`fa-solid ${isExpanded ? "fa-chevron-up" : "fa-pen-to-square"}`} />
+                      {isExpanded ? " Collapse" : " Edit"}
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-sm"
+                      style={{ background: "var(--error-100, #fef2f2)", color: "var(--error-600, #dc2626)", border: "1px solid var(--error-200, #fecaca)" }}
+                      onClick={() => deleteAlbum(idx, album.title)}
+                    >
+                      <i className="fa-solid fa-trash" /> Delete
+                    </button>
+                  </div>
+                </div>
+
+                {isExpanded && (
+                  <div className="gallery-album-edit">
+                    <div className="admin-grid-2" style={{ marginBottom: "0.75rem" }}>
+                      <Field
+                        label="Album title"
+                        value={album.title}
+                        onChange={(v) => updateAlbum(idx, { ...album, title: v })}
+                        placeholder="WirfonCloud Summit 2024"
+                      />
+                      <Field
+                        label="Date label"
+                        value={album.dateLabel}
+                        onChange={(v) => updateAlbum(idx, { ...album, dateLabel: v })}
+                        placeholder="June 2024"
+                      />
+                    </div>
+                    <ImageUpload
+                      label="Cover image (shown in album header)"
+                      value={album.cover ?? ""}
+                      onChange={(v) => updateAlbum(idx, { ...album, cover: v })}
+                      hint="First photo is used as cover if none set."
+                    />
+                    <div className="admin-subgroup" style={{ marginTop: "1rem" }}>
+                      <span className="admin-field-label" style={{ marginBottom: "0.5rem", display: "block" }}>
+                        Photos ({album.photos.length})
+                      </span>
+                      <ListEditor
+                        items={album.photos}
+                        onChange={(photos) => updateAlbum(idx, { ...album, photos })}
+                        addLabel="Add photo"
+                        newItem={(): GalleryPhoto => ({ src: "", alt: "", caption: "" })}
+                        renderItem={(photo, _pi, updatePhoto) => (
+                          <>
+                            <ImageUpload
+                              label="Photo"
+                              value={photo.src}
+                              onChange={(v) => updatePhoto({ ...photo, src: v })}
+                            />
+                            <div className="admin-grid-2">
+                              <Field
+                                label="Caption"
+                                value={photo.caption}
+                                onChange={(v) => updatePhoto({ ...photo, caption: v })}
+                                placeholder="Hands-on cloud workshop"
+                              />
+                              <Field
+                                label="Alt text (accessibility)"
+                                value={photo.alt}
+                                onChange={(v) => updatePhoto({ ...photo, alt: v })}
+                                placeholder="Attendees at the summit"
+                              />
+                            </div>
+                          </>
+                        )}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
-            </>
-          )}
-        />
+            );
+          })}
+        </div>
+
+        <button type="button" className="admin-list-add" onClick={addAlbum} style={{ marginTop: gallery.albums.length > 0 ? "0.75rem" : "1rem" }}>
+          <i className="fa-solid fa-plus" /> Add album
+        </button>
       </Section>
     </>
   );
