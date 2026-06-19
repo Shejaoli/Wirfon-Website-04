@@ -1321,15 +1321,41 @@ function AlbumPhotoManager({
   onChange: (photos: GalleryPhoto[]) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [dragging, setDragging] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [progress, setProgress] = useState({ done: 0, total: 0 });
+  const [dragging, setDragging]     = useState(false);
+  const [uploading, setUploading]   = useState(false);
+  const [progress, setProgress]     = useState({ done: 0, total: 0 });
   const [uploadErrors, setUploadErrors] = useState<string[]>([]);
-  const [editIdx, setEditIdx] = useState<number | null>(null);
+  const [editIdx, setEditIdx]       = useState<number | null>(null);
+  const [selectMode, setSelectMode] = useState(false);
+  const [selected, setSelected]     = useState<Set<number>>(new Set());
 
+  /* ── helpers ── */
+  function exitSelectMode() { setSelectMode(false); setSelected(new Set()); }
+
+  function toggleSelect(idx: number) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(idx) ? next.delete(idx) : next.add(idx);
+      return next;
+    });
+  }
+
+  function selectAll()   { setSelected(new Set(photos.map((_, i) => i))); }
+  function deselectAll() { setSelected(new Set()); }
+
+  function deleteSelected() {
+    const count = selected.size;
+    if (!confirm(`Delete ${count} selected photo${count !== 1 ? "s" : ""}? This cannot be undone.`)) return;
+    onChange(photos.filter((_, i) => !selected.has(i)));
+    exitSelectMode();
+    setEditIdx(null);
+  }
+
+  /* ── upload ── */
   async function uploadFiles(files: File[]) {
     const images = files.filter((f) => f.type.startsWith("image/"));
     if (images.length === 0) return;
+    exitSelectMode();
     setUploading(true);
     setProgress({ done: 0, total: images.length });
     setUploadErrors([]);
@@ -1360,6 +1386,7 @@ function AlbumPhotoManager({
     e.target.value = "";
   }
 
+  /* ── single-photo actions (only available outside select mode) ── */
   function removePhoto(idx: number) {
     onChange(photos.filter((_, i) => i !== idx));
     if (editIdx === idx) setEditIdx(null);
@@ -1379,8 +1406,12 @@ function AlbumPhotoManager({
     onChange(next);
   }
 
+  const allSelected = photos.length > 0 && selected.size === photos.length;
+
   return (
     <div className="album-photo-manager">
+
+      {/* ── Drop zone ── */}
       <div
         className={"album-drop-zone" + (dragging ? " dragging" : "") + (uploading ? " busy" : "")}
         onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
@@ -1417,53 +1448,125 @@ function AlbumPhotoManager({
         </div>
       )}
 
+      {/* ── Bulk-action toolbar (shown whenever there are photos) ── */}
+      {photos.length > 0 && (
+        <div className="album-photo-toolbar">
+          {selectMode ? (
+            <>
+              <span className="album-toolbar-count">
+                {selected.size > 0
+                  ? `${selected.size} of ${photos.length} selected`
+                  : `${photos.length} photo${photos.length !== 1 ? "s" : ""} — tap to select`}
+              </span>
+              <button type="button" className="btn btn-outline btn-xs"
+                onClick={allSelected ? deselectAll : selectAll}>
+                {allSelected ? "Deselect all" : "Select all"}
+              </button>
+              {selected.size > 0 && (
+                <button type="button" className="btn btn-xs"
+                  style={{ background: "#fef2f2", color: "#dc2626", border: "1px solid #fecaca" }}
+                  onClick={deleteSelected}>
+                  <i className="fa-solid fa-trash" /> Delete {selected.size} photo{selected.size !== 1 ? "s" : ""}
+                </button>
+              )}
+              <button type="button" className="btn btn-outline btn-xs" onClick={exitSelectMode}>
+                Cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <span className="album-toolbar-count muted">
+                {photos.length} photo{photos.length !== 1 ? "s" : ""}
+              </span>
+              {photos.length > 1 && (
+                <button type="button" className="btn btn-outline btn-xs"
+                  onClick={() => { setEditIdx(null); setSelectMode(true); }}>
+                  <i className="fa-solid fa-check-square" /> Select to delete
+                </button>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
+      {/* ── Photo grid ── */}
       {photos.length > 0 && (
         <div className="album-photo-grid">
-          {photos.map((photo, idx) => (
-            <div key={idx} className={"album-photo-tile" + (editIdx === idx ? " editing" : "")}>
-              <div className="album-photo-tile-img-wrap">
-                <img src={photo.src} alt={photo.alt || ""} loading="lazy" />
-                <div className="album-photo-tile-overlay">
-                  <button type="button" title="Edit caption & alt text" className="album-tile-btn"
-                    onClick={() => setEditIdx(editIdx === idx ? null : idx)}>
-                    <i className="fa-solid fa-pen" />
-                  </button>
-                  <button type="button" title="Move left" className="album-tile-btn"
-                    disabled={idx === 0} onClick={() => movePhoto(idx, idx - 1)}>
-                    <i className="fa-solid fa-arrow-left" />
-                  </button>
-                  <button type="button" title="Move right" className="album-tile-btn"
-                    disabled={idx === photos.length - 1} onClick={() => movePhoto(idx, idx + 1)}>
-                    <i className="fa-solid fa-arrow-right" />
-                  </button>
-                  <button type="button" title="Remove photo" className="album-tile-btn danger"
-                    onClick={() => { if (confirm("Remove this photo?")) removePhoto(idx); }}>
-                    <i className="fa-solid fa-trash" />
-                  </button>
+          {photos.map((photo, idx) => {
+            const isSelected = selected.has(idx);
+            const isEditing  = editIdx === idx && !selectMode;
+            return (
+              <div
+                key={idx}
+                className={
+                  "album-photo-tile" +
+                  (isEditing  ? " editing"  : "") +
+                  (selectMode ? " selectable" : "") +
+                  (isSelected ? " selected"  : "")
+                }
+                onClick={selectMode ? () => toggleSelect(idx) : undefined}
+              >
+                <div className="album-photo-tile-img-wrap">
+                  <img src={photo.src} alt={photo.alt || ""} loading="lazy" />
+
+                  {/* Normal-mode hover overlay */}
+                  {!selectMode && (
+                    <div className="album-photo-tile-overlay">
+                      <button type="button" title="Edit caption & alt text" className="album-tile-btn"
+                        onClick={() => setEditIdx(isEditing ? null : idx)}>
+                        <i className="fa-solid fa-pen" />
+                      </button>
+                      <button type="button" title="Move left" className="album-tile-btn"
+                        disabled={idx === 0} onClick={() => movePhoto(idx, idx - 1)}>
+                        <i className="fa-solid fa-arrow-left" />
+                      </button>
+                      <button type="button" title="Move right" className="album-tile-btn"
+                        disabled={idx === photos.length - 1} onClick={() => movePhoto(idx, idx + 1)}>
+                        <i className="fa-solid fa-arrow-right" />
+                      </button>
+                      <button type="button" title="Remove photo" className="album-tile-btn danger"
+                        onClick={() => { if (confirm("Remove this photo?")) removePhoto(idx); }}>
+                        <i className="fa-solid fa-trash" />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Select-mode checkbox */}
+                  {selectMode && (
+                    <div className="album-photo-select-overlay">
+                      <div className={"album-photo-checkbox" + (isSelected ? " checked" : "")}>
+                        {isSelected && <i className="fa-solid fa-check" />}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="album-photo-tile-caption">
-                {editIdx === idx ? (
-                  <div className="album-photo-tile-fields">
-                    <Field label="Caption" value={photo.caption}
-                      onChange={(v) => updatePhoto(idx, { ...photo, caption: v })}
-                      placeholder="e.g. Hands-on workshop session" />
-                    <Field label="Alt text (screen readers)" value={photo.alt}
-                      onChange={(v) => updatePhoto(idx, { ...photo, alt: v })}
-                      placeholder="e.g. Attendees working on laptops" />
-                    <button type="button" className="btn btn-outline btn-sm" style={{ marginTop: "0.25rem" }}
-                      onClick={() => setEditIdx(null)}>
-                      Done
-                    </button>
+
+                {/* Caption / edit fields (only in normal mode) */}
+                {!selectMode && (
+                  <div className="album-photo-tile-caption">
+                    {isEditing ? (
+                      <div className="album-photo-tile-fields">
+                        <Field label="Caption" value={photo.caption}
+                          onChange={(v) => updatePhoto(idx, { ...photo, caption: v })}
+                          placeholder="e.g. Hands-on workshop session" />
+                        <Field label="Alt text (screen readers)" value={photo.alt}
+                          onChange={(v) => updatePhoto(idx, { ...photo, alt: v })}
+                          placeholder="e.g. Attendees working on laptops" />
+                        <button type="button" className="btn btn-outline btn-sm" style={{ marginTop: "0.25rem" }}
+                          onClick={() => setEditIdx(null)}>
+                          Done
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="album-photo-tile-caption-text">
+                        {photo.caption || <em style={{ color: "var(--grey-400)" }}>No caption</em>}
+                      </span>
+                    )}
                   </div>
-                ) : (
-                  <span className="album-photo-tile-caption-text">
-                    {photo.caption || <em style={{ color: "var(--grey-400)" }}>No caption</em>}
-                  </span>
                 )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
