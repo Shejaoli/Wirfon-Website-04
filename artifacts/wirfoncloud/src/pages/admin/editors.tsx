@@ -1,4 +1,5 @@
 import { type ReactNode, useRef, useEffect, useState } from "react";
+import { STATIC_ALBUMS } from "@/lib/staticAlbums";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TipTapLink from "@tiptap/extension-link";
@@ -1373,12 +1374,44 @@ export function GalleryEditor({
         description="Each album groups photos. Add real albums here — once saved, they replace the placeholder photos shown on the public gallery page."
       >
         {gallery.albums.length === 0 && (
-          <div className="gallery-empty-notice">
-            <i className="fa-solid fa-images" style={{ fontSize: "2rem", color: "var(--grey-400)", marginBottom: "0.5rem" }} />
-            <p style={{ fontWeight: 600, marginBottom: "0.25rem" }}>No albums yet</p>
-            <p className="muted" style={{ fontSize: "0.875rem", maxWidth: "34rem", textAlign: "center" }}>
-              The public gallery currently shows placeholder photos. Add at least one album with photos below and hit <strong>Publish</strong> — the placeholders will be replaced automatically.
-            </p>
+          <div className="gallery-import-notice">
+            <div className="gallery-import-notice-header">
+              <i className="fa-solid fa-circle-info" style={{ color: "var(--brand)", fontSize: "1.1rem", flexShrink: 0 }} />
+              <div>
+                <p style={{ fontWeight: 600, marginBottom: "0.2rem" }}>
+                  Your gallery has {STATIC_ALBUMS.length} existing album{STATIC_ALBUMS.length !== 1 ? "s" : ""} visible on the public site
+                </p>
+                <p className="muted" style={{ fontSize: "0.85rem" }}>
+                  These albums are currently hardcoded and cannot be edited or deleted from here. Click <strong>Import albums into database</strong> to bring them under your control — then you can edit titles, dates, photos, and delete them freely.
+                </p>
+              </div>
+            </div>
+            <div className="gallery-import-preview">
+              {STATIC_ALBUMS.map((a) => (
+                <div key={a.id} className="gallery-import-preview-card">
+                  {a.cover && (
+                    <div className="gallery-import-preview-thumb" style={{ backgroundImage: `url(${a.cover})` }} />
+                  )}
+                  <div className="gallery-import-preview-info">
+                    <strong>{a.title}</strong>
+                    <span className="muted" style={{ fontSize: "0.78rem" }}>
+                      {a.dateLabel} · {a.photos.length} photo{a.photos.length !== 1 ? "s" : ""}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{ marginTop: "0.75rem" }}
+              onClick={() => {
+                const seeded = STATIC_ALBUMS.map((a) => ({ ...a, id: a.id || `album-${Date.now()}-${Math.random()}` }));
+                onChange({ ...gallery, albums: seeded });
+              }}
+            >
+              <i className="fa-solid fa-file-import" /> Import albums into database
+            </button>
           </div>
         )}
 

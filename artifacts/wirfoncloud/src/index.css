@@ -4021,3 +4021,49 @@ a[href*="replit.com"]:not(nav a) {
   padding: 1rem;
   background: #fafbfc;
 }
+
+/* ── Admin gallery import notice ────────────────────────────────────────── */
+.gallery-import-notice {
+  background: #eff8ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.gallery-import-notice-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.gallery-import-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 1.85rem;
+}
+.gallery-import-preview-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+}
+.gallery-import-preview-thumb {
+  width: 48px;
+  height: 36px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+.gallery-import-preview-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.gallery-import-preview-info strong { font-size: 0.85rem; font-weight: 600; }
