@@ -1,4 +1,4 @@
-import { type ReactNode, useRef, useEffect, useState } from "react";
+import { type ReactNode, useRef, useEffect, useState, type DragEvent, type ChangeEvent } from "react";
 import { STATIC_ALBUMS } from "@/lib/staticAlbums";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -22,6 +22,7 @@ import type {
 import type { AboutSection } from "@/lib/site";
 import { toSlug } from "@/lib/site";
 import { ImageUpload } from "@/components/admin/ImageUpload";
+import { adminUploadImage } from "@/lib/api";
 
 /* -------------------------------------------------------------------------- */
 /* Generic helpers                                                             */
@@ -1309,6 +1310,173 @@ export function SocialEditor({
 }
 
 /* -------------------------------------------------------------------------- */
+/* Album photo manager (multi-file drag-and-drop)                             */
+/* -------------------------------------------------------------------------- */
+
+function AlbumPhotoManager({
+  photos,
+  onChange,
+}: {
+  photos: GalleryPhoto[];
+  onChange: (photos: GalleryPhoto[]) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState({ done: 0, total: 0 });
+  const [uploadErrors, setUploadErrors] = useState<string[]>([]);
+  const [editIdx, setEditIdx] = useState<number | null>(null);
+
+  async function uploadFiles(files: File[]) {
+    const images = files.filter((f) => f.type.startsWith("image/"));
+    if (images.length === 0) return;
+    setUploading(true);
+    setProgress({ done: 0, total: images.length });
+    setUploadErrors([]);
+    const newPhotos: GalleryPhoto[] = [];
+    const errs: string[] = [];
+    for (let i = 0; i < images.length; i++) {
+      const result = await adminUploadImage(images[i]);
+      if (result.url) {
+        newPhotos.push({ src: result.url, alt: "", caption: "" });
+        setProgress((p) => ({ ...p, done: p.done + 1 }));
+      } else {
+        errs.push(`${images[i].name}: ${result.error ?? "Upload failed"}`);
+      }
+    }
+    onChange([...photos, ...newPhotos]);
+    setUploadErrors(errs);
+    setUploading(false);
+  }
+
+  function onDrop(e: DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+    setDragging(false);
+    void uploadFiles(Array.from(e.dataTransfer.files));
+  }
+
+  function onPick(e: ChangeEvent<HTMLInputElement>) {
+    void uploadFiles(Array.from(e.target.files ?? []));
+    e.target.value = "";
+  }
+
+  function removePhoto(idx: number) {
+    onChange(photos.filter((_, i) => i !== idx));
+    if (editIdx === idx) setEditIdx(null);
+    else if (editIdx !== null && editIdx > idx) setEditIdx(editIdx - 1);
+  }
+
+  function movePhoto(from: number, to: number) {
+    const next = photos.slice();
+    const [item] = next.splice(from, 1);
+    next.splice(to, 0, item);
+    onChange(next);
+  }
+
+  function updatePhoto(idx: number, updated: GalleryPhoto) {
+    const next = photos.slice();
+    next[idx] = updated;
+    onChange(next);
+  }
+
+  return (
+    <div className="album-photo-manager">
+      <div
+        className={"album-drop-zone" + (dragging ? " dragging" : "") + (uploading ? " busy" : "")}
+        onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={onDrop}
+        onClick={() => { if (!uploading) inputRef.current?.click(); }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if ((e.key === "Enter" || e.key === " ") && !uploading) { e.preventDefault(); inputRef.current?.click(); } }}
+      >
+        {uploading ? (
+          <div className="album-drop-zone-inner">
+            <div className="admin-spinner" style={{ width: "2rem", height: "2rem", borderWidth: "3px" }} />
+            <p style={{ fontWeight: 600 }}>Uploading {progress.done} of {progress.total}…</p>
+            <p className="muted" style={{ fontSize: "0.8rem" }}>Please wait</p>
+          </div>
+        ) : (
+          <div className="album-drop-zone-inner">
+            <i className="fa-solid fa-cloud-arrow-up" style={{ fontSize: "1.75rem", color: "var(--brand)" }} />
+            <p style={{ fontWeight: 600 }}>Drop photos here <span style={{ fontWeight: 400 }}>or click to select</span></p>
+            <p className="muted" style={{ fontSize: "0.78rem" }}>PNG, JPG, WEBP · up to 10 MB each · select multiple files at once</p>
+          </div>
+        )}
+      </div>
+      <input ref={inputRef} type="file" accept="image/*" multiple style={{ display: "none" }} onChange={onPick} />
+
+      {uploadErrors.length > 0 && (
+        <div style={{ marginTop: "0.5rem" }}>
+          {uploadErrors.map((e, i) => (
+            <p key={i} style={{ fontSize: "0.8rem", color: "#dc2626", marginBottom: "0.2rem" }}>
+              <i className="fa-solid fa-triangle-exclamation" /> {e}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {photos.length > 0 && (
+        <div className="album-photo-grid">
+          {photos.map((photo, idx) => (
+            <div key={idx} className={"album-photo-tile" + (editIdx === idx ? " editing" : "")}>
+              <div className="album-photo-tile-img-wrap">
+                <img src={photo.src} alt={photo.alt || ""} loading="lazy" />
+                <div className="album-photo-tile-overlay">
+                  <button type="button" title="Edit caption & alt text" className="album-tile-btn"
+                    onClick={() => setEditIdx(editIdx === idx ? null : idx)}>
+                    <i className="fa-solid fa-pen" />
+                  </button>
+                  <button type="button" title="Move left" className="album-tile-btn"
+                    disabled={idx === 0} onClick={() => movePhoto(idx, idx - 1)}>
+                    <i className="fa-solid fa-arrow-left" />
+                  </button>
+                  <button type="button" title="Move right" className="album-tile-btn"
+                    disabled={idx === photos.length - 1} onClick={() => movePhoto(idx, idx + 1)}>
+                    <i className="fa-solid fa-arrow-right" />
+                  </button>
+                  <button type="button" title="Remove photo" className="album-tile-btn danger"
+                    onClick={() => { if (confirm("Remove this photo?")) removePhoto(idx); }}>
+                    <i className="fa-solid fa-trash" />
+                  </button>
+                </div>
+              </div>
+              <div className="album-photo-tile-caption">
+                {editIdx === idx ? (
+                  <div className="album-photo-tile-fields">
+                    <Field label="Caption" value={photo.caption}
+                      onChange={(v) => updatePhoto(idx, { ...photo, caption: v })}
+                      placeholder="e.g. Hands-on workshop session" />
+                    <Field label="Alt text (screen readers)" value={photo.alt}
+                      onChange={(v) => updatePhoto(idx, { ...photo, alt: v })}
+                      placeholder="e.g. Attendees working on laptops" />
+                    <button type="button" className="btn btn-outline btn-sm" style={{ marginTop: "0.25rem" }}
+                      onClick={() => setEditIdx(null)}>
+                      Done
+                    </button>
+                  </div>
+                ) : (
+                  <span className="album-photo-tile-caption-text">
+                    {photo.caption || <em style={{ color: "var(--grey-400)" }}>No caption</em>}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {photos.length === 0 && !uploading && (
+        <p className="muted" style={{ textAlign: "center", fontSize: "0.84rem", padding: "0.75rem 0 0" }}>
+          No photos yet — drop some above or click to select.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* Gallery                                                                     */
 /* -------------------------------------------------------------------------- */
 
@@ -1497,38 +1665,13 @@ export function GalleryEditor({
                       onChange={(v) => updateAlbum(idx, { ...album, cover: v })}
                       hint="First photo is used as cover if none set."
                     />
-                    <div className="admin-subgroup" style={{ marginTop: "1rem" }}>
-                      <span className="admin-field-label" style={{ marginBottom: "0.5rem", display: "block" }}>
+                    <div style={{ marginTop: "1rem" }}>
+                      <span className="admin-field-label" style={{ marginBottom: "0.6rem", display: "block" }}>
                         Photos ({album.photos.length})
                       </span>
-                      <ListEditor
-                        items={album.photos}
+                      <AlbumPhotoManager
+                        photos={album.photos}
                         onChange={(photos) => updateAlbum(idx, { ...album, photos })}
-                        addLabel="Add photo"
-                        newItem={(): GalleryPhoto => ({ src: "", alt: "", caption: "" })}
-                        renderItem={(photo, _pi, updatePhoto) => (
-                          <>
-                            <ImageUpload
-                              label="Photo"
-                              value={photo.src}
-                              onChange={(v) => updatePhoto({ ...photo, src: v })}
-                            />
-                            <div className="admin-grid-2">
-                              <Field
-                                label="Caption"
-                                value={photo.caption}
-                                onChange={(v) => updatePhoto({ ...photo, caption: v })}
-                                placeholder="Hands-on cloud workshop"
-                              />
-                              <Field
-                                label="Alt text (accessibility)"
-                                value={photo.alt}
-                                onChange={(v) => updatePhoto({ ...photo, alt: v })}
-                                placeholder="Attendees at the summit"
-                              />
-                            </div>
-                          </>
-                        )}
                       />
                     </div>
                   </div>
