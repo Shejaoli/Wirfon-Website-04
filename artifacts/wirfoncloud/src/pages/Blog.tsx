@@ -1,8 +1,8 @@
-import { useState, FormEvent } from "react";
 import { Link } from "wouter";
 import { useSite } from "@/hooks/useSite";
 import { toSlug } from "@/lib/site";
 import type { BlogPost } from "@/lib/site";
+import { useState } from "react";
 
 function BlogCard({ p }: { p: BlogPost }) {
   const [imgErr, setImgErr] = useState(false);
@@ -55,13 +55,6 @@ function BlogCard({ p }: { p: BlogPost }) {
 
 export default function Blog() {
   const site = useSite();
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubscribe(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    e.currentTarget.reset();
-    setSubscribed(true);
-  }
 
   return (
     <>
@@ -69,15 +62,9 @@ export default function Blog() {
         <div className="container narrow text-center">
           <h1>{site.blog.title}</h1>
           <p>{site.blog.text}</p>
-          <form className="newsletter-form" onSubmit={handleSubscribe}>
-            <input type="email" name="email" placeholder="your@email.com" required />
-            <button type="submit" className="btn btn-primary">Subscribe</button>
-          </form>
-          {subscribed && (
-            <div className="form-status success" style={{ maxWidth: 480, margin: "1rem auto 0" }}>
-              Thank you for subscribing! We'll be in touch.
-            </div>
-          )}
+          <div className="mailerlite-embed-wrap">
+            <div className="ml-embedded" data-form="N8d2uP"></div>
+          </div>
         </div>
       </section>
 

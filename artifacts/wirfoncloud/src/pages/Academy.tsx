@@ -1,6 +1,7 @@
 import { useSite } from "@/hooks/useSite";
-import { Link } from "wouter";
 import type { Course } from "@/lib/site";
+
+const LINUX_QUIZ_URL = "https://wirfoncloud.github.io/linux-quiz-assessment/";
 
 const DEFAULT_ACADEMY_HOW_WE_WORK = [
   { icon: "fa-magnifying-glass", step: "01", title: "Assess Your Level", text: "We start with a free skills quiz and consultation to find exactly where you are and map the fastest path to your cloud career goal." },
@@ -55,9 +56,14 @@ export default function Academy() {
             discover your exact starting point in IT, Cloud and AI — takes just 5 minutes, no
             experience needed.
           </p>
-          <Link href="/quiz" className="quiz-banner-btn">
+          <a
+            href={LINUX_QUIZ_URL}
+            className="quiz-banner-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Take the Free Quiz →
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -107,6 +113,23 @@ export default function Academy() {
         </section>
       )}
 
+      <section id="linux-quiz" className="section anchor-section">
+        <div className="container text-center">
+          <h2 className="section-title">Linux Career Readiness Quiz</h2>
+          <p className="section-subtitle" style={{ maxWidth: 600, margin: "0 auto 2rem" }}>
+            The foundation of Cloud and AI engineering is Linux. Test your knowledge and find out exactly where you stand — free, no sign-up needed.
+          </p>
+          <a
+            href={LINUX_QUIZ_URL}
+            className="btn btn-primary btn-lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa-solid fa-terminal" /> Take the Linux Quiz
+          </a>
+        </div>
+      </section>
+
       <section id="more" className="section section-alt anchor-section">
         <div className="container">
           <h2 className="section-title">Workshops &amp; Community</h2>
@@ -118,7 +141,7 @@ export default function Academy() {
         </div>
       </section>
 
-      <section className="section">
+      <section id="how-we-work" className="section anchor-section">
         <div className="container">
           <h2 className="section-title">How We Work</h2>
           <div className="cards-grid">

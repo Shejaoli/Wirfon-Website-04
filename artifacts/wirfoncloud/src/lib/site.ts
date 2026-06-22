@@ -56,10 +56,10 @@ export interface SiteContent {
   homeCta: {
     title: string;
     text: string;
-    primaryHref: string;
     primaryLabel: string;
-    secondaryHref: string;
-    secondaryLabel: string;
+    bookingLabel?: string;
+    secondaryHref?: string;
+    secondaryLabel?: string;
   };
   homeApproach: {
     title: string;
@@ -104,6 +104,7 @@ export interface SiteContent {
     services: Service[];
     howWeWork?: { icon: string; step: string; title: string; text: string }[];
     testimonials: VideoSlide[];
+    testimonialQuotes?: Quote[];
     aiConsultancy?: {
       image: string;
       fallbackLabel: string;
@@ -188,12 +189,10 @@ export const DEFAULT_SITE: SiteContent = {
   ],
   partners: [],
   homeCta: {
-    title: "Ready to Get Started?",
-    text: "Book a free appointment with our team via Google Calendar or connect with us on LinkedIn.",
-    primaryHref: "https://calendar.google.com",
-    primaryLabel: "Book Appointment",
-    secondaryHref: "https://www.linkedin.com/company/wirfoncloud/",
-    secondaryLabel: "Connect on LinkedIn",
+    title: "Ready to Start Your Cloud Journey?",
+    text: "Get your step-by-step beginner roadmap to start Cloud, Infrastructure, and AI engineering with WirfonCloud Academy.",
+    primaryLabel: "Click to Get Your Free RoadMap",
+    bookingLabel: "Book 20 min Meeting",
   },
   homeApproach: {
     title: "Our Approach",

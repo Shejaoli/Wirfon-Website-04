@@ -668,7 +668,13 @@ export default function AdminDashboard() {
                     </>
                   )}
                   {tab === "about" && (
-                    <AboutEditor about={data.about} onChange={(about) => update({ ...data, about })} />
+                    <>
+                      <AboutEditor about={data.about} onChange={(about) => update({ ...data, about })} />
+                      <HomeFounderEditor
+                        founder={data.homeFounder ?? { quote: "", founderName: "", founderTitle: "", founderPhoto: "" }}
+                        onChange={(homeFounder) => update({ ...data, homeFounder })}
+                      />
+                    </>
                   )}
                   {tab === "academy" && (
                     <AcademyEditor academy={data.academy} onChange={(academy) => update({ ...data, academy })} />

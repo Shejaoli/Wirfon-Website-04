@@ -23,7 +23,8 @@ const DEFAULT_AI_CONSULTANCY = {
 export default function Consultancy() {
   const site = useSite();
   const c = site.consultancy;
-  const quotes = site.academy?.testimonialQuotes ?? [];
+  const quotes = site.consultancy?.testimonialQuotes ?? (site.academy?.testimonialQuotes ?? []);
+  const bookingHref = site.bookingLink ?? "https://calendar.app.google/6YG4yZQX2mXwo9qr5";
 
   return (
     <>
@@ -35,7 +36,17 @@ export default function Consultancy() {
           <div className="col-text">
             <h1>{c.title}</h1>
             <p>{c.text}</p>
-            <SmartLink href={c.ctaHref} className="btn btn-primary">{c.ctaLabel}</SmartLink>
+            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+              <SmartLink href={c.ctaHref} className="btn btn-primary">{c.ctaLabel}</SmartLink>
+              <a
+                href={bookingHref}
+                className="btn btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -55,7 +66,17 @@ export default function Consultancy() {
               <div className="col-text">
                 <h2>{ai.title}</h2>
                 <p>{ai.text}</p>
-                <SmartLink href={ai.ctaHref} className="btn btn-primary">{ai.ctaLabel}</SmartLink>
+                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                  <SmartLink href={ai.ctaHref} className="btn btn-primary">{ai.ctaLabel}</SmartLink>
+                  <a
+                    href={bookingHref}
+                    className="btn btn-outline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+                  </a>
+                </div>
               </div>
             </div>
           </section>
@@ -76,9 +97,14 @@ export default function Consultancy() {
                   <div className="service-icon"><i className={`fa-solid ${s.icon}`} /></div>
                   <h4>{s.title}</h4>
                   <p>{s.text}</p>
-                  <SmartLink href={site.bookingLink ?? "/about#contact"} className="btn btn-primary btn-sm">
+                  <a
+                    href={bookingHref}
+                    className="btn btn-primary btn-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Book a Call
-                  </SmartLink>
+                  </a>
                 </div>
               ))}
             </div>
@@ -86,7 +112,7 @@ export default function Consultancy() {
         </section>
       )}
 
-      <section className="section">
+      <section className="section section-alt">
         <div className="container">
           <h2 className="section-title">How We Work</h2>
           <div className="cards-grid">
@@ -105,7 +131,7 @@ export default function Consultancy() {
       </section>
 
       {c.testimonials.length > 0 && (
-        <section id="testimonials" className="section section-alt anchor-section">
+        <section id="testimonials" className="section anchor-section">
           <div className="container">
             <h2 className="section-title">What Our Clients Say</h2>
             <VideoCarousel slides={c.testimonials} />
@@ -114,7 +140,7 @@ export default function Consultancy() {
       )}
 
       {quotes.length > 0 && (
-        <section className="section">
+        <section className="section section-alt">
           <div className="container">
             <h2 className="section-title">Client Stories</h2>
             <div className="testimonials-grid">
@@ -136,6 +162,26 @@ export default function Consultancy() {
           </div>
         </section>
       )}
+
+      <section className="section cta-section">
+        <div className="container text-center">
+          <h2>Ready to transform your organisation?</h2>
+          <p>Book a free 20-minute discovery call with our cloud experts today.</p>
+          <div className="cta-buttons">
+            <a
+              href={bookingHref}
+              className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+            </a>
+            <SmartLink href="/about#contact" className="btn btn-outline">
+              Send us a message
+            </SmartLink>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

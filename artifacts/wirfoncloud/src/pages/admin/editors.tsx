@@ -530,31 +530,19 @@ export function HomeCtaEditor({
   onChange: (next: SiteContent["homeCta"]) => void;
 }) {
   return (
-    <Section title='"Ready to get started?" block' description="The bottom CTA block on the home page.">
+    <Section title='"Ready to Start Your Cloud Journey?" block' description='The bottom CTA on the home page. The primary button opens the MailerLite roadmap popup. The booking button links to the Booking URL set in the Booking Link editor above.'>
       <Field label="Title" value={cta.title} onChange={(v) => onChange({ ...cta, title: v })} />
       <Area label="Text" value={cta.text} onChange={(v) => onChange({ ...cta, text: v })} rows={2} />
       <div className="admin-grid-2">
         <Field
-          label="Primary button URL"
-          value={cta.primaryHref}
-          onChange={(v) => onChange({ ...cta, primaryHref: v })}
-        />
-        <Field
-          label="Primary button label"
+          label='Free Roadmap button label (triggers popup)'
           value={cta.primaryLabel}
           onChange={(v) => onChange({ ...cta, primaryLabel: v })}
         />
-      </div>
-      <div className="admin-grid-2">
         <Field
-          label="Secondary button URL"
-          value={cta.secondaryHref}
-          onChange={(v) => onChange({ ...cta, secondaryHref: v })}
-        />
-        <Field
-          label="Secondary button label"
-          value={cta.secondaryLabel}
-          onChange={(v) => onChange({ ...cta, secondaryLabel: v })}
+          label='Booking button label (links to Booking URL)'
+          value={cta.bookingLabel ?? ""}
+          onChange={(v) => onChange({ ...cta, bookingLabel: v })}
         />
       </div>
     </Section>

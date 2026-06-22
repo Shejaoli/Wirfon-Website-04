@@ -129,6 +129,11 @@ function FounderMessage() {
 export default function Home() {
   const site = useSite();
   const quotes = site.academy?.testimonialQuotes ?? [];
+  const bookingHref = site.bookingLink ?? "https://calendar.app.google/6YG4yZQX2mXwo9qr5";
+
+  function openMailerLitePopup() {
+    try { (window as any).ml('show', 'orZO2n', true); } catch (_) {}
+  }
 
   return (
     <>
@@ -218,28 +223,23 @@ export default function Home() {
           <h2>{site.homeCta.title}</h2>
           <p>{site.homeCta.text}</p>
           <div className="cta-buttons">
-            {site.bookingLink && (
-              <a
-                href={site.bookingLink}
-                className="btn btn-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => { try { (window as any).ml('show', 'orZO2n', true); } catch (_) {} }}
-              >
-                {site.homeCta.primaryLabel || "Book a Free Call"}
-              </a>
-            )}
-            {site.homeCta.secondaryHref && (
-              <SmartLink href={site.homeCta.secondaryHref} className="btn btn-outline">
-                {site.homeCta.secondaryLabel}
-              </SmartLink>
-            )}
+            <button className="btn btn-primary" onClick={openMailerLitePopup}>
+              {site.homeCta.primaryLabel || "Click to Get Your Free RoadMap"}
+            </button>
+            <a
+              href={bookingHref}
+              className="btn btn-outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {site.homeCta.bookingLabel || "Book 20 min Meeting"}
+            </a>
           </div>
         </div>
       </section>
 
       {site.homeTestimonials.length > 0 && (
-        <section className="section">
+        <section className="section section-alt">
           <div className="container">
             <h2 className="section-title">What Our Clients Say</h2>
             <VideoCarousel slides={site.homeTestimonials} />
@@ -248,7 +248,7 @@ export default function Home() {
       )}
 
       {quotes.length > 0 && (
-        <section className="section section-alt">
+        <section className="section">
           <div className="container">
             <h2 className="section-title">Alumni Stories</h2>
             <div className="testimonials-grid">

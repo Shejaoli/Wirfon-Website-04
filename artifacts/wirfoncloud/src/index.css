@@ -625,8 +625,10 @@ body { padding-top: calc(78px + var(--ticker-h)); }
 .form-status.success { background: rgba(16, 185, 129, 0.1); color: #047857; border: 1px solid rgba(16, 185, 129, 0.3); }
 .form-status.error { background: rgba(239, 68, 68, 0.1); color: #b91c1c; border: 1px solid rgba(239, 68, 68, 0.3); }
 
-/* Newsletter */
+/* Newsletter / MailerLite embed */
 .newsletter-section { padding-top: 100px; padding-bottom: 60px; }
+.mailerlite-embed-wrap { margin: 2rem auto 0; max-width: 560px; }
+.mailerlite-embed-wrap .ml-embedded { width: 100%; }
 .newsletter-form {
   display: flex;
   gap: 0.75rem;
@@ -2619,7 +2621,7 @@ a[href*="replit.com"]:not(nav a) {
 /* ====================================================================
    Core Values section
    ==================================================================== */
-.core-values-section { background: var(--navy); }
+.core-values-section { background: var(--brand); }
 .core-values-section .section-title { color: #fff; }
 .core-values-grid {
   display: grid;
@@ -2633,7 +2635,7 @@ a[href*="replit.com"]:not(nav a) {
   background: #ffffff;
   border-radius: 16px;
   padding: 2rem 2rem 1.75rem;
-  border: 1px solid rgba(1,153,239,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 .core-value-card:hover {
@@ -2653,12 +2655,12 @@ a[href*="replit.com"]:not(nav a) {
 .core-value-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #111827;
+  color: #0a1628;
   margin: 0 0 0.6rem;
 }
 .core-value-desc {
   font-size: 0.93rem;
-  color: #374151;
+  color: #334155;
   line-height: 1.65;
   margin: 0;
 }
