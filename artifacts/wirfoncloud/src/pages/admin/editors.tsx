@@ -18,6 +18,7 @@ import type {
   Service,
   SiteContent,
   VideoSlide,
+  CustomSection,
 } from "@/lib/site";
 import type { AboutSection } from "@/lib/site";
 import { toSlug } from "@/lib/site";
@@ -1831,6 +1832,147 @@ export function ContactEditor({
         label="Footer copyright year"
         value={footer.copyrightYear}
         onChange={(v) => onChange(contact, { ...footer, copyrightYear: v })}
+      />
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Booking Bar                                                                 */
+/* -------------------------------------------------------------------------- */
+
+export function BookingBarEditor({
+  bar,
+  onChange,
+}: {
+  bar: NonNullable<SiteContent["bookingBar"]>;
+  onChange: (next: NonNullable<SiteContent["bookingBar"]>) => void;
+}) {
+  return (
+    <Section
+      title="Booking bar (sticky button above footer)"
+      description='Always-visible blue bar fixed at the bottom of every page. Toggle it on or off and customise the label and URL.'
+    >
+      <label className="admin-checkbox" style={{ marginBottom: "1rem", gap: "0.75rem", cursor: "pointer" }}>
+        <button
+          type="button"
+          onClick={() => onChange({ ...bar, visible: !bar.visible })}
+          className={"st-toggle" + (bar.visible ? " on" : "")}
+          aria-pressed={bar.visible}
+          aria-label={bar.visible ? "Hide booking bar" : "Show booking bar"}
+        >
+          <span className="st-toggle-thumb" />
+        </button>
+        <span style={{ fontWeight: 500 }}>
+          {bar.visible ? "Booking bar is visible" : "Booking bar is hidden"}
+        </span>
+      </label>
+      <div className="admin-grid-2">
+        <Field
+          label="Button label"
+          value={bar.label}
+          onChange={(v) => onChange({ ...bar, label: v })}
+          placeholder="📅 Book a Free 20 min Meeting"
+        />
+        <Field
+          label="Booking URL"
+          value={bar.url}
+          onChange={(v) => onChange({ ...bar, url: v })}
+          placeholder="https://calendar.app.google/..."
+        />
+      </div>
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Custom Sections                                                             */
+/* -------------------------------------------------------------------------- */
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+export function CustomSectionsEditor({
+  sectionTitle = "Custom sections",
+  description = "Add any number of custom content blocks. Each block can have a title, rich-text body, an optional image, and an optional button.",
+  items,
+  onChange,
+}: {
+  sectionTitle?: string;
+  description?: string;
+  items: CustomSection[];
+  onChange: (next: CustomSection[]) => void;
+}) {
+  return (
+    <Section title={sectionTitle} description={description}>
+      <ListEditor
+        items={items}
+        onChange={onChange}
+        addLabel="Add custom block"
+        newItem={() => ({
+          id: generateId(),
+          title: "New Section",
+          body: "<p>Add your content here.</p>",
+          imageUrl: "",
+          imagePosition: "left" as const,
+          buttonLabel: "",
+          buttonUrl: "",
+        })}
+        renderItem={(s, _i, update) => (
+          <>
+            <Field
+              label="Title"
+              value={s.title}
+              onChange={(v) => update({ ...s, title: v })}
+            />
+            <RichArea
+              label="Body text"
+              value={s.body}
+              onChange={(v) => update({ ...s, body: v })}
+            />
+            <ImageUpload
+              label="Image (optional — leave empty for text-only layout)"
+              value={s.imageUrl ?? ""}
+              onChange={(v) => update({ ...s, imageUrl: v })}
+            />
+            <div className="admin-field" style={{ marginTop: "0.5rem" }}>
+              <span className="admin-field-label">Image position</span>
+              <select
+                value={s.imagePosition ?? "left"}
+                onChange={(e) => update({ ...s, imagePosition: e.target.value as "left" | "right" })}
+                style={{
+                  padding: "0.6rem 0.85rem",
+                  borderRadius: 8,
+                  border: "1.5px solid #d9e1ec",
+                  fontFamily: "inherit",
+                  fontSize: "0.92rem",
+                  color: "#334155",
+                  background: "#fff",
+                  cursor: "pointer",
+                  width: "100%",
+                }}
+              >
+                <option value="left">Image on the left</option>
+                <option value="right">Image on the right</option>
+              </select>
+            </div>
+            <div className="admin-grid-2">
+              <Field
+                label="Button label (optional)"
+                value={s.buttonLabel ?? ""}
+                onChange={(v) => update({ ...s, buttonLabel: v })}
+                placeholder="Learn more"
+              />
+              <Field
+                label="Button URL (optional)"
+                value={s.buttonUrl ?? ""}
+                onChange={(v) => update({ ...s, buttonUrl: v })}
+                placeholder="https://..."
+              />
+            </div>
+          </>
+        )}
       />
     </Section>
   );

@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import { useSite } from "@/hooks/useSite";
 import { renderInline } from "@/lib/format";
+import CustomSections from "@/components/CustomSections";
 
 export default function About() {
   const site = useSite();
@@ -65,9 +66,11 @@ export default function About() {
         );
       })}
 
+      <CustomSections sections={site.about.customSections} baseIndex={sections.length} />
+
       <section
         id="contact"
-        className={"section anchor-section" + (sections.length % 2 === 1 ? " section-alt" : "")}
+        className={"section anchor-section" + ((sections.length + (site.about.customSections?.length ?? 0)) % 2 === 1 ? " section-alt" : "")}
       >
         <div className="container narrow">
           <h2>Contact Us</h2>

@@ -27,6 +27,8 @@ import {
   BlogEditor,
   FaqsEditor,
   GalleryEditor,
+  BookingBarEditor,
+  CustomSectionsEditor,
 } from "./editors";
 import { SettingsPage } from "./SettingsPage";
 
@@ -665,6 +667,15 @@ export default function AdminDashboard() {
                         coreValues={data.coreValues ?? { heading: "Our Core Values", values: [] }}
                         onChange={(coreValues) => update({ ...data, coreValues })}
                       />
+                      <BookingBarEditor
+                        bar={data.bookingBar ?? { label: "📅 Book a Free 20 min Meeting", url: "https://calendar.app.google/6YG4yZQX2mXwo9qr5", visible: true }}
+                        onChange={(bookingBar) => update({ ...data, bookingBar })}
+                      />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (Home page)"
+                        items={data.homeCustomSections ?? []}
+                        onChange={(homeCustomSections) => update({ ...data, homeCustomSections })}
+                      />
                     </>
                   )}
                   {tab === "about" && (
@@ -674,13 +685,32 @@ export default function AdminDashboard() {
                         founder={data.homeFounder ?? { quote: "", founderName: "", founderTitle: "", founderPhoto: "" }}
                         onChange={(homeFounder) => update({ ...data, homeFounder })}
                       />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (About page)"
+                        items={data.about.customSections ?? []}
+                        onChange={(customSections) => update({ ...data, about: { ...data.about, customSections } })}
+                      />
                     </>
                   )}
                   {tab === "academy" && (
-                    <AcademyEditor academy={data.academy} onChange={(academy) => update({ ...data, academy })} />
+                    <>
+                      <AcademyEditor academy={data.academy} onChange={(academy) => update({ ...data, academy })} />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (Academy page)"
+                        items={data.academy.customSections ?? []}
+                        onChange={(customSections) => update({ ...data, academy: { ...data.academy, customSections } })}
+                      />
+                    </>
                   )}
                   {tab === "consultancy" && (
-                    <ConsultancyEditor consultancy={data.consultancy} onChange={(consultancy) => update({ ...data, consultancy })} />
+                    <>
+                      <ConsultancyEditor consultancy={data.consultancy} onChange={(consultancy) => update({ ...data, consultancy })} />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (Consultancy page)"
+                        items={data.consultancy.customSections ?? []}
+                        onChange={(customSections) => update({ ...data, consultancy: { ...data.consultancy, customSections } })}
+                      />
+                    </>
                   )}
                   {tab === "blog" && (
                     <BlogEditor blog={data.blog} onChange={(blog) => update({ ...data, blog })} />

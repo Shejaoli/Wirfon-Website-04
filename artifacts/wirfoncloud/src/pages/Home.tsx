@@ -3,6 +3,7 @@ import HeroSlider from "@/components/HeroSlider";
 import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
 import { SmartLink } from "@/components/SmartLink";
+import CustomSections from "@/components/CustomSections";
 import { useSite } from "@/hooks/useSite";
 import founderImg from "@assets/Photo_from_Mfoome_Bahti_-Ban(3)_1777412731019.jpg";
 import type { CoreValue } from "@/lib/site";
@@ -246,6 +247,8 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      <CustomSections sections={site.homeCustomSections} baseIndex={0} />
 
       {quotes.length > 0 && (
         <section className="section">

@@ -1,6 +1,7 @@
 import VideoCarousel from "@/components/VideoCarousel";
 import TwoColImage from "@/components/TwoColImage";
 import { SmartLink } from "@/components/SmartLink";
+import CustomSections from "@/components/CustomSections";
 import { useSite } from "@/hooks/useSite";
 import placeholderImg from "@assets/001wirfoncloud_kleppen2_1778163190666.png";
 
@@ -162,6 +163,8 @@ export default function Consultancy() {
           </div>
         </section>
       )}
+
+      <CustomSections sections={c.customSections} baseIndex={0} />
 
       <section className="section cta-section">
         <div className="container text-center">

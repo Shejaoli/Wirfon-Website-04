@@ -19,6 +19,15 @@ export function toSlug(title: string): string {
     .replace(/^-|-$/g, "");
 }
 export type Faq = { q: string; a: string };
+export type CustomSection = {
+  id: string;
+  title: string;
+  body: string;
+  imageUrl?: string;
+  imagePosition?: "left" | "right";
+  buttonLabel?: string;
+  buttonUrl?: string;
+};
 export type Service = { icon: string; title: string; text: string };
 export type Partner = { name: string; href: string; logo?: string };
 export type GalleryPhoto = { src: string; alt: string; caption: string };
@@ -80,6 +89,7 @@ export interface SiteContent {
     bannerTitle: string;
     bannerSubtitle: string;
     sections: AboutSection[];
+    customSections?: CustomSection[];
   };
   academy: {
     bannerImage: string;
@@ -93,6 +103,7 @@ export interface SiteContent {
     testimonialVideos: VideoSlide[];
     testimonialQuotes: Quote[];
     howWeWork?: { icon: string; step: string; title: string; text: string }[];
+    customSections?: CustomSection[];
   };
   consultancy: {
     image: string;
@@ -105,6 +116,7 @@ export interface SiteContent {
     howWeWork?: { icon: string; step: string; title: string; text: string }[];
     testimonials: VideoSlide[];
     testimonialQuotes?: Quote[];
+    customSections?: CustomSection[];
     aiConsultancy?: {
       image: string;
       fallbackLabel: string;
@@ -133,6 +145,12 @@ export interface SiteContent {
     whatsapp: string;
     discord?: string;
   };
+  bookingBar?: {
+    label: string;
+    url: string;
+    visible: boolean;
+  };
+  homeCustomSections?: CustomSection[];
   bookingLink?: string;
   contact: { email: string };
   footer: { copyrightYear: number };
@@ -267,6 +285,11 @@ export const DEFAULT_SITE: SiteContent = {
     facebook: "https://www.facebook.com/wirfoncloud",
     youtube: "https://www.youtube.com/@wirfoncloud",
     whatsapp: "https://wa.me/250791921156",
+  },
+  bookingBar: {
+    label: "📅 Book a Free 20 min Meeting",
+    url: "https://calendar.app.google/6YG4yZQX2mXwo9qr5",
+    visible: true,
   },
   bookingLink: "https://calendar.app.google/6YG4yZQX2mXwo9qr5",
   contact: { email: "contact@wirfoncloud.com" },

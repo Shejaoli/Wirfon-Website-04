@@ -1,5 +1,6 @@
 import { useSite } from "@/hooks/useSite";
 import type { Course } from "@/lib/site";
+import CustomSections from "@/components/CustomSections";
 
 const LINUX_QUIZ_URL = "https://wirfoncloud.github.io/linux-quiz-assessment/";
 
@@ -158,6 +159,8 @@ export default function Academy() {
           </div>
         </div>
       </section>
+
+      <CustomSections sections={a.customSections} baseIndex={0} />
 
       {(a.testimonialVideos.length > 0 || a.testimonialQuotes.length > 0) && (
         <section id="testimonials" className="section section-alt anchor-section">

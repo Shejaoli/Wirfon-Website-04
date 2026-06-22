@@ -4225,3 +4225,48 @@ a[href*="replit.com"]:not(nav a) {
   background: var(--brand);
   border-color: var(--brand);
 }
+
+/* ====================================================================
+   Booking sticky bar
+   ==================================================================== */
+.booking-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 950;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  box-shadow: 0 -3px 16px rgba(1,153,239,0.3);
+}
+.booking-sticky-btn {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.18s;
+  letter-spacing: 0.01em;
+}
+.booking-sticky-btn:hover { color: #fff; opacity: 0.88; }
+
+/* ====================================================================
+   Custom section blocks
+   ==================================================================== */
+.custom-section-body { color: var(--grey-700); line-height: 1.75; }
+.custom-section-body p { margin-bottom: 0.9em; color: var(--grey-700); }
+.custom-section-body h1, .custom-section-body h2, .custom-section-body h3 {
+  color: var(--grey-900); margin: 1.5rem 0 0.6rem;
+}
+.custom-section-body strong { color: var(--grey-900); }
+.custom-section-body a { color: var(--brand); text-decoration: underline; }
+.custom-section-body ul, .custom-section-body ol {
+  padding-left: 1.5rem; margin-bottom: 0.9em;
+}
+.custom-section-body li { margin-bottom: 0.35rem; color: var(--grey-700); }
+.custom-section-btn { margin-top: 1.25rem !important; display: inline-flex !important; }
