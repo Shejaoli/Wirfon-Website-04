@@ -1977,3 +1977,65 @@ export function CustomSectionsEditor({
     </Section>
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/* FAQ Page                                                                    */
+/* -------------------------------------------------------------------------- */
+
+export function FaqPageEditor({
+  faqPage,
+  onChange,
+}: {
+  faqPage: NonNullable<SiteContent["faqPage"]>;
+  onChange: (next: NonNullable<SiteContent["faqPage"]>) => void;
+}) {
+  return (
+    <Section title="FAQ page banner" description="Customise the title and subtitle shown at the top of the FAQ page.">
+      <div className="admin-grid-2">
+        <Field
+          label="Banner title"
+          value={faqPage.title ?? ""}
+          onChange={(v) => onChange({ ...faqPage, title: v })}
+          placeholder="Frequently Asked Questions"
+        />
+        <Field
+          label="Banner subtitle"
+          value={faqPage.subtitle ?? ""}
+          onChange={(v) => onChange({ ...faqPage, subtitle: v })}
+          placeholder="Everything you need to know about WirfonCloud training and consulting."
+        />
+      </div>
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Privacy Policy                                                              */
+/* -------------------------------------------------------------------------- */
+
+export function PrivacyPolicyEditor({
+  policy,
+  onChange,
+}: {
+  policy: NonNullable<SiteContent["privacyPolicy"]>;
+  onChange: (next: NonNullable<SiteContent["privacyPolicy"]>) => void;
+}) {
+  return (
+    <Section
+      title="Privacy Policy page"
+      description="This content appears at /privacy. Leave the body empty to show the built-in default text."
+    >
+      <Field
+        label="Page title"
+        value={policy.title ?? ""}
+        onChange={(v) => onChange({ ...policy, title: v })}
+        placeholder="Privacy Policy"
+      />
+      <RichArea
+        label="Policy body (leave blank for default)"
+        value={policy.body ?? ""}
+        onChange={(v) => onChange({ ...policy, body: v })}
+      />
+    </Section>
+  );
+}

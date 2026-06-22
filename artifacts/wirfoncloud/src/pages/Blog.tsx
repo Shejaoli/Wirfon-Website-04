@@ -3,6 +3,7 @@ import { useSite } from "@/hooks/useSite";
 import { toSlug } from "@/lib/site";
 import type { BlogPost } from "@/lib/site";
 import { useState } from "react";
+import CustomSections from "@/components/CustomSections";
 
 function BlogCard({ p }: { p: BlogPost }) {
   const [imgErr, setImgErr] = useState(false);
@@ -97,6 +98,8 @@ export default function Blog() {
           </div>
         </section>
       )}
+
+      <CustomSections sections={site.blog.customSections ?? []} />
     </>
   );
 }

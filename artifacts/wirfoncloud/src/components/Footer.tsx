@@ -172,7 +172,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-row">
           <ul className="footer-legal">
-            <li><Link href="/about">Privacy Policy</Link></li>
+            <li><Link href="/privacy">Privacy Policy</Link></li>
             <li><Link href="/about#our-mission">Our History</Link></li>
             <li><Link href="/consultancy">What We Do</Link></li>
           </ul>

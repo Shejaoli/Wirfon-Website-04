@@ -29,6 +29,8 @@ import {
   GalleryEditor,
   BookingBarEditor,
   CustomSectionsEditor,
+  FaqPageEditor,
+  PrivacyPolicyEditor,
 } from "./editors";
 import { SettingsPage } from "./SettingsPage";
 
@@ -713,10 +715,28 @@ export default function AdminDashboard() {
                     </>
                   )}
                   {tab === "blog" && (
-                    <BlogEditor blog={data.blog} onChange={(blog) => update({ ...data, blog })} />
+                    <>
+                      <BlogEditor blog={data.blog} onChange={(blog) => update({ ...data, blog })} />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (Blog page)"
+                        items={data.blog.customSections ?? []}
+                        onChange={(customSections) => update({ ...data, blog: { ...data.blog, customSections } })}
+                      />
+                    </>
                   )}
                   {tab === "faq" && (
-                    <FaqsEditor items={data.faqs} onChange={(faqs) => update({ ...data, faqs })} />
+                    <>
+                      <FaqPageEditor
+                        faqPage={data.faqPage ?? {}}
+                        onChange={(faqPage) => update({ ...data, faqPage })}
+                      />
+                      <FaqsEditor items={data.faqs} onChange={(faqs) => update({ ...data, faqs })} />
+                      <CustomSectionsEditor
+                        sectionTitle="Custom sections (FAQ page)"
+                        items={data.faqPage?.customSections ?? []}
+                        onChange={(customSections) => update({ ...data, faqPage: { ...(data.faqPage ?? {}), customSections } })}
+                      />
+                    </>
                   )}
                   {tab === "gallery" && (
                     <GalleryEditor
@@ -725,7 +745,13 @@ export default function AdminDashboard() {
                     />
                   )}
                   {tab === "settings" && (
-                    <SettingsPage data={data} onChange={update} />
+                    <>
+                      <PrivacyPolicyEditor
+                        policy={data.privacyPolicy ?? {}}
+                        onChange={(privacyPolicy) => update({ ...data, privacyPolicy })}
+                      />
+                      <SettingsPage data={data} onChange={update} />
+                    </>
                   )}
                 </>
               )}

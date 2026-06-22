@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useSite } from "@/hooks/useSite";
+import CustomSections from "@/components/CustomSections";
 
 export default function FAQ() {
   const site = useSite();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const faqPage = site.faqPage ?? {};
+  const bannerTitle = faqPage.title || "Frequently Asked Questions";
+  const bannerSubtitle = faqPage.subtitle || "Everything you need to know about WirfonCloud training and consulting.";
 
   return (
     <>
@@ -12,8 +16,8 @@ export default function FAQ() {
         style={{ background: "linear-gradient(135deg, #0199ef 0%, #005fa3 100%)" }}
       >
         <div className="container">
-          <h1>Frequently Asked Questions</h1>
-          <p>Everything you need to know about WirfonCloud training and consulting.</p>
+          <h1>{bannerTitle}</h1>
+          <p>{bannerSubtitle}</p>
         </div>
       </section>
 
@@ -41,6 +45,8 @@ export default function FAQ() {
           </div>
         </div>
       </section>
+
+      <CustomSections sections={site.faqPage?.customSections ?? []} />
     </>
   );
 }

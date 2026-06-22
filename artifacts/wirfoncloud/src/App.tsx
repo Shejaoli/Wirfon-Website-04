@@ -9,6 +9,7 @@ import BlogPostPage from "@/pages/BlogPostPage";
 import FAQ from "@/pages/FAQ";
 import Gallery from "@/pages/Gallery";
 import Quiz from "@/pages/Quiz";
+import Privacy from "@/pages/Privacy";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import NotFound from "@/pages/not-found";
@@ -26,6 +27,7 @@ function PublicRouter() {
         <Route path="/gallery" component={Gallery} />
         <Route path="/quiz" component={Quiz} />
         <Route path="/faq" component={FAQ} />
+        <Route path="/privacy" component={Privacy} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

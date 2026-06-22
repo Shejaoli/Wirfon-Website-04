@@ -130,8 +130,18 @@ export interface SiteContent {
     title: string;
     text: string;
     posts: BlogPost[];
+    customSections?: CustomSection[];
+  };
+  faqPage?: {
+    title?: string;
+    subtitle?: string;
+    customSections?: CustomSection[];
   };
   faqs: Faq[];
+  privacyPolicy?: {
+    title?: string;
+    body?: string;
+  };
   gallery: {
     bannerTitle: string;
     bannerSubtitle: string;
