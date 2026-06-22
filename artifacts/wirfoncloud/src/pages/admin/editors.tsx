@@ -1135,6 +1135,36 @@ export function ConsultancyEditor({
           renderItem={(v, _i, update) => <VideoSlideFields slide={v} update={update} />}
         />
       </Section>
+
+      <Section
+        title="Client quote testimonials"
+        description='Text-based client quotes shown as cards in the "Client Stories" section beneath the video testimonials.'
+      >
+        <ListEditor
+          items={consultancy.testimonialQuotes ?? []}
+          onChange={(testimonialQuotes) => onChange({ ...consultancy, testimonialQuotes })}
+          addLabel="Add client quote"
+          newItem={() => ({ text: "", author: "Client Name", photo: "" })}
+          renderItem={(q, _i, update) => (
+            <>
+              <Area
+                label="Quote text (no quote marks needed)"
+                value={q.text}
+                onChange={(v) => update({ ...q, text: v })}
+                rows={3}
+              />
+              <div className="admin-grid-2">
+                <Field label="Client name" value={q.author} onChange={(v) => update({ ...q, author: v })} />
+              </div>
+              <ImageUpload
+                label="Client photo (optional — shown as avatar)"
+                value={q.photo ?? ""}
+                onChange={(v) => update({ ...q, photo: v })}
+              />
+            </>
+          )}
+        />
+      </Section>
     </>
   );
 }
