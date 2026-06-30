@@ -41,8 +41,8 @@ const links: { href: string; label: string; key: string; dropdown?: { href: stri
     label: "Consultancy",
     key: "consultancy",
     dropdown: [
-      { href: "/consultancy#corporate-teams", label: "Corporate Teams" },
-      { href: "/consultancy#ai-adoption", label: "AI Adoption" },
+      { href: "/consultancy", label: "Cloud Consultancy" },
+      { href: "/consultancy#ai-adoption", label: "AI Consultancy" },
       { href: "/consultancy#services", label: "Our Services" },
       { href: "/consultancy#testimonials", label: "What Our Clients Say" },
     ],

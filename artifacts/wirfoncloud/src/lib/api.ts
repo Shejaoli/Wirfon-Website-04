@@ -155,3 +155,33 @@ export async function adminRestore(file: File): Promise<{ success: boolean; erro
     return { success: false, error: "Invalid backup file or network error" };
   }
 }
+
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  phone: string | null;
+  subject: string | null;
+  message: string;
+  read: string;
+  receivedAt: string;
+}
+
+export async function adminFetchMessages(): Promise<ContactMessage[]> {
+  try {
+    const res = await fetch("/api/messages", { headers: authHeaders() });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.messages ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function adminMarkMessageRead(id: number): Promise<void> {
+  try {
+    await fetch(`/api/messages/${id}/read`, { method: "PATCH", headers: authHeaders() });
+  } catch {
+    /* ignore */
+  }
+}

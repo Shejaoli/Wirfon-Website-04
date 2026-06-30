@@ -108,8 +108,7 @@ export default function Footer() {
             <h4>Academy</h4>
             <ul>
               <li><Link href="/academy#courses">Courses</Link></li>
-              <li><Link href="/academy#learning-paths">Learning Paths</Link></li>
-              <li><Link href="/academy#mastery">Mastery</Link></li>
+              <li><Link href="/academy#career-paths">Career Paths</Link></li>
               <li><Link href="/academy#more">Workshops</Link></li>
               <li><Link href="/blog">Blog</Link></li>
             </ul>
@@ -130,7 +129,6 @@ export default function Footer() {
             <ul>
               <li><Link href="/consultancy#services">Consultancy</Link></li>
               <li><Link href="/academy">Training</Link></li>
-              <li><Link href="/about#our-mission">Mentoring</Link></li>
               <li><Link href="/about#contact">Get in Touch</Link></li>
             </ul>
           </div>

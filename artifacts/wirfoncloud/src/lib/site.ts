@@ -112,6 +112,7 @@ export interface SiteContent {
     text: string;
     ctaHref: string;
     ctaLabel: string;
+    bookingLabel?: string;
     services: Service[];
     howWeWork?: { icon: string; step: string; title: string; text: string }[];
     testimonials: VideoSlide[];

@@ -11,3 +11,14 @@ export const subscribers = pgTable("subscribers", {
   email: text("email").notNull().unique(),
   subscribedAt: timestamp("subscribed_at", { withTimezone: true }).defaultNow(),
 });
+
+export const contactMessages = pgTable("contact_messages", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  subject: text("subject"),
+  message: text("message").notNull(),
+  read: text("read").notNull().default("false"),
+  receivedAt: timestamp("received_at", { withTimezone: true }).defaultNow(),
+});

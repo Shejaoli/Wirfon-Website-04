@@ -7,6 +7,9 @@ import {
   adminSaveContent,
   adminResetContent,
   fetchContent,
+  adminFetchMessages,
+  adminMarkMessageRead,
+  type ContactMessage,
 } from "@/lib/api";
 import { DEFAULT_SITE, type SiteContent } from "@/lib/site";
 import { useSiteCtx } from "@/hooks/useSite";
@@ -45,6 +48,7 @@ type Tab =
   | "blog"
   | "faq"
   | "gallery"
+  | "messages"
   | "settings";
 
 const TAB_GROUPS: { label: string; tabs: { id: Tab; label: string; icon: string; desc: string }[] }[] = [
@@ -74,6 +78,12 @@ const TAB_GROUPS: { label: string; tabs: { id: Tab; label: string; icon: string;
     ],
   },
   {
+    label: "Inbox",
+    tabs: [
+      { id: "messages", label: "Messages", icon: "fa-envelope", desc: "Contact form submissions" },
+    ],
+  },
+  {
     label: "Configuration",
     tabs: [
       { id: "settings", label: "Settings", icon: "fa-gear", desc: "Socials, contact & reset" },
@@ -94,8 +104,108 @@ const TAB_COLORS: Record<Tab, string> = {
   blog:        "#14b8a6",
   faq:         "#f97316",
   gallery:     "#0891b2",
+  messages:    "#0199ef",
   settings:    "#64748b",
 };
+
+/* ─── Messages Inbox ─────────────────────────────── */
+function MessagesInbox() {
+  const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState<ContactMessage | null>(null);
+
+  useEffect(() => {
+    adminFetchMessages().then((msgs) => {
+      setMessages(msgs);
+      setLoading(false);
+    });
+  }, []);
+
+  const handleSelect = async (msg: ContactMessage) => {
+    setSelected(msg);
+    if (msg.read === "false") {
+      await adminMarkMessageRead(msg.id);
+      setMessages((prev) => prev.map((m) => m.id === msg.id ? { ...m, read: "true" } : m));
+    }
+  };
+
+  const unreadCount = messages.filter((m) => m.read === "false").length;
+
+  const fmt = (iso: string) => {
+    try {
+      return new Date(iso).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
+    } catch {
+      return iso;
+    }
+  };
+
+  if (loading) {
+    return <div className="admin-empty">Loading messages…</div>;
+  }
+
+  return (
+    <div className="messages-inbox">
+      <div className="messages-list">
+        <div className="messages-list-header">
+          <span>
+            <i className="fa-solid fa-envelope" /> Inbox
+          </span>
+          {unreadCount > 0 && <span className="messages-unread-badge">{unreadCount} new</span>}
+        </div>
+        {messages.length === 0 && (
+          <div className="admin-empty" style={{ padding: "2rem" }}>No messages yet.</div>
+        )}
+        {messages.map((msg) => (
+          <button
+            key={msg.id}
+            className={"messages-list-item" + (selected?.id === msg.id ? " active" : "") + (msg.read === "false" ? " unread" : "")}
+            onClick={() => handleSelect(msg)}
+          >
+            <div className="messages-item-top">
+              <span className="messages-item-name">{msg.name}</span>
+              <span className="messages-item-date">{fmt(msg.receivedAt)}</span>
+            </div>
+            <div className="messages-item-subject">{msg.subject || "(no subject)"}</div>
+            <div className="messages-item-preview">{msg.message.slice(0, 80)}{msg.message.length > 80 ? "…" : ""}</div>
+          </button>
+        ))}
+      </div>
+      <div className="messages-detail">
+        {!selected ? (
+          <div className="messages-detail-empty">
+            <i className="fa-regular fa-envelope-open" />
+            <p>Select a message to read it</p>
+          </div>
+        ) : (
+          <>
+            <div className="messages-detail-header">
+              <h2>{selected.subject || "(no subject)"}</h2>
+              <span className="messages-detail-date">{fmt(selected.receivedAt)}</span>
+            </div>
+            <div className="messages-detail-meta">
+              <span><strong>From:</strong> {selected.name}</span>
+              <a href={`mailto:${selected.email}`} className="messages-detail-email">
+                <i className="fa-solid fa-envelope" /> {selected.email}
+              </a>
+              {selected.phone && (
+                <span><strong>Phone:</strong> {selected.phone}</span>
+              )}
+            </div>
+            <div className="messages-detail-body">{selected.message}</div>
+            <div className="messages-detail-actions">
+              <a
+                href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject || "")}`}
+                className="btn btn-primary btn-sm"
+              >
+                <i className="fa-solid fa-reply" /> Reply by Email
+              </a>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
 
 /* ─── Dashboard Overview ─────────────────────────── */
 function StatCard({
@@ -743,6 +853,9 @@ export default function AdminDashboard() {
                       gallery={data.gallery ?? { bannerTitle: "WirfonCloud in Pictures", bannerSubtitle: "", albums: [] }}
                       onChange={(gallery) => update({ ...data, gallery })}
                     />
+                  )}
+                  {tab === "messages" && (
+                    <MessagesInbox />
                   )}
                   {tab === "settings" && (
                     <>

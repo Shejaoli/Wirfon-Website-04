@@ -26,10 +26,11 @@ export default function Consultancy() {
   const c = site.consultancy;
   const quotes = site.consultancy?.testimonialQuotes ?? (site.academy?.testimonialQuotes ?? []);
   const bookingHref = site.bookingLink ?? "https://calendar.app.google/6YG4yZQX2mXwo9qr5";
+  const bookingLabel = c?.bookingLabel || site.bookingBar?.label || "Book 20 min Meeting";
 
   return (
     <>
-      <section id="corporate-teams" className="section anchor-section">
+      <section id="cloud-consultancy" className="section anchor-section">
         <div className="container two-col">
           <div className="col-image">
             <TwoColImage src={c.image} alt={c.title} fallbackLabel={c.fallbackLabel} />
@@ -45,9 +46,27 @@ export default function Consultancy() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+                <i className="fa-solid fa-calendar-check" /> {bookingLabel}
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="container">
+          <h2 className="section-title">How We Work</h2>
+          <div className="cards-grid">
+            {(c.howWeWork ?? DEFAULT_HOW_WE_WORK).map((item, i) => (
+              <div key={i} className="card how-card">
+                <span className="how-step">{item.step}</span>
+                <div className="service-icon">
+                  <i className={`fa-solid ${item.icon}`} />
+                </div>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -55,7 +74,7 @@ export default function Consultancy() {
       {(() => {
         const ai = c.aiConsultancy ?? DEFAULT_AI_CONSULTANCY;
         return (
-          <section id="ai-adoption" className="section section-alt anchor-section">
+          <section id="ai-adoption" className="section anchor-section">
             <div className="container two-col reverse">
               <div className="col-image">
                 <TwoColImage
@@ -75,7 +94,7 @@ export default function Consultancy() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+                    <i className="fa-solid fa-calendar-check" /> {bookingLabel}
                   </a>
                 </div>
               </div>
@@ -85,7 +104,7 @@ export default function Consultancy() {
       })()}
 
       {c.services.length > 0 && (
-        <section id="services" className="section anchor-section">
+        <section id="services" className="section section-alt anchor-section">
           <div className="container">
             <h2 className="section-title">Our Services</h2>
             <p className="section-intro-text">
@@ -112,24 +131,6 @@ export default function Consultancy() {
           </div>
         </section>
       )}
-
-      <section className="section section-alt">
-        <div className="container">
-          <h2 className="section-title">How We Work</h2>
-          <div className="cards-grid">
-            {(c.howWeWork ?? DEFAULT_HOW_WE_WORK).map((item, i) => (
-              <div key={i} className="card how-card">
-                <span className="how-step">{item.step}</span>
-                <div className="service-icon">
-                  <i className={`fa-solid ${item.icon}`} />
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {c.testimonials.length > 0 && (
         <section id="testimonials" className="section anchor-section">
@@ -177,7 +178,7 @@ export default function Consultancy() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa-solid fa-calendar-check" /> Book 20 min Meeting
+              <i className="fa-solid fa-calendar-check" /> {bookingLabel}
             </a>
             <SmartLink href="/about#contact" className="btn btn-outline">
               Send us a message

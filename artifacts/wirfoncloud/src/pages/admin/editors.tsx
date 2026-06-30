@@ -1017,16 +1017,22 @@ export function ConsultancyEditor({
         />
         <div className="admin-grid-2">
           <Field
-            label="Button URL"
+            label="Primary button URL"
             value={consultancy.ctaHref}
             onChange={(v) => onChange({ ...consultancy, ctaHref: v })}
           />
           <Field
-            label="Button label"
+            label="Primary button label"
             value={consultancy.ctaLabel}
             onChange={(v) => onChange({ ...consultancy, ctaLabel: v })}
           />
         </div>
+        <Field
+          label='"Book meeting" button label'
+          value={consultancy.bookingLabel ?? ""}
+          onChange={(v) => onChange({ ...consultancy, bookingLabel: v })}
+          placeholder="Book 20 min Meeting"
+        />
       </Section>
 
       <Section title="AI Consultancy section" description="The AI Consultancy block that appears just before 'Our Services'. Image and text are editable here.">
