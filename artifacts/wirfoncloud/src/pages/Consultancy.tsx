@@ -53,24 +53,6 @@ export default function Consultancy() {
         </div>
       </section>
 
-      <section className="section section-alt">
-        <div className="container">
-          <h2 className="section-title">How We Work</h2>
-          <div className="cards-grid">
-            {(c.howWeWork ?? DEFAULT_HOW_WE_WORK).map((item, i) => (
-              <div key={i} className="card how-card">
-                <span className="how-step">{item.step}</span>
-                <div className="service-icon">
-                  <i className={`fa-solid ${item.icon}`} />
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {(() => {
         const ai = c.aiConsultancy ?? DEFAULT_AI_CONSULTANCY;
         return (
@@ -131,6 +113,24 @@ export default function Consultancy() {
           </div>
         </section>
       )}
+
+      <section className="section section-alt">
+        <div className="container">
+          <h2 className="section-title">How We Work</h2>
+          <div className="cards-grid">
+            {(c.howWeWork ?? DEFAULT_HOW_WE_WORK).map((item, i) => (
+              <div key={i} className="card how-card">
+                <span className="how-step">{item.step}</span>
+                <div className="service-icon">
+                  <i className={`fa-solid ${item.icon}`} />
+                </div>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {c.testimonials.length > 0 && (
         <section id="testimonials" className="section anchor-section">

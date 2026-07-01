@@ -114,7 +114,25 @@ export default function Academy() {
         </section>
       )}
 
-      <section id="linux-quiz" className="section anchor-section">
+      <section id="how-we-work" className="section anchor-section">
+        <div className="container">
+          <h2 className="section-title">How We Work</h2>
+          <div className="cards-grid">
+            {(a.howWeWork ?? DEFAULT_ACADEMY_HOW_WE_WORK).map((item, i) => (
+              <div key={i} className="card how-card">
+                <span className="how-step">{item.step}</span>
+                <div className="service-icon">
+                  <i className={`fa-solid ${item.icon}`} />
+                </div>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="linux-quiz" className="section section-alt anchor-section">
         <div className="container text-center">
           <h2 className="section-title">Linux Career Readiness Quiz</h2>
           <p className="section-subtitle" style={{ maxWidth: 600, margin: "0 auto 2rem" }}>
@@ -131,31 +149,13 @@ export default function Academy() {
         </div>
       </section>
 
-      <section id="more" className="section section-alt anchor-section">
+      <section id="more" className="section anchor-section">
         <div className="container">
           <h2 className="section-title">Workshops &amp; Community</h2>
           <div className="text-center">
             <a href={a.discordLink} className="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
               Join WirfonCloud Community
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="how-we-work" className="section anchor-section">
-        <div className="container">
-          <h2 className="section-title">How We Work</h2>
-          <div className="cards-grid">
-            {(a.howWeWork ?? DEFAULT_ACADEMY_HOW_WE_WORK).map((item, i) => (
-              <div key={i} className="card how-card">
-                <span className="how-step">{item.step}</span>
-                <div className="service-icon">
-                  <i className={`fa-solid ${item.icon}`} />
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.text}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
