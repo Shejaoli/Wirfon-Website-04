@@ -6,6 +6,7 @@ export default function HeroSlider() {
   const site = useSite();
   const slides = site.hero;
   const [index, setIndex] = useState(0);
+  const [imgLoaded, setImgLoaded] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -33,7 +34,7 @@ export default function HeroSlider() {
             <div
               key={i}
               className={"hero-layer" + (i === index ? " active" : "")}
-              style={hasImage ? {} : {
+              style={{
                 backgroundImage: gradient,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -49,10 +50,18 @@ export default function HeroSlider() {
                     loading={isFirst ? "eager" : "lazy"}
                     decoding={isFirst ? "sync" : "async"}
                     className="hero-bg-img"
+                    style={{
+                      opacity: imgLoaded[i] ? 1 : 0,
+                      transition: "opacity 0.6s ease",
+                    }}
+                    onLoad={() => setImgLoaded((prev) => ({ ...prev, [i]: true }))}
                   />
-                  <div className="hero-bg-overlay" style={{
-                    background: `linear-gradient(135deg, ${slide.bgFrom}55 0%, ${slide.bgTo}55 100%)`,
-                  }} />
+                  <div
+                    className="hero-bg-overlay"
+                    style={{
+                      background: `linear-gradient(135deg, ${slide.bgFrom}55 0%, ${slide.bgTo}55 100%)`,
+                    }}
+                  />
                 </>
               )}
             </div>

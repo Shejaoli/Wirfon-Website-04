@@ -33,7 +33,7 @@ export default function Consultancy() {
       <section id="cloud-consultancy" className="section anchor-section">
         <div className="container two-col">
           <div className="col-image">
-            <TwoColImage src={c.image} alt={c.title} fallbackLabel={c.fallbackLabel} />
+            <TwoColImage src={c.image} alt={c.title} fallbackLabel={c.fallbackLabel} priority />
           </div>
           <div className="col-text">
             <h1>{c.title}</h1>

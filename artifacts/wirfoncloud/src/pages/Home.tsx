@@ -148,7 +148,7 @@ export default function Home() {
               {intro.reverse ? (
                 <>
                   <div className="col-image">
-                    <TwoColImage src={intro.image} alt={intro.title} fallbackLabel={intro.fallbackLabel} />
+                    <TwoColImage src={intro.image} alt={intro.title} fallbackLabel={intro.fallbackLabel} priority={i === 0} />
                   </div>
                   <div className="col-text">
                     <h2>{intro.title}</h2>
@@ -164,7 +164,7 @@ export default function Home() {
                     <SmartLink href={intro.ctaHref} className="btn btn-primary">{intro.ctaLabel}</SmartLink>
                   </div>
                   <div className="col-image">
-                    <TwoColImage src={intro.image} alt={intro.title} fallbackLabel={intro.fallbackLabel} />
+                    <TwoColImage src={intro.image} alt={intro.title} fallbackLabel={intro.fallbackLabel} priority={i === 0} />
                   </div>
                 </>
               )}
