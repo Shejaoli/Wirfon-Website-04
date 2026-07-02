@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
 import { useSite } from "@/hooks/useSite";
 
@@ -6,21 +6,6 @@ function scrollToHash(hash: string) {
   const id = hash.startsWith("#") ? hash.slice(1) : hash;
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function useHashLinkClick(location: string) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const hashIdx = href.indexOf("#");
-    if (hashIdx === -1) return;
-    const path = href.slice(0, hashIdx) || "/";
-    const hash = href.slice(hashIdx);
-    const currentPath = location === "" ? "/" : location;
-    if (currentPath === path) {
-      e.preventDefault();
-      scrollToHash(hash);
-    }
-  };
-  return handleClick;
 }
 
 const links: { href: string; label: string; key: string; dropdown?: { href: string; label: string }[] }[] = [
@@ -76,17 +61,41 @@ export default function Navbar() {
   const active = activeKey(location);
   const site = useSite();
   const logoUrl = site.branding?.logoUrl || "";
-  const handleHashClick = useHashLinkClick(location);
 
-  useEffect(() => {
+  const closeMenu = useCallback(() => {
     setOpen(false);
     setOpenDropdown(null);
-  }, [location]);
+  }, []);
+
+  useEffect(() => {
+    closeMenu();
+  }, [location, closeMenu]);
+
+  function handleDropdownLinkClick(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    const hashIdx = href.indexOf("#");
+    if (hashIdx !== -1) {
+      const path = href.slice(0, hashIdx) || "/";
+      const hash = href.slice(hashIdx);
+      const currentPath = location === "" ? "/" : location;
+      if (currentPath === path) {
+        e.preventDefault();
+        scrollToHash(hash);
+      }
+    }
+    closeMenu();
+  }
+
+  function toggleDropdown(key: string) {
+    setOpenDropdown((prev) => (prev === key ? null : key));
+  }
 
   return (
     <header className="site-header">
       <div className="container nav-container">
-        <Link href="/" className="brand">
+        <Link href="/" className="brand" onClick={closeMenu}>
           {logoUrl ? (
             <img src={logoUrl} alt="WirfonCloud" className="brand-logo" />
           ) : (
@@ -118,16 +127,31 @@ export default function Navbar() {
                   onMouseEnter={() => setOpenDropdown(link.key)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  <Link href={link.href} className={active === link.key ? "active" : ""}>
-                    {link.label} <i className="fa-solid fa-chevron-down" />
+                  <Link
+                    href={link.href}
+                    className={active === link.key ? "active" : ""}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
                   </Link>
+                  <button
+                    className="dropdown-toggle"
+                    aria-label={`Toggle ${link.label} submenu`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleDropdown(link.key);
+                    }}
+                  >
+                    <i className="fa-solid fa-chevron-down" />
+                  </button>
                   <ul className="dropdown">
                     {link.dropdown.map((d) => (
                       <li key={d.href}>
                         <Link
                           href={d.href}
                           onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                            handleHashClick(e, d.href)
+                            handleDropdownLinkClick(e, d.href)
                           }
                         >
                           {d.label}
@@ -138,7 +162,11 @@ export default function Navbar() {
                 </li>
               ) : (
                 <li key={link.key}>
-                  <Link href={link.href} className={active === link.key ? "active" : ""}>
+                  <Link
+                    href={link.href}
+                    className={active === link.key ? "active" : ""}
+                    onClick={closeMenu}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -147,7 +175,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <Link href="/about#contact" className="nav-cta">
+        <Link href="/about#contact" className="nav-cta" onClick={closeMenu}>
           Contact us
         </Link>
       </div>

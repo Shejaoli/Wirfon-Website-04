@@ -141,6 +141,21 @@ p { margin: 0 0 1em; color: var(--grey-700); }
 .nav-list > li > a:hover, .nav-list > li > a.active { color: var(--ink); background: rgba(15,23,42,0.06); }
 .nav-list .fa-chevron-down { font-size: 0.65rem; transition: transform 0.2s ease; }
 
+/* Chevron toggle button — desktop: sits inline next to the label, mobile: hidden (dropdown always expanded) */
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  padding: 0.55rem 0.5rem 0.55rem 0;
+  cursor: pointer;
+  color: var(--grey-700);
+  font-size: 0.65rem;
+  line-height: 1;
+}
+.has-dropdown.dropdown-open .dropdown-toggle .fa-chevron-down { transform: rotate(180deg); }
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -1196,7 +1211,7 @@ body { padding-top: calc(78px + var(--ticker-h)); }
     background: transparent;
     border: 0;
   }
-  .has-dropdown > a .fa-chevron-down { display: none; }
+  .dropdown-toggle { display: none; }
 
   .two-col, .two-col.reverse { grid-template-columns: 1fr; gap: 30px; }
   .two-col.reverse .col-image { order: -1; }
